@@ -7,10 +7,20 @@ defmodule Runner do
   ]
 
   def run do
+    run(Equalities)
+  end
+
+  def run(start_module) do
     IO.puts("")
-    Enum.take_while(@modules, fn(mod) ->
+    IO.puts("")
+
+    start_idx = Enum.find_index(@modules, &(&1 == start_module))
+    Enum.drop(@modules, start_idx)
+    |> Enum.take_while(fn(mod) ->
       run_module(mod) == :passed
     end)
+
+    IO.puts("")
   end
 
   def run_module(module) do
