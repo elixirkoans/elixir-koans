@@ -39,6 +39,6 @@ defmodule Display do
   end
 
   defp display_koan(name) do
-    String.replace(to_string(name), "koan: ", "")
+    String.replace(to_string(name), Koans.prefix, "")
   end
 end

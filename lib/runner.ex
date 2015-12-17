@@ -50,6 +50,6 @@ defmodule Runner do
   end
 
   defp koan?(fun_name) do
-    String.starts_with?(to_string(fun_name), "koan: ")
+    String.starts_with?(to_string(fun_name), Koans.prefix)
   end
 end
