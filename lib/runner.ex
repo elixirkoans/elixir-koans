@@ -53,12 +53,19 @@ defmodule Runner do
   end
 
   def show_failure(%{expr: expr}, module, name) do
+    source = module.__info__(:compile)
+              |> Dict.get(:source)
+              |> Path.relative_to(File.cwd!)
     IO.puts("")
     IO.puts("Now meditate upon #{display_module(module)}")
     IO.puts("---------------------------------------")
-    IO.puts("Assertion failed!")
+    IO.puts("Assertion failed in #{source}:#{line_number(expr)}")
     IO.puts(display_koan(name))
     IO.puts(format_red(Macro.to_string(expr)))
+  end
+
+  def line_number({_, [line: line], _}) do
+    line
   end
 
   def format_red(str) do
