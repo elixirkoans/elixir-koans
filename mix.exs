@@ -9,7 +9,7 @@ defmodule Koans.Mixfile do
   end
 
   def application do
-    [applications: [:logger]]
+    [applications: [:exfswatch, :logger]]
   end
 
   defp deps do

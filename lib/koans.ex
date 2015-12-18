@@ -1,6 +1,8 @@
 defmodule Koans do
+  @prefix "koan: "
+
   defmacro koan(name, body) do
-    compiled_name = :"koan: #{name}"
+    compiled_name = :"#{prefix}#{name}"
     quote do
       def unquote(compiled_name)() do
         try do
@@ -18,5 +20,9 @@ defmodule Koans do
       import Koans
       import ExUnit.Assertions
     end
+  end
+
+  def prefix do
+    @prefix
   end
 end
