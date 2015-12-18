@@ -4,7 +4,7 @@ defmodule Koans.Mixfile do
   def project do
     [app: :elixir_koans,
      version: "0.0.1",
-     elixir: "~> 1.1",
+     elixir: "~> 1.2",
      deps: deps]
   end
 
