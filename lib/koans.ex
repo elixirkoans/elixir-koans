@@ -18,7 +18,8 @@ defmodule Koans do
   defmacro __using__(_) do
     quote do
       import Koans
-      import ExUnit.Assertions
+      require ExUnit.Assertions
+      import BlankAssertions
     end
   end
 
