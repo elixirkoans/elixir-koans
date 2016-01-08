@@ -6,7 +6,7 @@ defmodule Display do
     IO.puts("")
     IO.puts("Now meditate upon #{display_module(module)}")
     IO.puts("---------------------------------------")
-    IO.puts("Assertion failed in #{source_file(module)}:#{line_number(expr)}")
+    IO.puts(format_cyan(display_failed_assertion(module, expr)))
     IO.puts(display_koan(name))
     IO.puts(format_red(Macro.to_string(expr)))
   end
@@ -18,6 +18,10 @@ defmodule Display do
   def before_run do
     IO.puts("")
     IO.puts("")
+  end
+
+  def display_failed_assertion(module, expr) do
+    "Assertion failed in #{source_file(module)}:#{line_number(expr)}"
   end
 
   defp line_number({_, [line: line], _}) do
@@ -32,6 +36,10 @@ defmodule Display do
 
   defp format_red(str) do
     Enum.join([ANSI.red, str, ANSI.reset], "")
+  end
+
+  defp format_cyan(str) do
+    Enum.join([ANSI.cyan, str, ANSI.reset], "")
   end
 
   defp display_module(module) do
