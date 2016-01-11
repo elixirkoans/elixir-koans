@@ -1,7 +1,9 @@
 defmodule Runner do
   @modules [
     Equalities,
-    Lists
+    Lists,
+    Maps,
+    Strings
   ]
 
   def run do
