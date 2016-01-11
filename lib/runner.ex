@@ -2,6 +2,7 @@ defmodule Runner do
   @modules [
     Equalities,
     Lists,
+    Maps,
     Strings
   ]
 
