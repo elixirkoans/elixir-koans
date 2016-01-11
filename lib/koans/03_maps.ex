@@ -1,59 +1,65 @@
 defmodule Maps do
   use Koans
 
-  koan "Maps have keys and values" do
-    assert %{ :the_key => "some value" } == %{ :the_key => "some value"}
+  koan "Maps represent structured data, like a person" do
+    assert %{ :name => "Jon",
+              :last_name => "Snow",
+              :age => 27 } == %{ :name => "Jon",
+                                 :last_name => "Snow",
+                                 :age => 27 }
   end
 
-  koan "Has keys" do
-    assert Map.keys(%{ :a => "A", :b => "B" }) == [:a, :b]
+  koan "You can get all the keys from the map" do
+    assert Map.keys(%{ :name => "Jon", :last_name => "Snow", :age => 27 }) == [:age, :last_name, :name]
   end
 
-  koan "Has values" do
-    assert Map.values(%{ :a => "A", :b => "B" }) == ["A", "B"]
+  koan "Or you can also get all the values from it" do
+    assert Map.values(%{ :name => "Jon", :last_name => "Snow", :age => 27 }) == [27, "Snow", "Jon"]
   end
 
-  koan "Can read values based on a key" do
-    assert Map.fetch(%{ :a => "A"}, :a) == {:ok, "A"}
-    assert Map.fetch(%{ :a => "A"}, :z) == :error
-    assert Map.fetch!(%{ :a => "A"}, :a) == "A"
+  koan "Fetching a value returns a touple with ok when it exists..." do
+    assert Map.fetch(%{ :name => "Jon", :last_name => "Snow", :age => 27 }, :age) == {:ok, 27}
   end
 
-  koan "New pairs can be added" do
-    assert Map.put(%{ :a => "A"}, :b, "B") == %{ :a => "A", :b => "B" }
+  koan "...or the atom :error when it doesnt." do
+    assert Map.fetch(%{ :name => "Jon", :last_name => "Snow", :age => 27 }, :family) == :error
   end
 
-  koan "There is syntactic sugar to update existing keys" do
-    initial = %{ :a => "A"}
-    assert %{ initial | :a => "B" } == %{ :a => "B"}
+  koan "Extending a map is a simple as put'ing in a new pair" do
+    assert Map.put(%{ :name => "Jon", :last_name => "Snow"}, :age, 27) == %{ :name => "Jon", :last_name => "Snow", :age => 27 }
   end
 
   koan "Put can also overwrite existing values" do
-    assert Map.put(%{:a => "A"}, :a, "B") == %{ :a => "B"}
+    assert Map.put(%{ :name => "Jon", :last_name => "Snow", :age => 15}, :age, 27) == %{ :name => "Jon", :last_name => "Snow", :age => 27 }
+  end
+
+  koan "Or you can use some syntactic sugar for exiting elements." do
+    initial = %{ :name => "Jon", :last_name => "Snow", :age => 15}
+    assert %{ initial | :age => 27 } == %{ :name => "Jon", :last_name => "Snow", :age => 27 }
   end
 
   koan "Can remove pairs by key" do
-    assert Map.delete(%{:a => "A", :b => "B"}, :b) == %{ :a => "A"}
+    assert Map.delete(%{ :name => "Jon", :last_name => "Snow", :age => 15}, :age) == %{ :name => "Jon", :last_name => "Snow"}
   end
 
-  koan "Can be created based on a list of pairs" do
-    assert Map.new([{:a, "A"}, {:b, "B"}]) == %{ :a => "A", :b => "B" }
+  koan "If you have a list of pairs, you can turn them into a map" do
+    assert Map.new( [{:name, "Jon"}, {:last_name, "Snow"}, {:age, 27}] ) == %{ :name => "Jon", :last_name => "Snow", :age => 27 }
   end
 
-  koan "Can be turned back into a list of pairs" do
-    assert Map.to_list(%{ :a => "A", :b => "B" }) == [{:a, "A"}, {:b, "B"}]
+  koan "Going back to a list of pairs is just as easy." do
+    assert Map.to_list(%{ :name => "Jon", :last_name => "Snow", :age => 27 }) == [age: 27, last_name: "Snow", name: "Jon" ]
   end
 
   koan "Can merge maps" do
-    assert Map.merge(%{ :a => "A"}, %{:b => "B"}) == %{:a => "A", :b => "B"}
+    assert Map.merge(%{:name => "Jon"}, %{ :last_name => "Snow"}) == %{:name => "Jon", :last_name => "Snow"}
   end
 
   koan "When merging, the last map wins" do
-    assert Map.merge(%{ :a => "A"}, %{:a => "X", :b => "B"}) == %{:a => "X", :b => "B"}
+    assert Map.merge(%{:name => "Robert", :last_name => "Snow"}, %{ :last_name => "Baratheon"}) == %{:name => "Robert", :last_name => "Baratheon"}
   end
 
-  koan "Can extract smaller sub-maps" do
-    the_map = %{ :a => "A", :b => "B", :c => "C" }
-    assert Map.take(the_map, [:a, :b]) == %{ :a => "A", :b => "B"}
+  koan "You can also select sub-maps out of a larger map" do
+    initial = %{ :name => "Jon", :last_name => "Snow", :age => 15}
+    assert Map.take(initial, [:name, :last_name]) == %{ :name => "Jon", :last_name => "Snow"}
   end
 end
