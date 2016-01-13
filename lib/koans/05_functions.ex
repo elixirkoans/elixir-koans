@@ -9,9 +9,9 @@ defmodule Functions do
     assert inside() == :light
   end
 
-  def quick_inline_add(a, b), do: a * b
-  koan "Short functions can be defined in a single line, but check the komma and colon!" do
-    assert quick_inline_add(2,3) == 6
+  def quick_inline_product(a, b), do: a * b
+  koan "Short functions can be defined in a single line, but mind the comman and colon!" do
+    assert quick_inline_product(2,3) == 6
   end
 
   # A function can have an argument between parentheses, after the name
@@ -53,7 +53,6 @@ defmodule Functions do
 
   def sum_up(thing) when is_list(thing), do: :entire_list
   def sum_up(thing), do: :single_thing
-
   koan "You can 'guard' functions against their arguments" do
     assert sum_up([1,2,3]) == :entire_list
     assert sum_up(1) == :single_thing
@@ -68,9 +67,23 @@ defmodule Functions do
 
   def the_length(0), do: "It was zero"
   def the_length(number), do: "The length was #{number}"
-
   koan "You can also 'guard' with concrete values" do
     assert the_length(0) == "It was zero"
     assert the_length(5) == "The length was 5"
+  end
+
+  koan "You can also define inline functions and call them with .()" do
+    multiply = fn (a,b) -> a * b end
+    assert multiply.(2,3) == 6
+  end
+
+  koan "You can even go shorter, by using &(..) and positional arguments" do
+    multiply = &(&1 * &2)
+    assert multiply.(2,3) == 6
+  end
+
+  def two_arguments(_first, second), do: second
+  koan "You can also show that certain arguments are ignored in the body by adding an underscore" do
+    assert two_arguments(:hi_there, "the other one") == "the other one"
   end
 end
