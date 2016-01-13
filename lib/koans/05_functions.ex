@@ -86,4 +86,10 @@ defmodule Functions do
   koan "You can also show that certain arguments are ignored in the body by adding an underscore" do
     assert two_arguments(:hi_there, "the other one") == "the other one"
   end
+
+  def multiply_then_call(number, fun), do: fun.(number*5)
+  def square(number), do: number * number
+  koan "You can 'capture' functions if you want to pass them around as values" do
+    assert multiply_then_call(2, &square/1) == 100
+  end
 end
