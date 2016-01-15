@@ -24,6 +24,11 @@ defmodule Display do
     "Assertion failed in #{source_file(module)}:#{line_number(expr)}"
   end
 
+  def format_compile_error(error) do
+    trace = System.stacktrace |> Enum.take(2)
+    IO.puts(format_red(Exception.format(:error, error, trace)))
+  end
+
   defp line_number({_, [line: line], _}) do
     line
   end
