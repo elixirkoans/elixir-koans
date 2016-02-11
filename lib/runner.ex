@@ -4,7 +4,8 @@ defmodule Runner do
     Strings,
     Lists,
     Maps,
-    Functions
+    Functions,
+    Enums
   ]
 
   def run do
