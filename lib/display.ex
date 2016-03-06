@@ -33,39 +33,38 @@ defmodule Display do
     IO.puts(format_red(Exception.format(:error, error, trace)))
   end
 
-  defp line_number({_, [line: line], _}, in: _) do
-    line
-  end
+  defp line_number({_, [line: line], _}, in: _), do: line
   defp line_number(expr, in: file) do
-    expression = expr_to_s(expr)
-    {:ok, line} = File.open(file, fn(x) ->
-      IO.read(x, :all)
+    expr
+    |> to_s
+    |> find_in_file(file)
+    |> interpret
+  end
+
+  defp interpret({:ok, n}), do: n
+
+  defp find_in_file(line, file) do
+    File.open(file, fn(handle) ->
+      IO.read(handle, :all)
       |> String.split("\n")
-      |> Enum.find_index(fn(candidate) -> String.contains?(candidate, expression) end)
+      |> Enum.find_index(fn(candidate) -> String.contains?(candidate, line) end)
       |> one_based
     end)
-    line
   end
 
-  defp one_based(line) when is_number(line), do: line + 1
   defp one_based(nil), do: "???"
+  defp one_based(line), do: line + 1
 
-  defp expr_to_s(tuple) when is_tuple(tuple) do
+  defp to_s(atom) when is_atom(atom), do: ":#{to_string(atom)}"
+  defp to_s(tuple) when is_tuple(tuple) do
     elements = tuple
                  |> Tuple.to_list
                  |> Enum.map(fn(x) -> to_s(x) end)
 
    "{#{Enum.join(elements, ", ")}}"
   end
+  defp to_s(x), do: "\"#{x}\""
 
-  defp expr_to_s(atom) when is_atom(atom) do
-    to_string(atom)
-  end
-
-  def to_s(x) when is_atom(x) do
-    ":#{to_string(x)}"
-  end
-  def to_s(x), do: "\"#{x}\""
 
   defp source_file(module) do
     module.__info__(:compile)
