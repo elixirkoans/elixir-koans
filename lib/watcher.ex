@@ -4,7 +4,7 @@ defmodule Watcher do
   def callback(file, events)  do
     if Enum.member?(events, :modified) do
       try do
-        [{mod, _}] = Code.load_file(file)
+        [{mod, _} | _] = Code.load_file(file)
         Runner.run(mod)
       rescue
         e -> Display.format_compile_error(e)
