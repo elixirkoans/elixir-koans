@@ -13,8 +13,6 @@ defmodule Runner do
   end
 
   def run(start_module) do
-    Display.before_run
-
     start_idx = Enum.find_index(@modules, &(&1 == start_module))
     Enum.drop(@modules, start_idx)
     |> Enum.take_while(fn(mod) ->
