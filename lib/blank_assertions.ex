@@ -1,4 +1,6 @@
 defmodule BlankAssertions do
+  require ExUnit.Assertions
+
   defmacro assert(expr) do
     if contains_blank?(expr) do
       code = Macro.escape(expr)
@@ -25,12 +27,29 @@ defmodule BlankAssertions do
     end
   end
 
+  defmacro assert_receive(expr) do
+    if contains_blank?(expr) do
+      code = Macro.escape(expr)
+      quote do
+        raise ExUnit.AssertionError, expr: unquote(code)
+      end
+    else
+      quote do
+        ExUnit.Assertions.assert_receive(unquote(expr), 100)
+      end
+    end
+  end
+
   def assert(value, opts) do
     ExUnit.Assertions.assert(value, opts)
   end
 
   def refute(value, opts) do
     ExUnit.Assertions.refute(value, opts)
+  end
+
+  def flunk(message \\ "Flunked!") do
+    assert false, message: message
   end
 
   defp contains_blank?(expr) do

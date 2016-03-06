@@ -24,7 +24,8 @@ defmodule Display do
   end
 
   def display_failed_assertion(module, expr) do
-    "Assertion failed in #{source_file(module)}:#{line_number(expr)}"
+    file = source_file(module)
+    "Assertion failed in #{file}:#{line_number(expr, in: file)}"
   end
 
   def format_compile_error(error) do
@@ -32,9 +33,39 @@ defmodule Display do
     IO.puts(format_red(Exception.format(:error, error, trace)))
   end
 
-  defp line_number({_, [line: line], _}) do
+  defp line_number({_, [line: line], _}, in: _) do
     line
   end
+  defp line_number(expr, in: file) do
+    expression = expr_to_s(expr)
+    {:ok, line} = File.open(file, fn(x) ->
+      IO.read(x, :all)
+      |> String.split("\n")
+      |> Enum.find_index(fn(candidate) -> String.contains?(candidate, expression) end)
+      |> one_based
+    end)
+    line
+  end
+
+  defp one_based(line) when is_number(line), do: line + 1
+  defp one_based(nil), do: "???"
+
+  defp expr_to_s(tuple) when is_tuple(tuple) do
+    elements = tuple
+                 |> Tuple.to_list
+                 |> Enum.map(fn(x) -> to_s(x) end)
+
+   "{#{Enum.join(elements, ", ")}}"
+  end
+
+  defp expr_to_s(atom) when is_atom(atom) do
+    to_string(atom)
+  end
+
+  def to_s(x) when is_atom(x) do
+    ":#{to_string(x)}"
+  end
+  def to_s(x), do: "\"#{x}\""
 
   defp source_file(module) do
     module.__info__(:compile)
