@@ -5,7 +5,8 @@ defmodule Runner do
     Lists,
     Maps,
     Functions,
-    Enums
+    Enums,
+    Arithmetic
   ]
 
   def run do
