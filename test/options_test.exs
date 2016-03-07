@@ -2,17 +2,17 @@ defmodule OptionTest do
   use ExUnit.Case, async: true
 
   test "has default options" do
-    Options.parse([])
+    Options.start([])
     refute Options.clear_screen?
   end
 
   test "override clearing of screen" do
-    Options.parse(["--clear-screen"])
+    Options.start(["--clear-screen"])
     assert Options.clear_screen?
   end
 
   test "ignores unknown options" do
-    options = Options.parse(["--foo"])
+    Options.start(["--foo"])
     refute Options.clear_screen?
   end
 end
