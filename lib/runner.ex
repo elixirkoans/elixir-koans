@@ -9,7 +9,8 @@ defmodule Runner do
     Arithmetic,
     Structs,
     PatternMatching,
-    Processes
+    Processes,
+    Tasks
   ]
 
   def run do
