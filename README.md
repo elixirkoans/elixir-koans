@@ -5,12 +5,19 @@ of the most important features and idiomatic usage of the language.
 
 ### Prerequisites
 
-The only dependency needed to run these koans is the Elixir language. Please refer to the
-[official guide](http://elixir-lang.org/install.html) for instructions.
+To install Elixir, please refer to the [official guide](http://elixir-lang.org/install.html) for instructions.
+
+To fetch mix dependencies, run:
+```sh
+$ mix deps.get
+```
+
+On Linux, you'll need to install `inotify-tools` if you already haven't to be able
+to use the autorunner in this project.
 
 ### Running
 
-With Elixir installed, just navigate to the root directory of this project and run:
+With the dependencies installed, just navigate to the root directory of this project and run:
 ```sh
 $ mix meditate
 ```
