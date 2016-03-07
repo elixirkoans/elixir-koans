@@ -7,8 +7,8 @@ defmodule Mix.Tasks.Meditate do
     Code.compiler_options(ignore_module_conflict: true)
     Watcher.start
 
-    options = Options.parse(args)
-    Runner.run(options)
+    Options.parse(args)
+    Runner.run
 
     :timer.sleep(:infinity)
   end
