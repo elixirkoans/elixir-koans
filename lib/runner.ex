@@ -7,7 +7,8 @@ defmodule Runner do
     Functions,
     Enums,
     Arithmetic,
-    Structs
+    Structs,
+    PatternMatching
   ]
 
   def run(options) do

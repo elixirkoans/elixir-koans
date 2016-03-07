@@ -29,6 +29,10 @@ defmodule BlankAssertions do
     ExUnit.Assertions.assert(value, opts)
   end
 
+  def refute(value, opts) do
+    ExUnit.Assertions.refute(value, opts)
+  end
+
   defp contains_blank?(expr) do
     {_, blank} = Macro.prewalk(expr, false, &blank?/2)
     blank
