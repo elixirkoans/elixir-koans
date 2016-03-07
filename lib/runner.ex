@@ -6,7 +6,8 @@ defmodule Runner do
     Maps,
     Functions,
     Enums,
-    Arithmetic
+    Arithmetic,
+    Structs
   ]
 
   def run(options) do
