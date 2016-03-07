@@ -48,8 +48,10 @@ defmodule BlankAssertions do
     ExUnit.Assertions.refute(value, opts)
   end
 
-  def flunk(message \\ "Flunked!") do
-    assert false, message: message
+  defmacro flunk(message \\ "Flunked!") do
+    quote do
+      assert false, message: unquote(message)
+    end
   end
 
   defp contains_blank?(expr) do
