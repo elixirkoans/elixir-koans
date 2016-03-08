@@ -51,12 +51,4 @@ defmodule Arithmetic do
   koan "it finds the minimum in a list" do
     assert Enum.min([1,2,3,4]) == 1
   end
-
-  koan "it can not divide by zero" do
-    try do
-      1 / 0.0
-    rescue
-       ArithmeticError -> true
-    end
-  end
 end
