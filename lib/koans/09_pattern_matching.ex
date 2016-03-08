@@ -19,6 +19,12 @@ defmodule PatternMatching do
     assert [1,2,3,4] == [head | tail]
   end
 
+  koan "Some values can be irrelevant" do
+    [_first, _second, third, _fourth] = [1,2,3,4]
+
+    assert third == 3
+  end
+
   koan "strings come apart just a easily" do
     "Shopping list: " <> items = "Shopping list: eggs, milk"
 
@@ -40,7 +46,7 @@ defmodule PatternMatching do
 
   def make_noise(%{type: "cat"}), do: "Meow"
   def make_noise(%{type: "dog"}), do: "Woof"
-  def make_noise(_), do: "Eh?"
+  def make_noise(_anything), do: "Eh?"
 
   koan "functions can declare what kind of arguments they accept" do
     dog = %{type: "dog", legs: 4, age: 9, color: "brown"}
