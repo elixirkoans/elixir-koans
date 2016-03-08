@@ -12,6 +12,7 @@ defmodule Display do
   end
 
   def show_compile_error(error) do
+    IO.puts("")
     format_error(error) |> IO.puts
   end
 
