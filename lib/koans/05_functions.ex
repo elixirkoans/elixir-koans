@@ -52,7 +52,7 @@ defmodule Functions do
   end
 
   def sum_up(thing) when is_list(thing), do: :entire_list
-  def sum_up(thing), do: :single_thing
+  def sum_up(_thing), do: :single_thing
   koan "You can 'guard' functions against their arguments" do
     assert sum_up([1,2,3]) == :entire_list
     assert sum_up(1) == :single_thing

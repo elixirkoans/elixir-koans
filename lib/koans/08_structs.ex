@@ -6,7 +6,8 @@ defmodule Structs do
   end
 
   koan "structs are defined and named after a module" do
-    assert %Person{}
+    person = %Person{}
+    assert person == %Person{}
   end
 
   koan "you can access the fields of a struct" do
@@ -53,7 +54,6 @@ defmodule Structs do
   koan "are basically maps" do
     silvia = %Person{age: 22, name: "Silvia"}
 
-    assert is_map(silvia)
     assert Map.fetch!(silvia, :age) == 22
   end
 end

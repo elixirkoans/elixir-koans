@@ -53,8 +53,9 @@ defmodule Arithmetic do
   end
 
   koan "it can not divide by zero" do
+    div_by = fn(n) -> 1 / n end
     try do
-      1 / 0.0
+      div_by.(0)
     rescue
        ArithmeticError -> true
     end
