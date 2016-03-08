@@ -59,11 +59,11 @@ defmodule PatternMatching do
   end
 
   koan "errors are shaped differently than sucessful results" do
-    result = case Integer.parse("obviously not a number") do
-      {parsed, _} -> parsed
-      :error -> 0
+    result = case Map.fetch(%{}, :obviously_not_a_key) do
+      {:ok, val} -> val
+      :error -> "not present"
     end
 
-    assert result == 0
+    assert result == "not present"
   end
 end
