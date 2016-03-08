@@ -11,18 +11,8 @@ defmodule Display do
     IO.puts(format_failure(failure))
   end
 
-  def format_failure(%ExUnit.AssertionError{expr: expr}) do
-    """
-    #{format_cyan("Assertion failed in #{last_failure_location}")}
-    #{format_red(Macro.to_string(expr))}
-    """
-  end
-
-  def format_failure(error) do
-    """
-    #{format_cyan("Error in #{last_failure_location}")}
-    #{format_error(error)}
-    """
+  def show_compile_error(error) do
+    format_error(error) |> IO.puts
   end
 
   def considering(module) do
@@ -36,7 +26,21 @@ defmodule Display do
     end
   end
 
-  def last_failure_location do
+  defp format_failure(%ExUnit.AssertionError{expr: expr}) do
+    """
+    #{format_cyan("Assertion failed in #{last_failure_location}")}
+    #{format_red(Macro.to_string(expr))}
+    """
+  end
+
+  defp format_failure(error) do
+    """
+    #{format_cyan("Error in #{last_failure_location}")}
+    #{format_error(error)}
+    """
+  end
+
+  defp last_failure_location do
     {file, line} = System.stacktrace
       |> Enum.drop_while(&in_ex_unit?/1)
       |> List.first
@@ -52,11 +56,7 @@ defmodule Display do
     {file, line}
   end
 
-  def format_compile_error(error) do
-    format_error(error) |> IO.puts
-  end
-
-  def format_error(error) do
+  defp format_error(error) do
     trace = System.stacktrace |> Enum.take(2)
     format_red(Exception.format(:error, error, trace))
   end
