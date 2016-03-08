@@ -6,9 +6,10 @@ defmodule PatternMatching do
   end
 
   koan "patterns can be used to pull things apart" do
-    [head | _tail] = [1,2,3,4]
+    [head | tail] = [1,2,3,4]
 
     assert head == 1
+    assert tail == [2,3,4]
   end
 
   koan "or put them back together" do
