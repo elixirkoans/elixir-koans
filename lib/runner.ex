@@ -10,25 +10,25 @@ defmodule Runner do
     Structs
   ]
 
-  def run(options) do
-    run(Equalities, options)
+  def run do
+    run(Equalities)
   end
 
-  def run(start_module, options) do
+  def run(start_module) do
     start_idx = Enum.find_index(@modules, &(&1 == start_module))
     Enum.drop(@modules, start_idx)
     |> Enum.take_while(fn(mod) ->
-      run_module(mod, options) == :passed
+      run_module(mod) == :passed
     end)
   end
 
-  def run_module(module, options) do
+  def run_module(module) do
     Display.considering(module)
 
     koans = extract_koans_from(module)
 
     passed = Enum.take_while(koans, fn(name) ->
-      run_koan(module, name, options) == :passed
+      run_koan(module, name) == :passed
     end)
 
     if Enum.count(koans) == Enum.count(passed) do
@@ -38,11 +38,11 @@ defmodule Runner do
     end
   end
 
-  def run_koan(module, name, options) do
+  def run_koan(module, name) do
     case apply(module, name, []) do
       :ok   -> :passed
       error ->
-        Display.show_failure(error, module, name, options)
+        Display.show_failure(error, module, name)
         :failed
     end
   end

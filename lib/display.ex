@@ -2,8 +2,8 @@ defmodule Display do
   alias IO.ANSI
   @current_dir File.cwd!
 
-  def show_failure(%{expr: expr}, module, name, options) do
-    clear_screen(options)
+  def show_failure(%{expr: expr}, module, name) do
+    clear_screen()
 
     IO.puts("Now meditate upon #{display_module(module)}")
     IO.puts("---------------------------------------")
@@ -16,10 +16,11 @@ defmodule Display do
     IO.puts("Considering #{display_module(module)}...")
   end
 
-  def clear_screen(%{ clear_screen: false }), do: false
-  def clear_screen(_) do
-    IO.puts(ANSI.clear)
-    IO.puts(ANSI.home)
+  def clear_screen() do
+    if Options.clear_screen? do
+      IO.puts(ANSI.clear)
+      IO.puts(ANSI.home)
+    end
   end
 
   def display_failed_assertion(module, expr) do
