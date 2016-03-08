@@ -8,7 +8,7 @@ defmodule Tasks do
   end
 
   koan "if you don't need a result, use start_link/1" do
-    {:ok, pid} = Task.start_link(fn -> 1+1 end)
+    {:ok, _pid} = Task.start_link(fn -> 1+1 end)
   end
 
   koan "yield returns nil if the task isn't done yet" do
