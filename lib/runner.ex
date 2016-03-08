@@ -28,8 +28,7 @@ defmodule Runner do
   def run_module(module) do
     Display.considering(module)
 
-    koans = extract_koans_from(module)
-
+    koans = module.all_koans
     passed = Enum.take_while(koans, fn(name) ->
       run_koan(module, name) == :passed
     end)
@@ -48,14 +47,5 @@ defmodule Runner do
         Display.show_failure(error, module, name)
         :failed
     end
-  end
-
-  defp extract_koans_from(module) do
-    module.all_koans
-    |> Enum.filter(&koan?/1)
-  end
-
-  defp koan?(fun_name) do
-    String.starts_with?(to_string(fun_name), Koans.prefix)
   end
 end

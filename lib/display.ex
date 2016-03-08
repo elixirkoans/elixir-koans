@@ -8,7 +8,7 @@ defmodule Display do
     IO.puts("Now meditate upon #{display_module(module)}")
     IO.puts("---------------------------------------")
     IO.puts(format_cyan(last_failure_location))
-    IO.puts(display_koan(name))
+    IO.puts(name)
     IO.puts(format_red(Macro.to_string(expr)))
   end
 
@@ -54,9 +54,5 @@ defmodule Display do
 
   defp display_module(module) do
     Module.split(module) |> List.last
-  end
-
-  defp display_koan(name) do
-    String.replace(to_string(name), Koans.prefix, "")
   end
 end

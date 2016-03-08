@@ -1,9 +1,6 @@
 defmodule Koans do
-  @prefix "koan: "
-
   defmacro koan(name, body) do
-    compiled_name = :"#{prefix}#{name}"
-
+    compiled_name = String.to_atom(name)
     quote do
       @koans unquote(compiled_name)
       def unquote(compiled_name)() do
@@ -24,16 +21,10 @@ defmodule Koans do
       import Koans
       import BlankAssertions
 
-      @before_compile KoansBuilder
+      @before_compile Koans
     end
   end
 
-  def prefix do
-    @prefix
-  end
-end
-
-defmodule KoansBuilder do
   defmacro __before_compile__(env) do
     koans = Module.get_attribute(env.module, :koans) |> Enum.reverse
     quote do
