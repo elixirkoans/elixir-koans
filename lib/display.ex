@@ -7,7 +7,7 @@ defmodule Display do
 
     IO.puts("Now meditate upon #{display_module(module)}")
     IO.puts("---------------------------------------")
-    IO.puts(format_cyan(display_failed_assertion(module, expr)))
+    IO.puts(format_cyan(last_failure_location))
     IO.puts(display_koan(name))
     IO.puts(format_red(Macro.to_string(expr)))
   end
@@ -23,23 +23,25 @@ defmodule Display do
     end
   end
 
-  def display_failed_assertion(module, expr) do
-    "Assertion failed in #{source_file(module)}:#{line_number(expr)}"
+  def last_failure_location do
+    {file, line} = System.stacktrace
+      |> Enum.drop_while(&in_ex_unit?/1)
+      |> List.first
+      |> extract_file_and_line
+
+    "Assertion failed in #{file}:#{line}"
+  end
+
+  defp in_ex_unit?({ExUnit.Assertions, _, _, _}), do: true
+  defp in_ex_unit?(_), do: false
+
+  defp extract_file_and_line({_, _, _, [file: file, line: line]}) do
+    {file, line}
   end
 
   def format_compile_error(error) do
     trace = System.stacktrace |> Enum.take(2)
     IO.puts(format_red(Exception.format(:error, error, trace)))
-  end
-
-  defp line_number({_, [line: line], _}) do
-    line
-  end
-
-  defp source_file(module) do
-    module.__info__(:compile)
-    |> Dict.get(:source)
-    |> Path.relative_to(@current_dir)
   end
 
   defp format_red(str) do

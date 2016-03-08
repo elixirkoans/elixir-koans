@@ -8,7 +8,9 @@ defmodule Runner do
     Enums,
     Arithmetic,
     Structs,
-    PatternMatching
+    PatternMatching,
+    Processes,
+    Tasks
   ]
 
   def run do

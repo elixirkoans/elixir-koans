@@ -15,10 +15,10 @@ defmodule Koans do
     end
   end
 
-  defmacro __using__(_) do
+  defmacro __using__(opts) do
     quote do
-      import Koans
       require ExUnit.Assertions
+      import Koans
       import BlankAssertions
     end
   end
