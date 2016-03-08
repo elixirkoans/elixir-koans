@@ -51,8 +51,7 @@ defmodule Runner do
   end
 
   defp extract_koans_from(module) do
-    module.__info__(:functions)
-    |> Enum.map(fn({name, _arity}) -> name end)
+    module.all_koans
     |> Enum.filter(&koan?/1)
   end
 
