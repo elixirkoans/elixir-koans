@@ -14,8 +14,9 @@ defmodule Koans do
     end
   end
 
-  defmacro __using__(opts) do
+  defmacro __using__(_opts) do
     quote do
+      @compile :nowarn_unused_vars
       Module.register_attribute(__MODULE__, :koans, accumulate: true)
       require ExUnit.Assertions
       import Koans
