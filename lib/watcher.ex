@@ -7,7 +7,7 @@ defmodule Watcher do
         [{mod, _} | _] = Code.load_file(file)
         Runner.run(mod)
       rescue
-        e -> Display.format_compile_error(e)
+        e -> Display.show_compile_error(e)
       end
     end
   end

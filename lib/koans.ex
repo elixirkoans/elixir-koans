@@ -8,7 +8,7 @@ defmodule Koans do
           unquote(body)
           :ok
         rescue
-          e in ExUnit.AssertionError -> e
+          e in _ -> e
         end
       end
     end
