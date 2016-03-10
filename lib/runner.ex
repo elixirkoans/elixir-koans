@@ -41,7 +41,7 @@ defmodule Runner do
   end
 
   def test_single_koan(module, name, answer) do
-    case apply(module, name, []) do
+    case apply(module, name, [answer]) do
       :ok -> :passed
       error -> IO.inspect error
     end

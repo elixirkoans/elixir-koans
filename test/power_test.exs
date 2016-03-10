@@ -2,8 +2,10 @@ defmodule PowerTest do
   use ExUnit.Case
 
   test "something" do
-    [first | _] = Equalities.all_koans
+    koans = Equalities.all_koans
+    answers = [true, 1]
 
-    assert :passed == Runner.test_single_koan(Equalities, first, true)
+    combined = Enum.zip(koans, answers)
+    Enum.each(combined, fn({koan, answer}) -> assert :passed == Runner.test_single_koan(Equalities, koan, answer) end)
   end
 end
