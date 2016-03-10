@@ -1,8 +1,7 @@
 defmodule Koans do
   defmacro koan(name, body) do
     compiled_name = String.to_atom(name)
-    x = quote do: answer
-    mangled_body = ASTMangler.expand(body, x)
+    mangled_body = ASTMangler.expand(body, quote do: answer)
     quote do
       @koans unquote(compiled_name)
       def unquote(compiled_name)(answer \\ :nothing) do

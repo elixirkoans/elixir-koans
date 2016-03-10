@@ -9,6 +9,7 @@ defmodule ASTMangler do
   end
   def expand(n, _), do: n
 
+  def replace(nil, _), do: nil
   def replace(args, b) do
     args
     |> Enum.find_index(fn(x) -> x == :__ end)

@@ -23,10 +23,6 @@ defmodule ASTManglerTest do
     end
   end
 
-  test "something" do
-    n = 1
-  end
-
   test "complex example" do
     ast = [do: {:assert, [line: 5], [{:==, [line: 5], [true, :__]}]}]
 
