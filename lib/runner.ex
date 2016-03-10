@@ -30,7 +30,11 @@ defmodule Runner do
 
     koans = module.all_koans
     passed = Enum.take_while(koans, fn(name) ->
-      run_koan(module, name) == :passed
+      case run_koan(module, name) do
+        :passed -> true
+        {:failed, error, module, name} -> Display.show_failure(error, module, name)
+                                          false
+      end
     end)
 
     if Enum.count(koans) == Enum.count(passed) do
@@ -40,12 +44,10 @@ defmodule Runner do
     end
   end
 
-  def run_koan(module, name) do
-    case apply(module, name, []) do
+  def run_koan(module, name, args \\ []) do
+    case apply(module, name, args) do
       :ok   -> :passed
-      error ->
-        Display.show_failure(error, module, name)
-        :failed
+      error -> {:failed, error, module, name}
     end
   end
 end
