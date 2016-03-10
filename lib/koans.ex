@@ -4,13 +4,18 @@ defmodule Koans do
     mangled_body = ASTMangler.expand(body, quote do: answer)
     quote do
       @koans unquote(compiled_name)
-      def unquote(compiled_name)(answer \\ :nothing) do
+      def unquote(compiled_name)() do
         try do
-            if answer == :nothing do
-              unquote(body)
-            else
-              unquote(mangled_body)
-            end
+          unquote(body)
+          :ok
+        rescue
+          e in _ -> e
+        end
+      end
+
+      def unquote(compiled_name)(answer) do
+        try do
+          unquote(mangled_body)
           :ok
         rescue
           e in _ -> e
