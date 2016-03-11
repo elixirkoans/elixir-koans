@@ -11,6 +11,29 @@ defmodule KoansHarnessTest do
     assert test_all(Equalities, answers) == :all_passed
   end
 
+  test "Lists" do
+    answers = [1,
+               3,
+               [1,2,:a,"b"],
+               [1,2],
+               [1,2,3],
+               [1,3],
+               ["life", "life", "life"],
+               [1, 2, 3, 4, 5],
+               [1, 2, 3, 4],
+               [1, 4, 2, 3],
+               [10, 2, 3],
+               [1, 2, 3],
+               [1, 2, 3, 4],
+               [1, 2, 3, 4],
+               {1, 2, 3},
+               ["value"],
+               [{1, 3, 5}, {2, 4, 6}]
+               ]
+
+    assert test_all(Lists, answers) == :all_passed
+  end
+
   def test_all(module, answers) do
     module.all_koans
     |> Enum.zip(answers)
