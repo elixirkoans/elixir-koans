@@ -15,11 +15,9 @@ defmodule ASTMangler do
     |> Enum.find_index(fn(x) -> x == :__ end)
     |> replace(args, b)
   end
-
   def replace(nil, ast, b) when is_list(ast) do
     Enum.map(ast, fn(element) -> expand(element, b) end)
   end
-
   def replace(index, list, b) when is_integer(index) do
     List.update_at(list, index, fn(_)-> b end)
   end
