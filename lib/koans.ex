@@ -14,12 +14,8 @@ defmodule Koans do
       end
 
       def unquote(compiled_name)(answer) do
-        try do
-          unquote(mangled_body)
-          :ok
-        rescue
-          e in _ -> e
-        end
+        unquote(mangled_body)
+        :ok
       end
     end
   end
