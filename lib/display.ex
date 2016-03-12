@@ -3,8 +3,6 @@ defmodule Display do
   @current_dir File.cwd!
 
   def show_failure(failure, module, name) do
-    clear_screen()
-
     IO.puts("Now meditate upon #{format_module(module)}")
     IO.puts("---------------------------------------")
     IO.puts(name)
@@ -20,7 +18,7 @@ defmodule Display do
     IO.puts("Considering #{format_module(module)}...")
   end
 
-  def clear_screen() do
+  def clear_screen do
     if Options.clear_screen? do
       IO.puts(ANSI.clear)
       IO.puts(ANSI.home)
