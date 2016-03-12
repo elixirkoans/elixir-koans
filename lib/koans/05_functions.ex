@@ -92,4 +92,13 @@ defmodule Functions do
   koan "You can 'capture' functions if you want to pass them around as values" do
     assert multiply_then_call(2, &square/1) == 100
   end
+
+  koan "functions can be combined elegantly with the pipe operator" do
+    result = "full-name"
+    |> String.split("-")
+    |> Enum.map(&(String.capitalize(&1)))
+    |> Enum.join(" ")
+
+    assert result == "Full Name"
+  end
 end

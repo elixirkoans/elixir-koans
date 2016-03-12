@@ -5,6 +5,16 @@ defmodule PatternMatching do
     assert match?(1, 1)
   end
 
+  koan "a pattern can change" do
+    a = 1
+    assert a = 2
+  end
+
+  koan "a pattern can also be strict" do
+    a = 1
+    assert ^a = 2
+  end
+
   koan "patterns can be used to pull things apart" do
     [head | tail] = [1,2,3,4]
 
