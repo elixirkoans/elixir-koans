@@ -55,6 +55,22 @@ defmodule KoansHarnessTest do
     test_all(Maps, answers)
   end
 
+  test "String" do
+    answers = [
+      "hello",
+      "hello ",
+      ["hello", "world"],
+      "An awful day",
+      "incredible",
+      "banana",
+      "banana",
+      "String",
+      "listen"
+    ]
+
+    test_all(Strings, answers)
+  end
+
   def test_all(module, answers) do
     module.all_koans
     |> Enum.zip(answers)
