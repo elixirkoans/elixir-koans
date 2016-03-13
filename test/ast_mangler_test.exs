@@ -28,4 +28,22 @@ defmodule ASTManglerTest do
 
     assert [do: {:assert, [line: 5], [{:==, [line: 5], [true, true]}]}] == ASTMangler.expand(ast, true)
   end
+
+  test "multiple arguments" do
+    ast = [do: {:assert, [line: 5], [{:==, [line: 5], [:__, :__]}]}]
+
+    assert [do: {:assert, [line: 5], [{:==, [line: 5], [true, false]}]}] == ASTMangler.expand(ast, [true, false])
+  end
+
+  test "counts simple blanks" do
+    ast = quote do: 1 + :__
+
+    assert ASTMangler.count(ast) == 1
+  end
+
+  test "counts multiple blanks" do
+    ast = [do: {:assert, [line: 5], [{:==, [line: 5], [:__, :__]}]}]
+
+    assert ASTMangler.count(ast) == 2
+  end
 end
