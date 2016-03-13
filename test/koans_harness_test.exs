@@ -71,6 +71,32 @@ defmodule KoansHarnessTest do
     test_all(Strings, answers)
   end
 
+  test "Functions" do
+    answers = [
+      :light,
+      3,
+      :it_was_truthy,
+      "It really wasn't",
+      "Hello Hello Hello ",
+      "Hello Hello Hello Hello Hello ",
+      "One and Two",
+      "only One",
+      :entire_list,
+      :single_thing,
+      "10 is bigger than 5",
+      "4 is not bigger than 27",
+      "It was zero",
+      "The length was 5",
+      6,
+      6,
+      "the other one",
+      100,
+      "Full Name"
+    ]
+
+    test_all(Functions, answers)
+  end
+
   def test_all(module, answers) do
     module.all_koans
     |> Enum.zip(answers)
