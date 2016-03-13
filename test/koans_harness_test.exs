@@ -34,6 +34,27 @@ defmodule KoansHarnessTest do
     test_all(Lists, answers)
   end
 
+  test "Maps" do
+    answers = [
+      "Jon",
+      [:age, :last_name, :name],
+      [27, "Snow", "Jon"],
+      {:ok, 27},
+      :error,
+      %{ :name => "Jon", :last_name => "Snow", :age => 27 },
+      %{ :name => "Jon", :last_name => "Snow", :age => 27 },
+      %{ :name => "Jon", :last_name => "Snow", :age => 27 },
+      %{ :name => "Jon", :last_name => "Snow"},
+      %{ :name => "Jon", :last_name => "Snow", :age => 27 },
+      [age: 27, last_name: "Snow", name: "Jon" ],
+      %{:name => "Jon", :last_name => "Snow"},
+      %{:name => "Robert", :last_name => "Baratheon"},
+      %{ :name => "Jon", :last_name => "Snow"}
+    ]
+
+    test_all(Maps, answers)
+  end
+
   def test_all(module, answers) do
     module.all_koans
     |> Enum.zip(answers)
