@@ -97,6 +97,40 @@ defmodule KoansHarnessTest do
     test_all(Functions, answers)
   end
 
+  test "Enum" do
+    answers = [
+      4,
+      4,
+      4,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      [10,20,30],
+      [false, true, false],
+      [1,2,3],
+      [1,3],
+      [2],
+      [1,2,3],
+      [1,2,3,4,5],
+      [1,2,3],
+      [1,2,3],
+      [1,2,3],
+      %{ :odd => [3,1], :even => [4,2] },
+      %{ 0 => [6, 3], 1 => [4, 1], 2 => [5, 2]},
+      [{1, :a}, {2, :b}, {3, :c}],
+      [{1, :a}, {2, :b}, {3, :c}],
+      2,
+      nil,
+      :no_such_element,
+      6
+    ]
+
+    test_all(Enums, answers)
+  end
+
   test "Arithmetic" do
     answers = [
       4,
