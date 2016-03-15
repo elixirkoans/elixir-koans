@@ -97,6 +97,24 @@ defmodule KoansHarnessTest do
     test_all(Functions, answers)
   end
 
+  test "Arithmetic" do
+    answers = [
+      4,
+      3,
+      12,
+      3,
+      3,
+      2.5,
+      2,
+      1,
+      4,
+      1,
+      2
+    ]
+
+    test_all(Arithmetic, answers)
+  end
+
   def test_all(module, answers) do
     module.all_koans
     |> Enum.zip(answers)
