@@ -149,6 +149,20 @@ defmodule KoansHarnessTest do
     test_all(Arithmetic, answers)
   end
 
+  test "Structs" do
+    answers = [
+      nil,
+      "Joe",
+      33,
+      23,
+      22,
+      true,
+      22,
+    ]
+
+    test_all(Structs, answers)
+  end
+
   def test_all(module, answers) do
     module.all_koans
     |> Enum.zip(answers)
