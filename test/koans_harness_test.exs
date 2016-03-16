@@ -163,6 +163,27 @@ defmodule KoansHarnessTest do
     test_all(Structs, answers)
   end
 
+  test "Pattern Matching" do
+    answers = [
+      1,
+      2,
+      1,
+      1,
+      [2,3,4],
+      [1,2,3,4],
+      3,
+      "eggs, milk",
+      "Honda",
+      [1,2,3],
+      "Woof",
+      "Meow",
+      "Eh?",
+      "not present"
+    ]
+
+    test_all(PatternMatching, answers)
+  end
+
   def test_all(module, answers) do
     module.all_koans
     |> Enum.zip(answers)
