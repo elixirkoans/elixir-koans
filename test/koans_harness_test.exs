@@ -151,6 +151,7 @@ defmodule KoansHarnessTest do
 
   test "Structs" do
     answers = [
+      %Structs.Person{},
       nil,
       "Joe",
       33,

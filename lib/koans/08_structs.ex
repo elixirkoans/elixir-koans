@@ -5,6 +5,11 @@ defmodule Structs do
     defstruct [:name, :age ]
   end
 
+  koan "structs are defined and named after a module" do
+    person = %Person{}
+    assert person == :__
+  end
+
   koan "you can access the fields of a struct" do
     nobody = %Person{}
     assert nobody.age == :__
