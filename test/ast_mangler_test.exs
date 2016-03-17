@@ -8,6 +8,11 @@ defmodule ASTManglerTest do
     assert {:+, [context: ASTManglerTest, import: Kernel], [1, 37]} == mangled
   end
 
+  test "Work with multiple different replacements" do
+    [koan | _] = SampleKoan.all_koans
+    assert :ok == apply(SampleKoan, koan, [{:multiple, [3,4]}])
+  end
+
   def complex_example do
     [head | tail] = [1,2,3,4]
 

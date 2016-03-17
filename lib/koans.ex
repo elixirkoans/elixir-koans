@@ -1,7 +1,8 @@
 defmodule Koans do
   defmacro koan(name, body) do
     compiled_name = String.to_atom(name)
-    mangled_body = ASTMangler.expand(body, quote do: answer)
+    expanded_answers = expand(ASTMangler.count(body))
+    mangled_body = ASTMangler.expand(body, expanded_answers)
     quote do
       @koans unquote(compiled_name)
       def unquote(compiled_name)() do
@@ -13,11 +14,16 @@ defmodule Koans do
         end
       end
 
-      def unquote(compiled_name)(answer) do
+      def unquote(compiled_name)(answer) when is_list(answer) do
+        converted = List.to_tuple(answer)
         unquote(mangled_body)
         :ok
       end
     end
+  end
+
+  def expand(amount) do
+    Enum.map(0..amount, fn (idx) -> {:elem, [context: Koans, import: Kernel], [{:converted, [], Koans}, idx]} end)
   end
 
   defmacro __using__(_opts) do
