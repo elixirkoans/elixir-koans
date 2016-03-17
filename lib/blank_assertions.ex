@@ -39,6 +39,10 @@ defmodule BlankAssertions do
     end
   end
 
+  def assert_raise(exception, callback) do
+    ExUnit.Assertions.assert_raise exception, fn -> callback.call() end
+  end
+
   def assert(value, opts) do
     ExUnit.Assertions.assert(value, opts)
   end
