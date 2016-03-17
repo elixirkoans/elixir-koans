@@ -2,18 +2,18 @@ defmodule Processes do
   use Koans
 
   koan "tests run in a process!" do
-    assert Process.alive?(self)
+    assert Process.alive?(:__)
   end
 
   koan "can spew out information about a process" do
     information = Process.info(self)
 
-    assert information[:status] == :running
+    assert information[:status] == :__
   end
 
   koan "process can send messages to itself" do
     send self(), "hola!"
-    assert_receive "hola!"
+    assert_receive :__
   end
 
   koan "a common pattern is to include the sender in the message" do
@@ -24,7 +24,7 @@ defmodule Processes do
                  end)
 
     send pid, {:hello, self()}
-    assert_receive :how_are_you?
+    assert_receive :__
   end
 
   koan "you don't have to wait forever for messages" do
@@ -36,22 +36,20 @@ defmodule Processes do
                 end
            end)
 
-    assert_receive {:waited_too_long, "I am inpatient"}
+    assert_receive :__
   end
 
   koan "killing a process will terminate it" do
     pid = spawn(fn -> Process.exit(self(), :kill) end)
     :timer.sleep(500)
-    refute Process.alive?(pid)
+    assert Process.alive?(pid) == :__
   end
 
   koan "killing a process kills it for good" do
-    pid = spawn(fn -> receive do
-                      end
-    end)
+    pid = spawn(fn -> receive do end end)
     assert Process.alive?(pid)
     Process.exit(pid, :kill)
-    refute Process.alive?(pid)
+    assert Process.alive?(pid) == :__
   end
 
   koan "can trap a signal in a child process" do
@@ -66,8 +64,7 @@ defmodule Processes do
     wait()
     Process.exit(pid, :random_reason)
 
-    assert_receive {:exited, :random_reason}
-    refute Process.alive?(pid)
+    assert_receive :__
   end
 
   koan "quitting normally has no effect" do
@@ -75,7 +72,7 @@ defmodule Processes do
                       end
                 end)
     Process.exit(pid, :normal)
-    assert Process.alive?(pid)
+    assert Process.alive?(pid) == :__
   end
 
   koan "quititing your own process normally does terminate it though" do
@@ -84,10 +81,9 @@ defmodule Processes do
                       end
                 end)
 
-    assert Process.alive?(pid)
     send pid, :bye
     :timer.sleep(100)
-    refute Process.alive?(pid)
+    assert Process.alive?(pid) == :__
   end
 
   koan "linked processes are informed about exit signals of children when trapping those signals" do
@@ -100,7 +96,7 @@ defmodule Processes do
             end
      end)
 
-    assert_receive {:exited, :normal}
+    assert_receive :__
   end
 
   koan "monitoring processes are informed via messages without having trapping" do
@@ -112,7 +108,7 @@ defmodule Processes do
             end
      end)
 
-    assert_receive {:exited, :normal}
+    assert_receive :__
   end
 
   def wait do

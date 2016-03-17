@@ -4,20 +4,19 @@ defmodule Tasks do
   koan "Tasks can be used for asynchronous computations with results" do
     task = Task.async(fn -> 3 *3 end)
     do_other_stuff()
-    assert Task.await(task) + 1 == 10
+    assert Task.await(task) + 1 == :__
   end
 
   koan "if you don't need a result, use start_link/1" do
     {:ok, _pid} = Task.start_link(fn -> 1+1 end)
   end
 
-  koan "yield returns nil if the task isn't done yet" do
+  koan "yield returns nothing if the task isn't done yet" do
     handle = Task.async(fn ->
                              :timer.sleep(100)
                              3 * 3
                          end)
-    assert Task.yield(handle, 10) == nil
-    assert Task.await(handle) == 9
+    assert Task.yield(handle, 10) == :__
   end
 
   koan "tasks can be aborted with shutdown" do
@@ -25,13 +24,13 @@ defmodule Tasks do
                              :timer.sleep(100)
                              3 * 3
                          end)
-    refute Task.shutdown(handle)
+    assert Task.shutdown(handle) == :__
   end
 
   koan "shutdown will give you an answer if it has it" do
     handle = Task.async(fn -> 3 * 3 end)
     :timer.sleep(10)
-    assert Task.shutdown(handle) == {:ok, 9}
+    assert Task.shutdown(handle) == {:ok, :__}
   end
 
   koan "you can yield to multiple tasks at once and extract the results" do
@@ -40,7 +39,7 @@ defmodule Tasks do
              |> Task.yield_many(100)
              |> Enum.map(fn({_task,{:ok, result}}) -> result end)
 
-  assert squares == [1,4,9,16]
+  assert squares == :__
   end
 
   def do_other_stuff do
