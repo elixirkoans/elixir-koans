@@ -21,20 +21,12 @@ defmodule Tuples do
     assert Tuple.insert_at({:a, "hi"}, 1, :new_thing) == :__
   end
 
-  koan "...avoid falling of the edge" do
-    assert_raise :__, fn ->  Tuple.insert_at({:a, "hi"}, 12, :new_thing) end
-  end
-
   koan "add things at the end" do
     assert Tuple.append({"Huey", "Dewey"}, "Louie") == :__
   end
 
   koan "or also remove them" do
     assert Tuple.delete_at({:this, :is, :not, :awesome}, 2) == :__
-  end
-
-  koan "you can't delete what you don't have" do
-    assert_raise :__, fn ->  Tuple.delete_at({:a, "hi"}, 12) end
   end
 
   koan "turn it into a list in case you need it" do

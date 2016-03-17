@@ -224,10 +224,8 @@ defmodule KoansHarnessTest do
       "hi",
       {:a, "bye"},
       {:a, :new_thing, "hi"},
-      ArgumentError,
       {"Huey", "Dewey", "Louie"},
       {:this, :is, :awesome},
-      ArgumentError,
       [:this, :can, :be, :a, :list]
     ]
 
