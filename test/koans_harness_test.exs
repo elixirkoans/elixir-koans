@@ -185,6 +185,25 @@ defmodule KoansHarnessTest do
     test_all(PatternMatching, answers)
   end
 
+  test "Processes" do
+    answers = [
+      self,
+      :running,
+      "hola!",
+      :how_are_you?,
+      {:waited_too_long, "I am inpatient"},
+      false,
+      false,
+      {:exited, :random_reason},
+      true,
+      false,
+      {:exited, :normal},
+      {:exited, :normal}
+      ]
+
+    test_all(Processes, answers)
+  end
+
   def test_all(module, answers) do
     module.all_koans
     |> Enum.zip(answers)

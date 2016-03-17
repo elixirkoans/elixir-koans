@@ -27,15 +27,14 @@ defmodule BlankAssertions do
     end
   end
 
-  defmacro assert_receive(expr) do
-    if contains_blank?(expr) do
-      code = Macro.escape(expr)
-      quote do
-        raise ExUnit.AssertionError, expr: unquote(code)
-      end
+  def assert_receive(expr) do
+    if expr == :__ do
+      raise ExUnit.AssertionError, expr: expr
     else
-      quote do
-        ExUnit.Assertions.assert_receive(unquote(expr), 100)
+      receive do
+        ^expr -> true
+      after
+        100 -> flunk("No message matching #{expr} found in mailbox")
       end
     end
   end
@@ -48,10 +47,8 @@ defmodule BlankAssertions do
     ExUnit.Assertions.refute(value, opts)
   end
 
-  defmacro flunk(message \\ "Flunked!") do
-    quote do
-      assert false, message: unquote(message)
-    end
+  def flunk(message \\ "Flunked!") do
+    ExUnit.Assertions.flunk(message)
   end
 
   defp contains_blank?(expr) do
