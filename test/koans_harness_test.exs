@@ -204,6 +204,19 @@ defmodule KoansHarnessTest do
     test_all(Processes, answers)
   end
 
+  test "Tasks" do
+    answers = [
+      10,
+      :todo,
+      nil,
+      nil,
+      9,
+      [1,4,9,16]
+      ]
+
+    test_all(Tasks, answers)
+  end
+
   def test_all(module, answers) do
     module.all_koans
     |> Enum.zip(answers)
