@@ -41,7 +41,7 @@ defmodule Koans do
     end
   end
 
-  def create_vars(amount) do
+  defp create_vars(amount) do
     Enum.map(0..amount, fn (idx) -> quote do: elem(converted, unquote(idx)) end)
   end
 
