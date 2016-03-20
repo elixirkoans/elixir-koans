@@ -1,2 +1,2 @@
-%{"exfswatch": {:hex, :exfswatch, "0.1.0"},
+%{"exfswatch": {:hex, :exfswatch, "0.1.1"},
   "fs": {:hex, :fs, "0.9.2"}}

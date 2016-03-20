@@ -13,6 +13,6 @@ defmodule Koans.Mixfile do
   end
 
   defp deps do
-    [{:exfswatch, "~> 0.1.0"}]
+    [{:exfswatch, "~> 0.1.1"}]
   end
 end
