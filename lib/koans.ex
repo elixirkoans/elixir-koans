@@ -1,7 +1,7 @@
 defmodule Koans do
   defmacro koan(name, body) do
     compiled_name = String.to_atom(name)
-    number_of_args = ASTMangler.count(body)
+    number_of_args = Blanks.count(body)
     quote do
       @koans unquote(compiled_name)
 
@@ -20,7 +20,7 @@ defmodule Koans do
 
   defmacro generate_test_method(_name, 0, _body), do: false
   defmacro generate_test_method(name, 1, body) do
-    single_var = ASTMangler.expand(body, Macro.var(:answer, Koans))
+    single_var = Blanks.replace(body, Macro.var(:answer, Koans))
     quote do
       def unquote(name)(answer) do
         converted = {answer}
@@ -30,8 +30,8 @@ defmodule Koans do
     end
   end
   defmacro generate_test_method(name, number_of_args, body) do
-    answer_placeholders = expand(number_of_args)
-    multi_var = ASTMangler.expand(body, answer_placeholders)
+    answer_placeholders = create_vars(number_of_args)
+    multi_var = Blanks.replace(body, answer_placeholders)
     quote do
       def unquote(name)({:multiple, answers}) do
         converted = List.to_tuple(answers)
@@ -41,7 +41,7 @@ defmodule Koans do
     end
   end
 
-  def expand(amount) do
+  def create_vars(amount) do
     Enum.map(0..amount, fn (idx) -> quote do: elem(converted, unquote(idx)) end)
   end
 

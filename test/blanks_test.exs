@@ -1,11 +1,11 @@
-defmodule ASTManglerTest do
+defmodule BlanksTest do
   use ExUnit.Case, async: true
 
   test "simple replacement" do
     ast = quote do: 1 + :__
 
-    mangled = ASTMangler.expand(ast, 37)
-    assert {:+, [context: ASTManglerTest, import: Kernel], [1, 37]} == mangled
+    mangled = Blanks.replace(ast, 37)
+    assert {:+, [context: BlanksTest, import: Kernel], [1, 37]} == mangled
   end
 
   test "Work with multiple different replacements" do
@@ -31,24 +31,24 @@ defmodule ASTManglerTest do
   test "complex example" do
     ast = [do: {:assert, [line: 5], [{:==, [line: 5], [true, :__]}]}]
 
-    assert [do: {:assert, [line: 5], [{:==, [line: 5], [true, true]}]}] == ASTMangler.expand(ast, true)
+    assert [do: {:assert, [line: 5], [{:==, [line: 5], [true, true]}]}] == Blanks.replace(ast, true)
   end
 
   test "multiple arguments" do
     ast = [do: {:assert, [line: 5], [{:==, [line: 5], [:__, :__]}]}]
 
-    assert [do: {:assert, [line: 5], [{:==, [line: 5], [true, false]}]}] == ASTMangler.expand(ast, [true, false])
+    assert [do: {:assert, [line: 5], [{:==, [line: 5], [true, false]}]}] == Blanks.replace(ast, [true, false])
   end
 
   test "counts simple blanks" do
     ast = quote do: 1 + :__
 
-    assert ASTMangler.count(ast) == 1
+    assert Blanks.count(ast) == 1
   end
 
   test "counts multiple blanks" do
     ast = [do: {:assert, [line: 5], [{:==, [line: 5], [:__, :__]}]}]
 
-    assert ASTMangler.count(ast) == 2
+    assert Blanks.count(ast) == 2
   end
 end
