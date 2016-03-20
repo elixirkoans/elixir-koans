@@ -1,16 +1,17 @@
 defmodule Runner do
   @modules [
     Equalities,
+    Arithmetic,
     Strings,
+    Tuples,
     Lists,
     Maps,
-    Functions,
-    Enums,
-    Arithmetic,
     Structs,
     PatternMatching,
+    Functions,
+    Enums,
     Processes,
-    Tasks
+    Tasks,
   ]
 
   def run do
