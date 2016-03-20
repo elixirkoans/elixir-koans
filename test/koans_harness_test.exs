@@ -11,6 +11,55 @@ defmodule KoansHarnessTest do
     test_all(Equalities, answers)
   end
 
+  test "Arithmetic" do
+    answers = [
+      4,
+      3,
+      12,
+      3,
+      3,
+      2.5,
+      2,
+      1,
+      4,
+      1,
+      2
+    ]
+
+    test_all(Arithmetic, answers)
+  end
+
+  test "Strings" do
+    answers = [
+      "hello",
+      "hello ",
+      ["hello", "world"],
+      "An awful day",
+      "incredible",
+      "banana",
+      "banana",
+      "String",
+      "listen"
+    ]
+
+    test_all(Strings, answers)
+  end
+
+  test "Tuples" do
+    answers = [
+      3,
+      {:a, 1, "hi"},
+      "hi",
+      {:a, "bye"},
+      {:a, :new_thing, "hi"},
+      {"Huey", "Dewey", "Louie"},
+      {:this, :is, :awesome},
+      [:this, :can, :be, :a, :list]
+    ]
+
+    test_all(Tuples, answers)
+  end
+
   test "Lists" do
     answers = [1,
                3,
@@ -55,100 +104,6 @@ defmodule KoansHarnessTest do
     test_all(Maps, answers)
   end
 
-  test "String" do
-    answers = [
-      "hello",
-      "hello ",
-      ["hello", "world"],
-      "An awful day",
-      "incredible",
-      "banana",
-      "banana",
-      "String",
-      "listen"
-    ]
-
-    test_all(Strings, answers)
-  end
-
-  test "Functions" do
-    answers = [
-      :light,
-      3,
-      :it_was_truthy,
-      "It really wasn't",
-      "Hello Hello Hello ",
-      "Hello Hello Hello Hello Hello ",
-      "One and Two",
-      "only One",
-      :entire_list,
-      :single_thing,
-      "10 is bigger than 5",
-      "4 is not bigger than 27",
-      "It was zero",
-      "The length was 5",
-      6,
-      6,
-      "the other one",
-      100,
-      "Full Name"
-    ]
-
-    test_all(Functions, answers)
-  end
-
-  test "Enum" do
-    answers = [
-      4,
-      4,
-      4,
-      true,
-      false,
-      true,
-      false,
-      true,
-      false,
-      [10,20,30],
-      [false, true, false],
-      [1,2,3],
-      [1,3],
-      [2],
-      [1,2,3],
-      [1,2,3,4,5],
-      [1,2,3],
-      [1,2,3],
-      [1,2,3],
-      %{ :odd => [3,1], :even => [4,2] },
-      %{ 0 => [6, 3], 1 => [4, 1], 2 => [5, 2]},
-      [{1, :a}, {2, :b}, {3, :c}],
-      [{1, :a}, {2, :b}, {3, :c}],
-      2,
-      nil,
-      :no_such_element,
-      6
-    ]
-
-    test_all(Enums, answers)
-  end
-
-  test "Arithmetic" do
-    answers = [
-      4,
-      3,
-      12,
-      3,
-      3,
-      2.5,
-      2,
-      1,
-      4,
-      1,
-      2
-    ]
-
-    test_all(Arithmetic, answers)
-  end
-
   test "Structs" do
     answers = [
       %Structs.Person{},
@@ -185,6 +140,66 @@ defmodule KoansHarnessTest do
     test_all(PatternMatching, answers)
   end
 
+  test "Functions" do
+    answers = [
+      :light,
+      3,
+      :it_was_truthy,
+      "It really wasn't",
+      "Hello Hello Hello ",
+      "Hello Hello Hello Hello Hello ",
+      "One and Two",
+      "only One",
+      :entire_list,
+      :single_thing,
+      "10 is bigger than 5",
+      "4 is not bigger than 27",
+      "It was zero",
+      "The length was 5",
+      6,
+      6,
+      "the other one",
+      100,
+      "Full Name"
+    ]
+
+    test_all(Functions, answers)
+  end
+
+  test "Enums" do
+    answers = [
+      4,
+      4,
+      4,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      [10,20,30],
+      [false, true, false],
+      [1,2,3],
+      [1,3],
+      [2],
+      [1,2,3],
+      [1,2,3,4,5],
+      [1,2,3],
+      [1,2,3],
+      [1,2,3],
+      %{ :odd => [3,1], :even => [4,2] },
+      %{ 0 => [6, 3], 1 => [4, 1], 2 => [5, 2]},
+      [{1, :a}, {2, :b}, {3, :c}],
+      [{1, :a}, {2, :b}, {3, :c}],
+      2,
+      nil,
+      :no_such_element,
+      6
+    ]
+
+    test_all(Enums, answers)
+  end
+
   test "Processes" do
     answers = [
       self,
@@ -215,21 +230,6 @@ defmodule KoansHarnessTest do
       ]
 
     test_all(Tasks, answers)
-  end
-
-  test "Tuples" do
-    answers = [
-      3,
-      {:a, 1, "hi"},
-      "hi",
-      {:a, "bye"},
-      {:a, :new_thing, "hi"},
-      {"Huey", "Dewey", "Louie"},
-      {:this, :is, :awesome},
-      [:this, :can, :be, :a, :list]
-    ]
-
-    test_all(Tuples, answers)
   end
 
   def test_all(module, answers) do
