@@ -1,15 +1,17 @@
 defmodule Functions do
   use Koans
 
+  # A function starts with 'def', has a 'do-end' pair
   def inside() do
     :light
   end
-  # A function starts with 'def', has a 'do-end' pair
-  koan "it returns the last statement that was called" do
+
+  koan "It returns the last statement that was called" do
     assert inside() == :__
   end
 
   def quick_inline_product(a, b), do: a * b
+
   koan "Short functions can be defined in a single line, but mind the comman and colon!" do
     assert quick_inline_product(2,:__) == 6
   end
@@ -23,11 +25,8 @@ defmodule Functions do
     end
   end
 
-  koan "Can return atoms..." do
+  koan "Functions can return different things" do
     assert will_change(true) == :__
-  end
-
-  koan "..or strings from the same function!" do
     assert will_change(false) == :__
   end
 
@@ -49,29 +48,25 @@ defmodule Functions do
 
   def first(foo, bar), do: "#{foo} and #{bar}"
   def first(foo), do: "only #{foo}"
-  koan "functions with the same name are distinguished by arity" do
+
+  koan "Functions with the same name are distinguished by arity" do
     assert first("One", "Two") == :__
-  end
-  koan "the name stays - the number of arguments varies" do
     assert first("One") == :__
   end
 
-
   def sum_up(thing) when is_list(thing), do: :entire_list
   def sum_up(_thing), do: :single_thing
+
   koan "You can 'guard' functions from their arguments" do
     assert sum_up([1,2,3]) == :__
-  end
-  koan "no guard means just that - anything" do
     assert sum_up(1) == :__
   end
 
   def bigger(a,b) when a >  b, do: "#{a} is bigger than #{b}"
   def bigger(a,b) when a <= b, do: "#{a} is not bigger than #{b}"
-  koan "You can also create intricate guards based on the values..." do
+
+  koan "You can also create intricate guards based on the values." do
     assert bigger(10, 5) == :__
-  end
-  koan "...to make the body of the function clearer" do
     assert bigger(4, 27) == :__
   end
 
@@ -101,11 +96,12 @@ defmodule Functions do
 
   def multiply_then_call(number, fun), do: fun.(number*5)
   def square(number), do: number * number
+
   koan "You can 'capture' functions if you want to pass them around as values" do
     assert multiply_then_call(2, &square/1) == :__
   end
 
-  koan "functions can be combined elegantly with the pipe operator" do
+  koan "Functions can be combined elegantly with the pipe operator" do
     result = "full-name"
     |> String.split("-")
     |> Enum.map(&(String.capitalize(&1)))
