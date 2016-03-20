@@ -8,7 +8,8 @@ defmodule Tasks do
   end
 
   koan "if you don't need a result, use start_link/1" do
-    {:ok, _pid} = Task.start_link(fn -> 1+1 end)
+    {result, _pid} = Task.start_link(fn -> 1+1 end)
+    assert result == :__
   end
 
   koan "yield returns nothing if the task isn't done yet" do
