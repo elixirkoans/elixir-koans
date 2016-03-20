@@ -222,7 +222,7 @@ defmodule KoansHarnessTest do
   test "Tasks" do
     answers = [
       10,
-      :todo,
+      :ok,
       nil,
       nil,
       9,
