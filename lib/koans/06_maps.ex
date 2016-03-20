@@ -17,15 +17,15 @@ defmodule Maps do
     assert Map.values(%{ :name => "Jon", :last_name => "Snow", :age => 27 }) == :__
   end
 
-  koan "Fetching a value returns a touple with ok when it exists..." do
+  koan "Fetching a value returns a tuple with ok when it exists" do
     assert Map.fetch(%{ :name => "Jon", :last_name => "Snow", :age => 27 }, :age) == :__
   end
 
-  koan "...or the atom :error when it doesnt." do
+  koan "Or the atom :error when it doesnt" do
     assert Map.fetch(%{ :name => "Jon", :last_name => "Snow", :age => 27 }, :family) == :__
   end
 
-  koan "Extending a map is a simple as put'ing in a new pair" do
+  koan "Extending a map is a simple as putting in a new pair" do
     assert Map.put(%{ :name => "Jon", :last_name => "Snow"}, :age, 27) == :__
   end
 
@@ -33,7 +33,7 @@ defmodule Maps do
     assert Map.put(%{ :name => "Jon", :last_name => "Snow", :age => 15}, :age, 27) == :__
   end
 
-  koan "Or you can use some syntactic sugar for exiting elements." do
+  koan "Or you can use some syntactic sugar for exiting elements" do
     initial = %{ :name => "Jon", :last_name => "Snow", :age => 16}
     assert %{ initial | :age => 27 } == :__
   end
@@ -46,7 +46,7 @@ defmodule Maps do
     assert Map.new( [{:name, "Jon"}, {:last_name, "Snow"}, {:age, 27}] ) == :__
   end
 
-  koan "Going back to a list of pairs is just as easy." do
+  koan "Going back to a list of pairs is just as easy" do
     assert Map.to_list(%{ :name => "Jon", :last_name => "Snow", :age => 27 }) == :__
   end
 

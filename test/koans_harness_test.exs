@@ -63,7 +63,6 @@ defmodule KoansHarnessTest do
   test "Lists" do
     answers = [1,
                3,
-               [1,2,:a,"b"],
                [1,2],
                [1,2,3],
                [1,3],
