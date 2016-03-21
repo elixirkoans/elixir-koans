@@ -9,7 +9,7 @@ defmodule Lists do
     assert List.last([1, 2, 3]) == :__
   end
 
-  koan "Diversity is embraced" do
+  koan "Lists can store anything you throw at them" do
     assert [1, 2] ++ [:a, "b"] == :__
   end
 
