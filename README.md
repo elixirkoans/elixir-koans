@@ -26,6 +26,11 @@ $ mix meditate
 to get going. You should see the first failure with a blank line in it. The goal is
 to fill in the blanks and make all the koans pass by doing so.
 
+To make the autorunner less noisy, you can start the koans with
+```sh
+$ mix meditate --clear-screen
+```
+
 ### Contributing
 
 We welcome contributions! If something does not make sense along the way or you feel
