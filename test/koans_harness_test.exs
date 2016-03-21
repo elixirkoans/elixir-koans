@@ -110,9 +110,9 @@ defmodule KoansHarnessTest do
       nil,
       "Joe",
       33,
-      23,
+      {:multiple, [33, 23]},
       22,
-      true,
+      {:multiple, [true, false]},
       22,
     ]
 
