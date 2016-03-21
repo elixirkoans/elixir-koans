@@ -124,16 +124,13 @@ defmodule KoansHarnessTest do
       1,
       2,
       1,
-      1,
-      [2,3,4],
+      {:multiple, [1, [2,3,4]]},
       [1,2,3,4],
       3,
       "eggs, milk",
       "Honda",
       [1,2,3],
-      "Woof",
-      "Meow",
-      "Eh?",
+      {:multiple, ["Woof", "Meow", "Eh?",]},
       "not present"
     ]
 
