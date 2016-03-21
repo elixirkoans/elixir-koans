@@ -5,34 +5,34 @@ defmodule Enums do
     assert Enum.count([1,2,3]) == :__
   end
 
-  koan "...the same applies for counting elements in a map..." do
+  koan "The same applies for counting elements in a map" do
     assert Enum.count(%{ :a => :foo, :b => :bar}) == :__
   end
 
-  koan "..or a keyword list..." do
+  koan "Or a keyword list" do
     assert Enum.count([a: 77, b: 23, c: 12, d: 33, e: 90, f: 113]) == :__
   end
 
-  def less_than_five(n), do: n < 5
+  def less_than_five?(n), do: n < 5
   koan "Elements can have a lot in common" do
-    assert Enum.all?([1,2,3], &less_than_five/1) == :__
+    assert Enum.all?([1,2,3], &less_than_five?/1) == :__
   end
 
-  def less_than_two(n), do: n < 2
+  def less_than_two?(n), do: n < 2
   koan "If one if different, all elements are not alike" do
-    assert Enum.all?([1, 2, 3, 2], &less_than_two/1) == :__
+    assert Enum.all?([1, 2, 3, 2], &less_than_two?/1) == :__
   end
 
-  def is_even?(n), do: rem(n, 2) == 0
+  def even?(n), do: rem(n, 2) == 0
 
   koan "sometimes you you just want to know if there are any elements fullfilling a condition" do
-    assert Enum.any?([1,2,3], &is_even?/1) == :__
+    assert Enum.any?([1,2,3], &even?/1) == :__
   end
 
-  def  divisible_by_five(n), do: rem(n, 5) == 0
+  def  divisible_by_five?(n), do: rem(n, 5) == 0
 
   koan "if not a single element fits the bill, any? returns false" do
-    assert Enum.any?([1,2,3], &divisible_by_five/1) == :__
+    assert Enum.any?([1,2,3], &divisible_by_five?/1) == :__
   end
 
   koan "Sometimes you just want to know if an element is part of the party" do
@@ -50,24 +50,23 @@ defmodule Enums do
   end
 
   koan "You can even return a list with entirely different types" do
-    assert Enum.map([1,2,3], &is_even?/1) == :__
+    assert Enum.map([1,2,3], &even?/1) == :__
   end
-
 
   koan "But keep in mind that the original list remains unchanged" do
     input = [1,2,3,4]
-    assert Enum.map(input, &is_even?/1) == :__
+    assert Enum.map(input, &even?/1) == :__
     assert input == :__
   end
 
-  def is_odd?(n), do: rem(n, 2) == 1
+  def odd?(n), do: rem(n, 2) == 1
 
   koan "Filter allows you to only keep what you really care about" do
-    assert Enum.filter([1,2,3], &is_odd?/1) == :__
+    assert Enum.filter([1,2,3], &odd?/1) == :__
   end
 
   koan "Reject will help you throw out unwanted cruft" do
-    assert Enum.reject([1,2,3], &is_odd?/1) == :__
+    assert Enum.reject([1,2,3], &odd?/1) == :__
   end
 
   koan "You three there, follow me!" do
@@ -78,9 +77,8 @@ defmodule Enums do
     assert Enum.take([1,2,3,4,5], 10) == :__
   end
 
-  def less_than_four(n), do: n < 4
   koan "Take what you can..." do
-    assert Enum.take_while([1,2,3,4,5,6,7], &less_than_four/1) == :__
+    assert Enum.take_while([1,2,3,4,5,6,7], &less_than_five?/1) == :__
   end
 
   koan "Just like taking, you can also drop elements" do
@@ -115,15 +113,15 @@ defmodule Enums do
   end
 
   koan "When you want to find that one pesky element" do
-    assert Enum.find([1,2,3], &is_even?/1) == :__
+    assert Enum.find([1,2,3], &even?/1) == :__
   end
 
   koan "...but you don't quite find it..." do
-    assert Enum.find([1,2,3], &divisible_by_five/1) == :__
+    assert Enum.find([1,2,3], &divisible_by_five?/1) == :__
   end
 
   koan "...you can settle for a consolation prize" do
-    assert Enum.find([1,2,3], :no_such_element, &divisible_by_five/1) == :__
+    assert Enum.find([1,2,3], :no_such_element, &divisible_by_five?/1) == :__
   end
 
   koan "Collapse an entire list of elements down to a single one by repeating a function." do

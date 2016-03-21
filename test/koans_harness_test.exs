@@ -180,7 +180,7 @@ defmodule KoansHarnessTest do
       [2],
       [1,2,3],
       [1,2,3,4,5],
-      [1,2,3],
+      [1,2,3,4],
       [1,2,3],
       [0,1,2,3],
       %{ :odd => [3,1], :even => [4,2] },
@@ -198,7 +198,7 @@ defmodule KoansHarnessTest do
 
   test "Processes" do
     answers = [
-      self,
+      true,
       :running,
       "hola!",
       :how_are_you?,

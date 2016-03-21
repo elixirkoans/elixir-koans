@@ -63,7 +63,7 @@ defmodule Functions do
   def bigger(a,b) when a >  b, do: "#{a} is bigger than #{b}"
   def bigger(a,b) when a <= b, do: "#{a} is not bigger than #{b}"
 
-  koan "You can also create intricate guards based on the values." do
+  koan "You can also create intricate guards based on the values" do
     assert bigger(10, 5) == :__
     assert bigger(4, 27) == :__
   end
@@ -97,7 +97,7 @@ defmodule Functions do
   def multiply_then_call(number, fun), do: fun.(number*5)
   def square(number), do: number * number
 
-  koan "You can 'capture' functions if you want to pass them around as values. Mind the ampersand '&' and the slash followed by the number of args." do
+  koan "You can 'capture' functions if you want to pass them around as values. Mind the ampersand '&' and the slash followed by the number of args" do
     assert multiply_then_call(2, &square/1) == :__
   end
 

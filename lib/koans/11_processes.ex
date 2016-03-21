@@ -2,11 +2,11 @@ defmodule Processes do
   use Koans
 
   koan "Tests run in a process" do
-    assert Process.alive?(:__)
+    assert Process.alive?(self()) == :__
   end
 
   koan "You can ask a process to introduce itself" do
-    information = Process.info(self)
+    information = Process.info(self())
 
     assert information[:status] == :__
   end
@@ -76,7 +76,7 @@ defmodule Processes do
     assert Process.alive?(pid) == :__
   end
 
-  koan "Exiting yourself on the other hand DOES termiante you" do
+  koan "Exiting yourself on the other hand DOES terminate you" do
     pid = spawn(fn -> receive do
                         :bye -> Process.exit(self(), :normal)
                       end
