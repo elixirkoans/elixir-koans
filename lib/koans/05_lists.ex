@@ -9,6 +9,10 @@ defmodule Lists do
     assert List.last([1, 2, 3]) == :__
   end
 
+  koan "Lists can store anything you throw at them" do
+    assert [1, 2] ++ [:a, "b"] == :__
+  end
+
   koan "Things can evolve" do
     assert [1, 2, 3] -- [3] == :__
   end
