@@ -110,9 +110,9 @@ defmodule KoansHarnessTest do
       nil,
       "Joe",
       33,
-      23,
+      {:multiple, [33, 23]},
       22,
-      true,
+      {:multiple, [true, false]},
       22,
     ]
 
@@ -124,16 +124,13 @@ defmodule KoansHarnessTest do
       1,
       2,
       1,
-      1,
-      [2,3,4],
+      {:multiple, [1, [2,3,4]]},
       [1,2,3,4],
       3,
       "eggs, milk",
       "Honda",
       [1,2,3],
-      "Woof",
-      "Meow",
-      "Eh?",
+      {:multiple, ["Woof", "Meow", "Eh?",]},
       "not present"
     ]
 
@@ -142,18 +139,14 @@ defmodule KoansHarnessTest do
 
   test "Functions" do
     answers = [
-      :light,
+      "Hello, World!",
       3,
-      :it_was_truthy,
-      "It really wasn't",
+      {:multiple, [:it_was_truthy, "It really wasn't"]},
       "Hello Hello Hello ",
       "Hello Hello Hello Hello Hello ",
-      "One and Two",
-      "only One",
-      :entire_list,
-      :single_thing,
-      "10 is bigger than 5",
-      "4 is not bigger than 27",
+      {:multiple, ["One and Two", "only One"]},
+      {:multiple, [:entire_list, :single_thing]},
+      {:multiple, ["10 is bigger than 5", "4 is not bigger than 27"]},
       "It was zero",
       "The length was 5",
       6,
@@ -168,9 +161,9 @@ defmodule KoansHarnessTest do
 
   test "Enums" do
     answers = [
-      4,
-      4,
-      4,
+      3,
+      2,
+      6,
       true,
       false,
       true,
@@ -179,14 +172,14 @@ defmodule KoansHarnessTest do
       false,
       [10,20,30],
       [false, true, false],
-      [1,2,3],
+      {:multiple, [ [false, true, false, true], [1,2,3,4] ] },
       [1,3],
       [2],
       [1,2,3],
       [1,2,3,4,5],
+      [1,2,3,4],
       [1,2,3],
-      [1,2,3],
-      [1,2,3],
+      [0,1,2,3],
       %{ :odd => [3,1], :even => [4,2] },
       %{ 0 => [6, 3], 1 => [4, 1], 2 => [5, 2]},
       [{1, :a}, {2, :b}, {3, :c}],
@@ -202,13 +195,13 @@ defmodule KoansHarnessTest do
 
   test "Processes" do
     answers = [
-      self,
+      true,
       :running,
       "hola!",
       :how_are_you?,
       {:waited_too_long, "I am inpatient"},
       false,
-      false,
+      {:multiple, [true, false]},
       {:exited, :random_reason},
       true,
       false,
