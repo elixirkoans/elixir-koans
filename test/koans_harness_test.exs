@@ -164,9 +164,9 @@ defmodule KoansHarnessTest do
 
   test "Enums" do
     answers = [
-      4,
-      4,
-      4,
+      3,
+      2,
+      6,
       true,
       false,
       true,
@@ -175,7 +175,7 @@ defmodule KoansHarnessTest do
       false,
       [10,20,30],
       [false, true, false],
-      [1,2,3],
+      {:multiple, [ [false, true, false, true], [1,2,3,4] ] },
       [1,3],
       [2],
       [1,2,3],

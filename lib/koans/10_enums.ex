@@ -1,32 +1,36 @@
 defmodule Enums do
   use Koans
 
-  koan "knowing how many elements are in a list is important for book-keeping!" do
-    assert Enum.count([1,2,3,4]) == :__
+  koan "Knowing how many elements are in a list is important for book-keeping" do
+    assert Enum.count([1,2,3]) == :__
   end
 
-  koan "..the same applies for counting elements in a map..." do
-    assert Enum.count(%{ :a => 1, :b => 2, :c => 3, :d => 4}) == :__
+  koan "...the same applies for counting elements in a map..." do
+    assert Enum.count(%{ :a => :foo, :b => :bar}) == :__
   end
 
   koan "..or a keyword list..." do
-    assert Enum.count([a: 1, b: 2, c: 3, d: 4]) == :__
+    assert Enum.count([a: 77, b: 23, c: 12, d: 33, e: 90, f: 113]) == :__
   end
 
   koan "Elements can have a lot in common" do
-    assert Enum.all?([1,2,3], fn element -> element < 5 end) == :__
+    less_than_five = &(&1 <=5)
+    assert Enum.all?([1,2,3], less_than_five) == :__
   end
 
   koan "If one if different, all elements are not alike" do
-    assert Enum.all?([1, 2, 3], fn element -> element <= 2 end) == :__
+    less_than_two = &(&1 <=2)
+    assert Enum.all?([1, 2, 3, 2], less_than_two) == :__
   end
 
-  koan "sometimes you you just want to know if there are any elements with a certain trait" do
-    assert Enum.any?([1,2,3], fn element -> rem(element, 2) == 0 end) == :__
+  koan "sometimes you you just want to know if there are any elements fullfilling a condition" do
+    is_even? = &(rem(&1, 2) == 0)
+    assert Enum.any?([1,2,3], is_even?) == :__
   end
 
   koan "if not a single element fits the bill, any? returns false" do
-    assert Enum.any?([1,2,3], fn element -> rem(element, 5) == 0 end) == :__
+    divisible_by_five = &(rem(&1, 5) == 0)
+    assert Enum.any?([1,2,3], divisible_by_five) == :__
   end
 
   koan "Sometimes you just want to know if an element is part of the party" do
@@ -38,25 +42,29 @@ defmodule Enums do
   end
 
   koan "map converts each element of a list by running some function with it" do
-    assert Enum.map([1,2,3], fn element -> element * 10 end) == :__
+    multiply_by_ten = &(&1 * 10)
+    assert Enum.map([1,2,3], multiply_by_ten) == :__
   end
 
   koan "You can even return a list with entirely different types" do
-    assert Enum.map([1,2,3], fn element -> rem(element, 2) == 0 end) == :__
+    is_even? = &(rem(&1,2) == 0)
+    assert Enum.map([1,2,3], is_even?) == :__
   end
 
   koan "But keep in mind that the original list remains unchanged" do
-    input = [1,2,3]
-    assert Enum.map(input, fn element -> rem(element, 2) == 0 end) == [false, true, false]
+    input = [1,2,3,4]
+    assert Enum.map(input, fn element -> rem(element, 2) == 0 end) == :__
     assert input == :__
   end
 
   koan "Filter allows you to only keep what you really care about" do
-    assert Enum.filter([1,2,3], fn element -> rem(element, 2) == 1 end) == :__
+    is_odd? = &(rem(&1, 2) == 1)
+    assert Enum.filter([1,2,3], is_odd?) == :__
   end
 
-  koan "Reject will help you throw out unwanted cruft." do
-    assert Enum.reject([1,2,3], fn element -> rem(element, 2) == 1 end) == :__
+  koan "Reject will help you throw out unwanted cruft" do
+    is_odd? = &(rem(&1, 2) == 1)
+    assert Enum.reject([1,2,3], is_odd?) == :__
   end
 
   koan "You three there, follow me!" do
@@ -68,7 +76,8 @@ defmodule Enums do
   end
 
   koan "Take what you can..." do
-    assert Enum.take_while([1,2,3,4,5], fn element -> element < 4 end) == :__
+    less_than_four = &(&1 < 4)
+    assert Enum.take_while([1,2,3,4,5,6,7], less_than_four) == :__
   end
 
   koan "Just like taking, you can also drop elements" do
@@ -76,7 +85,8 @@ defmodule Enums do
   end
 
   koan "Drop elements until you are happy" do
-    assert Enum.drop_while([-1,0,1,2,3], fn element -> element <= 0 end) == :__
+    negative = &(&1 <= 0)
+    assert Enum.drop_while([-1,0,1,2,3], negative) == :__
   end
 
   koan "Forming groups makes uns stronger" do
