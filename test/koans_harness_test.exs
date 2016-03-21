@@ -204,7 +204,7 @@ defmodule KoansHarnessTest do
       :how_are_you?,
       {:waited_too_long, "I am inpatient"},
       false,
-      false,
+      {:multiple, [true, false]},
       {:exited, :random_reason},
       true,
       false,

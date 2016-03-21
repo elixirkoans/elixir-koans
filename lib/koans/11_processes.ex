@@ -1,22 +1,22 @@
 defmodule Processes do
   use Koans
 
-  koan "tests run in a process!" do
+  koan "Tests run in a process" do
     assert Process.alive?(:__)
   end
 
-  koan "can spew out information about a process" do
+  koan "You can ask a process to introduce itself" do
     information = Process.info(self)
 
     assert information[:status] == :__
   end
 
-  koan "process can send messages to itself" do
+  koan "You can send messages to any process you want" do
     send self(), "hola!"
     assert_receive :__
   end
 
-  koan "a common pattern is to include the sender in the message" do
+  koan "A common pattern is to include the sender in the message" do
     pid = spawn(fn -> receive do
                          {:hello, sender} -> send sender, :how_are_you?
                          _ -> assert false
@@ -27,7 +27,7 @@ defmodule Processes do
     assert_receive :__
   end
 
-  koan "you don't have to wait forever for messages" do
+  koan "Waiting for a message can get boring" do
     parent = self()
     spawn(fn -> receive do
                    _anything -> flunk "I really wasn't expecting messages"
@@ -39,20 +39,21 @@ defmodule Processes do
     assert_receive :__
   end
 
-  koan "killing a process will terminate it" do
+  koan "Killing a process will terminate it" do
     pid = spawn(fn -> Process.exit(self(), :kill) end)
     :timer.sleep(500)
     assert Process.alive?(pid) == :__
   end
 
-  koan "killing a process kills it for good" do
+  koan "You can also terminate other processes than yourself" do
     pid = spawn(fn -> receive do end end)
-    assert Process.alive?(pid)
+
+    assert Process.alive?(pid) == :__
     Process.exit(pid, :kill)
     assert Process.alive?(pid) == :__
   end
 
-  koan "can trap a signal in a child process" do
+  koan "Trapping will allow you to react to someone terminating the process" do
     parent = self()
     pid = spawn(fn ->
                       Process.flag(:trap_exit, true)
@@ -67,7 +68,7 @@ defmodule Processes do
     assert_receive :__
   end
 
-  koan "quitting normally has no effect" do
+  koan "Trying to quit normally has no effect" do
     pid = spawn(fn -> receive do
                       end
                 end)
@@ -75,7 +76,7 @@ defmodule Processes do
     assert Process.alive?(pid) == :__
   end
 
-  koan "quititing your own process normally does terminate it though" do
+  koan "Exiting yourself on the other hand DOES termiante you" do
     pid = spawn(fn -> receive do
                         :bye -> Process.exit(self(), :normal)
                       end
@@ -86,7 +87,7 @@ defmodule Processes do
     assert Process.alive?(pid) == :__
   end
 
-  koan "linked processes are informed about exit signals of children when trapping those signals" do
+  koan "Parent processes can be informed about exiting children, if they trap and link" do
     parent = self()
     spawn(fn ->
             Process.flag(:trap_exit, true)
@@ -99,7 +100,7 @@ defmodule Processes do
     assert_receive :__
   end
 
-  koan "monitoring processes are informed via messages without having trapping" do
+  koan "If you monitor your children, you'll be automatically informed for their depature" do
     parent = self()
     spawn(fn ->
             spawn_monitor(fn -> Process.exit(self(), :normal) end)
