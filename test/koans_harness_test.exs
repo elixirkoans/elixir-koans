@@ -142,7 +142,7 @@ defmodule KoansHarnessTest do
 
   test "Functions" do
     answers = [
-      :light,
+      "Hello, World!",
       3,
       {:multiple, [:it_was_truthy, "It really wasn't"]},
       "Hello Hello Hello ",

@@ -1,22 +1,20 @@
 defmodule Functions do
   use Koans
 
-  # A function starts with 'def', has a 'do-end' pair
-  def inside() do
-    :light
+  def greet(name) do
+    "Hello, #{name}!"
   end
 
-  koan "It returns the last statement that was called" do
-    assert inside() == :__
+  koan "Functions take arguments and return values" do
+    assert greet("World") == :__
   end
 
   def quick_inline_product(a, b), do: a * b
 
-  koan "Short functions can be defined in a single line, but mind the comman and colon!" do
+  koan "Short functions can be defined in a single line, but mind the comman and colon" do
     assert quick_inline_product(2,:__) == 6
   end
 
-  # A function can have an argument between parentheses, after the name
   def will_change(choice) do
     if choice do
       :it_was_truthy
@@ -49,7 +47,7 @@ defmodule Functions do
   def first(foo, bar), do: "#{foo} and #{bar}"
   def first(foo), do: "only #{foo}"
 
-  koan "Functions with the same name are distinguished by arity" do
+  koan "Functions with the same name are distinguished by the number of arguments they take" do
     assert first("One", "Two") == :__
     assert first("One") == :__
   end
@@ -72,9 +70,11 @@ defmodule Functions do
 
   def the_length(0), do: "It was zero"
   def the_length(number), do: "The length was #{number}"
+
   koan "You can also 'guard' with concrete values" do
     assert the_length(0) == :__
   end
+
   koan "Or just let the argument roll" do
     assert the_length(5) == :__
   end
@@ -97,7 +97,7 @@ defmodule Functions do
   def multiply_then_call(number, fun), do: fun.(number*5)
   def square(number), do: number * number
 
-  koan "You can 'capture' functions if you want to pass them around as values" do
+  koan "You can 'capture' functions if you want to pass them around as values. Mind the ampersand '&' and the slash followed by the number of args." do
     assert multiply_then_call(2, &square/1) == :__
   end
 
