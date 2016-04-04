@@ -15,10 +15,11 @@ defmodule Runner do
   ]
 
   def run do
-    run(Equalities)
+    Options.initial_koan
+    |>run
   end
 
-  def run(start_module) do
+  def run(start_module) when start_module in @modules do
     Display.clear_screen()
     start_idx = Enum.find_index(@modules, &(&1 == start_module))
     Enum.drop(@modules, start_idx)
@@ -26,6 +27,7 @@ defmodule Runner do
       run_module(mod) == :passed
     end)
   end
+  def run(koan), do: Display.invalid_koan(koan, @modules)
 
   def run_module(module) do
     Display.considering(module)
