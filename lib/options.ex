@@ -1,6 +1,7 @@
 defmodule Options do
   @defaults %{
-    clear_screen: false
+    clear_screen: false,
+    initial_koan: Equalities,
   }
 
   def start(args) do
@@ -13,12 +14,19 @@ defmodule Options do
     end)
   end
 
+  def initial_koan() do
+    Agent.get(__MODULE__, fn(options) ->
+      Map.fetch!(options, :initial_koan)
+    end)
+  end
+
   defp parse(args) do
     Enum.reduce(args, @defaults, fn(arg, acc) ->
       Map.merge(acc, parse_argument(arg))
     end)
   end
 
+  def parse_argument("--koan="<>module), do: %{ initial_koan: String.to_atom("Elixir."<> module)}
   def parse_argument("--clear-screen"), do: %{ clear_screen: true}
   def parse_argument(_), do: %{}
 end

@@ -2,6 +2,23 @@ defmodule Display do
   alias IO.ANSI
   @current_dir File.cwd!
 
+  def invalid_koan(koan, modules) do
+    koans_names = module_names(modules)
+    IO.puts("Did not find koan #{name(koan)} in " <> koans_names )
+    exit(:normal)
+  end
+
+  defp module_names(modules) do
+    modules
+    |> Enum.map(&Atom.to_string/1)
+    |> Enum.map(&name/1)
+    |> Enum.join(", ")
+    |> format_red
+  end
+
+  defp name("Elixir." <> module), do: module
+  defp name(module), do: name(Atom.to_string(module))
+
   def show_failure(failure, module, name) do
     IO.puts("Now meditate upon #{format_module(module)}")
     IO.puts("---------------------------------------")
