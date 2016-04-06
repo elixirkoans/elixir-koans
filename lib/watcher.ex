@@ -4,8 +4,10 @@ defmodule Watcher do
   def callback(file, events)  do
     if Enum.member?(events, :modified) do
       try do
-        [{mod, _} | _] = Code.load_file(file)
-        Runner.run(mod)
+        Code.load_file(file)
+          |> Enum.map(&(elem(&1, 0)))
+          |> Enum.find(&Runner.koan?/1)
+          |> Runner.run
       rescue
         e -> Display.show_compile_error(e)
       end

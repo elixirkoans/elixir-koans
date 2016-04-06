@@ -14,6 +14,10 @@ defmodule Runner do
     Tasks,
   ]
 
+  def koan?(module) do
+    Enum.member?(@modules, module)
+  end
+
   def run do
     Options.initial_koan
     |>run
