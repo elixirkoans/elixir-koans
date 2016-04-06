@@ -87,7 +87,7 @@ defmodule KoansHarnessTest do
     answers = [
       "Jon",
       [:age, :last_name, :name],
-      [27, "Snow", "Jon"],
+      [27, "Jon", "Snow"],
       {:ok, 27},
       :error,
       %{ :name => "Jon", :last_name => "Snow", :age => 27 },
