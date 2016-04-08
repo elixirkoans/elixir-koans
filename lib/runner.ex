@@ -25,11 +25,12 @@ defmodule Runner do
 
   def run(start_module) when start_module in @modules do
     Display.clear_screen()
+
     start_idx = Enum.find_index(@modules, &(&1 == start_module))
-    Enum.drop(@modules, start_idx)
-    |> Enum.take_while(fn(mod) ->
-      run_module(mod) == :passed
-    end)
+
+    @modules
+    |> Enum.drop(start_idx)
+    |> Enum.take_while( &(run_module(&1) == :passed))
   end
   def run(koan), do: Display.invalid_koan(koan, @modules)
 
@@ -53,9 +54,17 @@ defmodule Runner do
   end
 
   def run_koan(module, name, args \\ []) do
-    case apply(module, name, args) do
+    parent = self()
+    spawn fn -> exec(module, name, args, parent) end
+    receive do
       :ok   -> :passed
       error -> {:failed, error, module, name}
     end
+  end
+
+  def exec(module, name, args, parent) do
+    result = apply(module, name, args)
+    send parent, result
+    Process.exit(self(), :kill)
   end
 end
