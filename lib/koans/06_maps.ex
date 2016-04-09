@@ -13,11 +13,8 @@ defmodule Maps do
                         age: 27 }
   end
 
-  koan "You can get all the keys from the map" do
+  koan "A map has keys and values" do
     assert Map.keys(@person) |> Enum.sort == :__
-  end
-
-  koan "Or you can also get all the values from it" do
     assert Map.values(@person) |> Enum.sort == :__
   end
 

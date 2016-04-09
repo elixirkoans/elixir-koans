@@ -86,8 +86,7 @@ defmodule KoansHarnessTest do
   test "Maps" do
     answers = [
       "Jon",
-      [:age, :last_name, :name],
-      [27, "Jon", "Snow"],
+      {:multiple, [[:age, :last_name, :name], [27, "Jon", "Snow"]]},
       {:ok, 27},
       :error,
       {:ok, "Kayaking"},
