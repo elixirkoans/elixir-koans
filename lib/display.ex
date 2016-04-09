@@ -33,6 +33,7 @@ defmodule Display do
 
   def considering(module) do
     IO.puts("Considering #{format_module(module)}...")
+    module
   end
 
   def clear_screen do
@@ -42,34 +43,18 @@ defmodule Display do
     end
   end
 
-  defp format_failure(%ExUnit.AssertionError{expr: expr}) do
+  defp format_failure(%{error: %ExUnit.AssertionError{expr: expr}, file: file, line: line}) do
     """
-    #{format_cyan("Assertion failed in #{last_failure_location}")}
+    #{format_cyan("Assertion failed in #{file}:#{line}")}
     #{format_red(Macro.to_string(expr))}
     """
   end
 
-  defp format_failure(error) do
+  defp format_failure(%{error: error, file: file, line: line}) do
     """
-    #{format_cyan("Error in #{last_failure_location}")}
+    #{format_cyan("Error in #{file}:#{line}")}
     #{format_error(error)}
     """
-  end
-
-  defp last_failure_location do
-    {file, line} = System.stacktrace
-      |> Enum.drop_while(&in_ex_unit?/1)
-      |> List.first
-      |> extract_file_and_line
-
-    "#{file}:#{line}"
-  end
-
-  defp in_ex_unit?({ExUnit.Assertions, _, _, _}), do: true
-  defp in_ex_unit?(_), do: false
-
-  defp extract_file_and_line({_, _, _, [file: file, line: line]}) do
-    {file, line}
   end
 
   defp format_error(error) do

@@ -232,6 +232,6 @@ defmodule KoansHarnessTest do
   end
 
   def run_all(pairs, module) do
-    Enum.map(pairs, fn ({koan, answer}) -> Runner.run_koan(module, koan, [answer]) end)
+    Enum.map(pairs, fn ({koan, answer}) -> Execute.run_koan(module, koan, [answer]) end)
   end
 end
