@@ -10,11 +10,11 @@ defmodule Maps do
   end
 
   koan "You can get all the keys from the map" do
-    assert Map.keys(%{ :name => "Jon", :last_name => "Snow", :age => 27 }) == :__
+    assert Map.keys(%{ :name => "Jon", :last_name => "Snow", :age => 27 }) |> Enum.sort == :__
   end
 
   koan "Or you can also get all the values from it" do
-    assert Map.values(%{ :name => "Jon", :last_name => "Snow", :age => 27 }) == :__
+    assert Map.values(%{ :name => "Jon", :last_name => "Snow", :age => 27 }) |> Enum.sort == :__
   end
 
   koan "Fetching a value returns a tuple with ok when it exists" do
