@@ -34,7 +34,7 @@ defmodule KoansHarnessTest do
       "hello",
       "hello ",
       ["hello", "world"],
-      "An awful day",
+      "An incredible day",
       "incredible",
       "banana",
       "banana",

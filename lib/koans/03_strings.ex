@@ -14,7 +14,7 @@ defmodule Strings do
   end
 
   koan "Be careful, a message may be altered" do
-    assert :__ == String.replace("An incredible day", "incredible", "awful")
+    assert :__ == String.replace("An awful day", "awful", "incredible")
   end
 
   koan "But strings never lie about themselves" do
