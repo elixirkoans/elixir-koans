@@ -33,7 +33,7 @@ defmodule Maps do
     assert Map.put(%{ :name => "Jon", :last_name => "Snow", :age => 15}, :age, 27) == :__
   end
 
-  koan "Or you can use some syntactic sugar for exiting elements" do
+  koan "Or you can use some syntactic sugar for existing elements" do
     initial = %{ :name => "Jon", :last_name => "Snow", :age => 16}
     assert %{ initial | :age => 27 } == :__
   end
