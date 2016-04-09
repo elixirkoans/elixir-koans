@@ -34,50 +34,10 @@ defmodule Runner do
 
   def run_module(module) do
     Display.considering(module)
-
-    koans = module.all_koans
-    passed = Enum.take_while(koans, fn(name) ->
-      case run_koan(module, name) do
-        :passed -> true
+    case Execute.run_module(module) do
         {:failed, error, module, name} -> Display.show_failure(error, module, name)
-                                          false
-      end
-    end)
-
-    if Enum.count(koans) == Enum.count(passed) do
-      :passed
-    else
-      :failed
+                                          :failed
+        _ -> :passed
     end
   end
-
-  def run_koan(module, name, args \\ []) do
-    parent = self()
-    spawn fn -> exec(module, name, args, parent) end
-    receive do
-      :ok   -> :passed
-      error -> {:failed, error, module, name}
-    end
-  end
-
-  def exec(module, name, args, parent) do
-    result = apply(module, name, args)
-    send parent, expand(result)
-    Process.exit(self(), :kill)
-  end
-
-  def expand(:ok), do: :ok
-  def expand(error) do
-    {file, line} = System.stacktrace
-      |> Enum.drop_while(&in_ex_unit?/1)
-      |> List.first
-      |> extract_file_and_line
-
-      %{error: error, file: file, line: line}
-  end
-
-  defp in_ex_unit?({ExUnit.Assertions, _, _, _}), do: true
-  defp in_ex_unit?(_), do: false
-
-  defp extract_file_and_line({_, _, _, [file: file, line: line]}), do: {file, line}
 end
