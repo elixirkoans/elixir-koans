@@ -138,17 +138,13 @@ defmodule KoansHarnessTest do
     answers = [
       "Hello, World!",
       3,
-      {:multiple, [:it_was_truthy, "It really wasn't"]},
-      "Hello Hello Hello ",
-      "Hello Hello Hello Hello Hello ",
-      {:multiple, ["One and Two", "only One"]},
+      {:multiple, ["One and Two", "Only One"]},
+      {:multiple, ["Hello Hello Hello Hello Hello ","Hello Hello "]},
       {:multiple, [:entire_list, :single_thing]},
       {:multiple, ["10 is bigger than 5", "4 is not bigger than 27"]},
-      "It was zero",
-      "The length was 5",
+      {:multiple, ["It was zero", "The length was 5"]},
       6,
       6,
-      "the other one",
       100,
       "Full Name"
     ]
