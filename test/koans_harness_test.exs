@@ -34,7 +34,7 @@ defmodule KoansHarnessTest do
       "hello",
       "hello ",
       ["hello", "world"],
-      "An awful day",
+      "An incredible day",
       "incredible",
       "banana",
       "banana",
@@ -86,18 +86,15 @@ defmodule KoansHarnessTest do
   test "Maps" do
     answers = [
       "Jon",
-      [:age, :last_name, :name],
-      [27, "Jon", "Snow"],
+      {:multiple, [[:age, :last_name, :name], [27, "Jon", "Snow"]]},
       {:ok, 27},
       :error,
-      %{ :name => "Jon", :last_name => "Snow", :age => 27 },
-      %{ :name => "Jon", :last_name => "Snow", :age => 27 },
-      %{ :name => "Jon", :last_name => "Snow", :age => 27 },
-      %{ :name => "Jon", :last_name => "Snow"},
-      %{ :name => "Jon", :last_name => "Snow", :age => 27 },
-      [age: 27, last_name: "Snow", name: "Jon" ],
+      {:ok, "Kayaking"},
+      {:ok, 37},
+      {:ok, 16},
+      [:last_name, :name],
       %{:name => "Jon", :last_name => "Snow"},
-      %{:name => "Robert", :last_name => "Baratheon"},
+      {:ok, "Baratheon"},
       %{ :name => "Jon", :last_name => "Snow"}
     ]
 
