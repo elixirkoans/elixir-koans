@@ -33,6 +33,7 @@ defmodule Display do
 
   def considering(module) do
     IO.puts("Considering #{format_module(module)}...")
+    module
   end
 
   def clear_screen do

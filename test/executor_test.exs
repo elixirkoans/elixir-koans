@@ -1,4 +1,4 @@
-defmodule RunnerTest do
+defmodule ExecuteTest do
   use ExUnit.Case
 
   test "passes a koan" do

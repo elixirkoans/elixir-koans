@@ -33,11 +33,16 @@ defmodule Runner do
   end
 
   def run_module(module) do
-    Display.considering(module)
-    case Execute.run_module(module) do
-        {:failed, error, module, name} -> Display.show_failure(error, module, name)
-                                          :failed
-        _ -> :passed
-    end
+    module
+    |> Display.considering
+    |> Execute.run_module
+    |> display
+
   end
+
+  defp display({:failed, error, module, name}) do
+    Display.show_failure(error, module, name)
+    :failed
+  end
+  defp display(_), do: :passed
 end
