@@ -23,7 +23,6 @@ defmodule Koans do
     single_var = Blanks.replace(body, Macro.var(:answer, Koans))
     quote do
       def unquote(name)(answer) do
-        converted = {answer}
         unquote(single_var)
         :ok
       end

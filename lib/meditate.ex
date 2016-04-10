@@ -3,8 +3,6 @@ defmodule Mix.Tasks.Meditate do
   alias Options
 
   def run(args) do
-    ExUnit.start
-    Application.ensure_all_started(:ex_unit)
     Application.ensure_all_started(:elixir_koans)
     Code.compiler_options(ignore_module_conflict: true)
     Watcher.start
