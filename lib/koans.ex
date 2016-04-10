@@ -1,5 +1,12 @@
 defmodule Koans do
+  defp valid_name(name) do
+    Regex.match?(~r/([A-Z]|\.\.\.).+/, name)
+  end
+
   defmacro koan(name, body) do
+    if not valid_name(name) do
+      raise "Name does not start with a capital ltter: #{name}"
+    end
     compiled_name = String.to_atom(name)
     number_of_args = Blanks.count(body)
     quote do

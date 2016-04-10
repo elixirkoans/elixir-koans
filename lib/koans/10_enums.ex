@@ -16,7 +16,7 @@ defmodule Enums do
   end
 
   def even?(n), do: rem(n, 2) == 0
-  koan "sometimes you you just want to know if there are any elements fullfilling a condition" do
+  koan "Sometimes you you just want to know if there are any elements fullfilling a condition" do
     assert Enum.any?([1,2,3], &even?/1) == :__
     assert Enum.any?([1,3,5], &even?/1) == :__
   end
@@ -28,7 +28,7 @@ defmodule Enums do
   end
 
   def multiply_by_ten(n), do: 10 * n
-  koan "map converts each element of a list by running some function with it" do
+  koan "Map converts each element of a list by running some function with it" do
     assert Enum.map([1,2,3], &multiply_by_ten/1) == :__
   end
 
