@@ -28,7 +28,7 @@ defmodule Tasks do
     assert Task.shutdown(handle) == :__
   end
 
-  koan "shutdown will give you an answer if it has it" do
+  koan "Shutdown will give you an answer if it has it" do
     handle = Task.async(fn -> 3 * 3 end)
     :timer.sleep(10)
     assert Task.shutdown(handle) == {:ok, :__}
