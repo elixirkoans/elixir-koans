@@ -207,6 +207,17 @@ defmodule KoansHarnessTest do
     test_all(Tasks, answers)
   end
 
+  test "Agents" do
+    answers = [
+      "Hi there",
+      "HI THERE",
+      {:multiple, [["Milk"], ["Bread", "Milk"]]},
+      :ok,
+    ]
+
+    test_all(Agents, answers)
+  end
+
   def test_all(module, answers) do
     module.all_koans
     |> Enum.zip(answers)
