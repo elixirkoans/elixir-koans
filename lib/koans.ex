@@ -48,13 +48,14 @@ defmodule Koans do
   end
 
   defp create_vars(amount) do
-    Enum.map(0..amount, fn (idx) -> quote do: elem(converted, unquote(idx)) end)
+    for id <- 0..amount, do: quote do: elem(converted, unquote(id))
   end
 
   defmacro __using__(_opts) do
     quote do
       @compile :nowarn_unused_vars
       Module.register_attribute(__MODULE__, :koans, accumulate: true)
+
       require ExUnit.Assertions
       import Koans
       import BlankAssertions

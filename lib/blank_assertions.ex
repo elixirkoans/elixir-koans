@@ -1,6 +1,4 @@
 defmodule BlankAssertions do
-  require ExUnit.Assertions
-
   defmacro assert(expr) do
     if contains_blank?(expr) do
       code = Macro.escape(expr)
@@ -27,14 +25,15 @@ defmodule BlankAssertions do
     end
   end
 
-  def assert_receive(expr) do
-    if expr == :__ do
-      raise ExUnit.AssertionError, expr: expr
+  defmacro assert_receive(expr) do
+    code = Macro.escape(expr)
+    if contains_blank?(expr) do
+      quote do
+        raise ExUnit.AssertionError, expr: {:assert_receive, [], [unquote(code)]}
+      end
     else
-      receive do
-        ^expr -> true
-      after
-        100 -> flunk("No message matching #{expr} found in mailbox")
+      quote do
+        ExUnit.Assertions.assert_receive(var!(expr), 100)
       end
     end
   end
