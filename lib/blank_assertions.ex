@@ -33,7 +33,14 @@ defmodule BlankAssertions do
       end
     else
       quote do
-        ExUnit.Assertions.assert_receive(var!(expr), 100)
+        receive do
+          unquote(expr) -> :ok
+        after
+          100 -> {:messages, messages} = Process.info(self(), :messages)
+                mailbox = Enum.map_join(messages, ", ", &inspect/1)
+                message = inspect(unquote(expr))
+                ExUnit.Assertions.flunk("message #{message} not found in [#{mailbox}]")
+        end
       end
     end
   end

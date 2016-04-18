@@ -1,6 +1,7 @@
 defmodule Display do
   alias IO.ANSI
   @current_dir File.cwd!
+  @no_value :ex_unit_no_meaningful_value
 
   def invalid_koan(koan, modules) do
     koans_names = module_names(modules)
@@ -43,10 +44,18 @@ defmodule Display do
     end
   end
 
+  defp format_failure(%{error: %ExUnit.AssertionError{expr: @no_value, message: message}, file: file, line: line}) do
+    format_assertion_error(message, file, line)
+  end
+
   defp format_failure(%{error: %ExUnit.AssertionError{expr: expr}, file: file, line: line}) do
+    format_assertion_error(expr, file, line)
+  end
+
+  defp format_assertion_error(error, file, line) do
     """
     #{format_cyan("Assertion failed in #{file}:#{line}")}
-    #{format_red(Macro.to_string(expr))}
+    #{format_red(Macro.to_string(error))}
     """
   end
 
