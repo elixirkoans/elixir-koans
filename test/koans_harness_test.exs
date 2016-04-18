@@ -2,31 +2,17 @@ defmodule KoansHarnessTest do
   use ExUnit.Case
 
   test "Equalities" do
-    answers = [true,
-               1,
-               2,
-               1,
-               :something]
-
-    test_all(Equalities, answers)
-  end
-
-  test "Arithmetic" do
     answers = [
-      4,
-      3,
-      12,
-      3,
-      3,
-      2.5,
+      true,
+      false,
+      1,
       2,
       1,
       4,
-      1,
       2
     ]
 
-    test_all(Arithmetic, answers)
+    test_all(Equalities, answers)
   end
 
   test "Strings" do
