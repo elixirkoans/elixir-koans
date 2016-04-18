@@ -5,6 +5,10 @@ defmodule Equalities do
     assert true == :__
   end
 
+  koan "Not something is the opposite of it" do
+    assert !true == :__
+  end
+
   koan "To understand reality, we must compare our expectations against reality" do
     assert 2 == 1 + :__
   end
@@ -13,11 +17,15 @@ defmodule Equalities do
     assert 1 == 2 / :__
   end
 
-  koan "Something is not equal to nothing" do
-    assert !(:__ == nil)
+  koan "Unless they actually are different" do
+    assert 3.2 != :__
   end
 
-  koan "When things cannot be equal, they must be different" do
-    refute :__ == 4
+  koan "Some may be looking for bigger things" do
+    assert :__ > 3
+  end
+
+  koan "Others are happy with less" do
+    assert :__ < 3
   end
 end

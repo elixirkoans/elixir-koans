@@ -1,7 +1,6 @@
 defmodule Runner do
   @modules [
     Equalities,
-    Arithmetic,
     Strings,
     Tuples,
     Lists,
