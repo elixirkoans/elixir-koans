@@ -8,55 +8,55 @@ defmodule Maps do
   }
 
   koan "Maps represent structured data, like a person" do
-    assert @person == %{name: :__,
+    assert @person == %{name: __,
                         last_name: "Snow",
                         age: 27 }
   end
 
   koan "A map has keys and values" do
-    assert Map.keys(@person) |> Enum.sort == :__
-    assert Map.values(@person) |> Enum.sort == :__
+    assert Map.keys(@person) |> Enum.sort == __
+    assert Map.values(@person) |> Enum.sort == __
   end
 
   koan "Fetching a value returns a tuple with ok when it exists" do
-    assert Map.fetch(@person, :age) == :__
+    assert Map.fetch(@person, :age) == __
   end
 
   koan "Or the atom :error when it doesnt" do
-    assert Map.fetch(@person, :family) == :__
+    assert Map.fetch(@person, :family) == __
   end
 
   koan "Extending a map is a simple as putting in a new pair" do
     person_with_hobby = Map.put(@person, :hobby, "Kayaking")
-    assert Map.fetch(person_with_hobby, :hobby) == :__
+    assert Map.fetch(person_with_hobby, :hobby) == __
   end
 
   koan "Put can also overwrite existing values" do
     older_person = Map.put(@person, :age, 37)
-    assert Map.fetch(older_person, :age) == :__
+    assert Map.fetch(older_person, :age) == __
   end
 
   koan "Or you can use some syntactic sugar for existing elements" do
     younger_person = %{ @person | age: 16 }
-    assert Map.fetch(younger_person, :age) == :__
+    assert Map.fetch(younger_person, :age) == __
   end
 
   koan "Can remove pairs by key" do
     without_age = Map.delete(@person, :age)
-    assert Map.keys(without_age) |> Enum.sort == :__
+    assert Map.keys(without_age) |> Enum.sort == __
   end
 
   koan "Can merge maps" do
-    assert Map.merge(%{name: "Jon"}, %{last_name: "Snow"}) == :__
+    assert Map.merge(%{name: "Jon"}, %{last_name: "Snow"}) == __
   end
 
   koan "When merging, the last map wins" do
     merged = Map.merge(@person, %{ last_name: "Baratheon"})
-    assert Map.fetch(merged, :last_name) == :__
+    assert Map.fetch(merged, :last_name) == __
   end
 
   koan "You can also select sub-maps out of a larger map" do
     initial = %{ name: "Jon", last_name: "Snow", age: 15}
-    assert Map.take(initial, [:name, :last_name]) == :__
+    assert Map.take(initial, [:name, :last_name]) == __
   end
 end

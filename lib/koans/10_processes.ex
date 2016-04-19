@@ -2,18 +2,18 @@ defmodule Processes do
   use Koans
 
   koan "Tests run in a process" do
-    assert Process.alive?(self()) == :__
+    assert Process.alive?(self()) == __
   end
 
   koan "You can ask a process to introduce itself" do
     information = Process.info(self())
 
-    assert information[:status] == :__
+    assert information[:status] == __
   end
 
   koan "You can send messages to any process you want" do
     send self(), "hola!"
-    assert_receive :__
+    assert_receive __
   end
 
   koan "A common pattern is to include the sender in the message" do
@@ -24,7 +24,7 @@ defmodule Processes do
                  end)
 
     send pid, {:hello, self()}
-    assert_receive :__
+    assert_receive __
   end
 
   koan "Waiting for a message can get boring" do
@@ -36,21 +36,21 @@ defmodule Processes do
                 end
            end)
 
-    assert_receive :__
+    assert_receive __
   end
 
   koan "Killing a process will terminate it" do
     pid = spawn(fn -> Process.exit(self(), :kill) end)
     :timer.sleep(500)
-    assert Process.alive?(pid) == :__
+    assert Process.alive?(pid) == __
   end
 
   koan "You can also terminate other processes than yourself" do
     pid = spawn(fn -> receive do end end)
 
-    assert Process.alive?(pid) == :__
+    assert Process.alive?(pid) == __
     Process.exit(pid, :kill)
-    assert Process.alive?(pid) == :__
+    assert Process.alive?(pid) == __
   end
 
   koan "Trapping will allow you to react to someone terminating the process" do
@@ -65,7 +65,7 @@ defmodule Processes do
     wait()
     Process.exit(pid, :random_reason)
 
-    assert_receive :__
+    assert_receive __
   end
 
   koan "Trying to quit normally has no effect" do
@@ -73,7 +73,7 @@ defmodule Processes do
                       end
                 end)
     Process.exit(pid, :normal)
-    assert Process.alive?(pid) == :__
+    assert Process.alive?(pid) == __
   end
 
   koan "Exiting yourself on the other hand DOES terminate you" do
@@ -84,7 +84,7 @@ defmodule Processes do
 
     send pid, :bye
     :timer.sleep(100)
-    assert Process.alive?(pid) == :__
+    assert Process.alive?(pid) == __
   end
 
   koan "Parent processes can be informed about exiting children, if they trap and link" do
@@ -97,7 +97,7 @@ defmodule Processes do
             end
      end)
 
-    assert_receive :__
+    assert_receive __
   end
 
   koan "If you monitor your children, you'll be automatically informed for their depature" do
@@ -109,7 +109,7 @@ defmodule Processes do
             end
      end)
 
-    assert_receive :__
+    assert_receive __
   end
 
   def wait do

@@ -8,6 +8,7 @@ defmodule Blanks do
   end
 
   defp pre(:__, [first | remainder]), do: {first, remainder}
+  defp pre({:__, _, _}, [first | remainder]), do: {first, remainder}
   defp pre(node, acc), do: {node, acc}
 
   def count(ast) do
@@ -17,5 +18,6 @@ defmodule Blanks do
   end
 
   defp count(:__, acc), do: {node, acc+1}
+  defp count({:__, _, _}, acc), do: {node, acc+1}
   defp count(node, acc), do: {node, acc}
 end

@@ -2,30 +2,30 @@ defmodule Equalities do
   use Koans
 
   koan "We shall contemplate truth by testing reality, via equality" do
-    assert true == :__
+    assert true == __
   end
 
   koan "Not something is the opposite of it" do
-    assert !true == :__
+    assert !true == __
   end
 
   koan "To understand reality, we must compare our expectations against reality" do
-    assert 2 == 1 + :__
+    assert 2 == 1 + __
   end
 
   koan "Some things may appear different, but be the same" do
-    assert 1 == 2 / :__
+    assert 1 == 2 / __
   end
 
   koan "Unless they actually are different" do
-    assert 3.2 != :__
+    assert 3.2 != __
   end
 
   koan "Some may be looking for bigger things" do
-    assert :__ > 3
+    assert __ > 3
   end
 
   koan "Others are happy with less" do
-    assert :__ < 3
+    assert __ < 3
   end
 end
