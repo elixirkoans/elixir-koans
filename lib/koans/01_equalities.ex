@@ -1,6 +1,7 @@
 defmodule Equalities do
   use Koans
 
+  # Replace ___ with the answer to make the koan pass.
   koan "We shall contemplate truth by testing reality, via equality" do
     assert true == ___
   end
