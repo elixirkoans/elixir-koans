@@ -13,9 +13,14 @@ defmodule Execute do
   def run_koan(module, name, args \\ []) do
     parent = self()
     spawn(fn -> exec(module, name, args, parent) end)
+    listen_for_result(module, name)
+  end
+
+  def listen_for_result(module, name) do
     receive do
       :ok   -> :passed
-      error -> {:failed, error, module, name}
+      %{error: _} = failure -> {:failed, failure, module, name}
+      _ -> listen_for_result(module, name)
     end
   end
 
