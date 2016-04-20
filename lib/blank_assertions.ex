@@ -51,19 +51,6 @@ defmodule BlankAssertions do
   end
 
   defp contains_blank?(expr) do
-    {_, blank} = Macro.prewalk(expr, false, &blank?/2)
-    blank
-  end
-
-  defp blank?(node, true) do
-    {node, true}
-  end
-
-  defp blank?({expr, _, _} = node, _acc) do
-    {node, expr == :__}
-  end
-
-  defp blank?(expr, _acc) do
-    {expr, expr == :__}
+    Blanks.count(expr) > 0
   end
 end
