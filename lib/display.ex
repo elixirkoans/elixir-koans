@@ -45,7 +45,10 @@ defmodule Display do
   end
 
   defp format_failure(%{error: %ExUnit.AssertionError{expr: @no_value, message: message}, file: file, line: line}) do
-    format_assertion_error(message, file, line)
+    """
+    #{format_cyan("Assertion failed in #{file}:#{line}")}
+    #{format_red(message)}
+    """
   end
 
   defp format_failure(%{error: %ExUnit.AssertionError{expr: expr}, file: file, line: line}) do
