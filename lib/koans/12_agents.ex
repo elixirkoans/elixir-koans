@@ -15,7 +15,7 @@ defmodule Agents do
     assert Agent.get(__MODULE__, &(&1)) == ___
   end
 
-  koan "Use get_and_update when you need read and change a value in one go" do
+  koan "Use get_and_update when you need to read and change a value in one go" do
     Agent.start_link(fn() -> ["Milk"] end, name: __MODULE__)
 
     old_list = Agent.get_and_update(__MODULE__, fn(old) ->

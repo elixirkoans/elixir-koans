@@ -16,7 +16,7 @@ defmodule Enums do
   end
 
   def even?(n), do: rem(n, 2) == 0
-  koan "Sometimes you you just want to know if there are any elements fullfilling a condition" do
+  koan "Sometimes you just want to know if there are any elements fulfilling a condition" do
     assert Enum.any?([1,2,3], &even?/1) == ___
     assert Enum.any?([1,3,5], &even?/1) == ___
   end

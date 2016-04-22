@@ -10,7 +10,7 @@ defmodule Functions do
   end
 
   def multiply(a, b), do: a * b
-  koan "Single line functions are cool, but mind the command and the colon!" do
+  koan "Single line functions are cool, but mind the comma and the colon!" do
     assert multiply(2, ___) == 6
   end
 
@@ -34,12 +34,12 @@ defmodule Functions do
   def sum_up(thing) when is_list(thing), do: :entire_list
   def sum_up(_thing), do: :single_thing
 
-  koan "Functions can be picky and apply to only certain types" do
+  koan "Functions can be picky and apply only to certain types" do
     assert sum_up([1,2,3]) == ___
     assert sum_up(1) == ___
   end
 
-  def bigger(a,b) when a >  b, do: "#{a} is bigger than #{b}"
+  def bigger(a,b) when a > b, do: "#{a} is bigger than #{b}"
   def bigger(a,b) when a <= b, do: "#{a} is not bigger than #{b}"
 
   koan "Intricate guards are possible, but be mindful of the reader" do
@@ -68,7 +68,7 @@ defmodule Functions do
   def times_five_and_then(number, fun), do: fun.(number*5)
   def square(number), do: number * number
 
-  koan "You can pass functions around as arguments. Place and '&' before the name and state the arity" do
+  koan "You can pass functions around as arguments. Place an '&' before the name and state the arity" do
     assert times_five_and_then(2, &square/1) == ___
   end
 

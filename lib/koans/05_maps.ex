@@ -22,11 +22,11 @@ defmodule Maps do
     assert Map.fetch(@person, :age) == ___
   end
 
-  koan "Or the atom :error when it doesnt" do
+  koan "Or the atom :error when it doesn't" do
     assert Map.fetch(@person, :family) == ___
   end
 
-  koan "Extending a map is a simple as putting in a new pair" do
+  koan "Extending a map is as simple as adding a new pair" do
     person_with_hobby = Map.put(@person, :hobby, "Kayaking")
     assert Map.fetch(person_with_hobby, :hobby) == ___
   end

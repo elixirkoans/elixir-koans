@@ -32,7 +32,7 @@ defmodule Processes do
     spawn(fn -> receive do
                    _anything -> flunk "I really wasn't expecting messages"
                 after
-                  10 -> send parent, {:waited_too_long, "I am inpatient"}
+                  10 -> send parent, {:waited_too_long, "I am impatient"}
                 end
            end)
 

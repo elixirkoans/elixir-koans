@@ -53,7 +53,7 @@ defmodule Lists do
     assert List.insert_at([1, 2, 3], 10, 4) == ___
   end
 
-  koan "Sometimes its faster to loop around back" do
+  koan "Sometimes it's faster to loop around back" do
     assert List.insert_at([1, 2, 3], -1, 4) == ___
   end
 
