@@ -49,7 +49,6 @@ defmodule Structs do
     assert plane?(%Person{}) == ___
   end
 
-
   koan "Are basically maps" do
     silvia = %Person{age: 22, name: "Silvia"}
 
