@@ -204,6 +204,24 @@ defmodule KoansHarnessTest do
     test_all(Agents, answers)
   end
 
+  test "SpecialForms" do
+    answers = [
+      [1,4,9,16],
+      [6,7,8,9,10,11,12,13,14],
+      [14, 38, 11],
+      [4,0,4],
+      [24, 36, 40, 48],
+      [1,2,3,4,4],
+      100,
+      :error,
+      :by_five,
+      "it was true",
+      {:multiple, ["it was ok", "it wasn't ok", "it was something else"]}
+    ]
+
+    test_all(SpecialForms, answers)
+  end
+
   def test_all(module, answers) do
     module.all_koans
     |> Enum.zip(answers)
