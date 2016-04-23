@@ -56,8 +56,8 @@ defmodule PatternMatching do
   def make_noise(_anything), do: "Eh?"
 
   koan "Functions can declare what kind of arguments they accept" do
-    dog = %{type: "dog"}
     cat = %{type: "cat"}
+    dog = %{type: "dog"}
     snake = %{type: "snake"}
 
     assert make_noise(cat) == ___
