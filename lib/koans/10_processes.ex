@@ -30,9 +30,8 @@ defmodule Processes do
   koan "Waiting for a message can get boring" do
     parent = self()
     spawn(fn -> receive do
-                   _anything -> flunk "I really wasn't expecting messages"
                 after
-                  10 -> send parent, {:waited_too_long, "I am impatient"}
+                  5 -> send parent, {:waited_too_long, "I am impatient"}
                 end
            end)
 

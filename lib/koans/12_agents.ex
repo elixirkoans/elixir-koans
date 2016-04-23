@@ -27,10 +27,10 @@ defmodule Agents do
   end
 
   koan "Somebody has to switch off the light at the end of the day" do
-    Agent.start_link(fn() -> ["Milk"] end, name: __MODULE__)
+    {:ok, pid} = Agent.start_link(fn() -> ["Milk"] end, name: __MODULE__)
 
-    result = Agent.stop(__MODULE__)
+    Agent.stop(__MODULE__)
 
-    assert result == ___
+    assert Process.alive?(pid) == ___
   end
 end

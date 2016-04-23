@@ -6,7 +6,7 @@ defmodule Enums do
   end
 
   koan "Depending on the type, it counts pairs" do
-    assert Enum.count(%{ :a => :foo, :b => :bar}) == ___
+    assert Enum.count(%{ a: :foo, b: :bar}) == ___
   end
 
   def less_than_five?(n), do: n < 5

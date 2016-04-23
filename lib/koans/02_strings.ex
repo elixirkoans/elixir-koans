@@ -10,11 +10,11 @@ defmodule Strings do
   end
 
   koan "Or pulled apart when needed" do
-    assert ___ == String.split("hello world")
+    assert ["hello", "world"] == String.split(___, " ")
   end
 
   koan "Be careful, a message may be altered" do
-    assert ___ == String.replace("An awful day", "awful", "incredible")
+    assert String.replace("An awful day", "awful", "incredible") == ___
   end
 
   koan "But strings never lie about themselves" do
@@ -26,7 +26,7 @@ defmodule Strings do
   end
 
   koan "Other times a little cleaning is in order" do
-    assert ___ == String.strip("  \n banana\n  ")
+    assert String.strip("  \n banana\n  ") == ___
   end
 
   koan "Repetition is the mother of learning" do
