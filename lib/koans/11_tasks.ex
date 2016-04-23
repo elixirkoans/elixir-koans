@@ -25,7 +25,9 @@ defmodule Tasks do
                              :timer.sleep(100)
                              3 * 3
                          end)
-    assert Task.shutdown(handle) == ___
+    %Task{pid: pid} = handle
+    Task.shutdown(handle)
+    assert Process.alive?(pid) == ___
   end
 
   koan "Shutdown will give you an answer if it has it" do

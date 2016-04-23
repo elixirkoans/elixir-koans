@@ -56,21 +56,32 @@ defmodule PatternMatching do
   def make_noise(_anything), do: "Eh?"
 
   koan "Functions can declare what kind of arguments they accept" do
-    dog = %{type: "dog", legs: 4, age: 9, color: "brown"}
-    cat = %{type: "cat", legs: 4, age: 3, color: "grey"}
-    snake = %{type: "snake", legs: 0, age: 20, color: "black"}
+    dog = %{type: "dog"}
+    cat = %{type: "cat"}
+    snake = %{type: "snake"}
 
-    assert make_noise(dog) == ___
     assert make_noise(cat) == ___
+    assert make_noise(dog) == ___
     assert make_noise(snake) == ___
   end
 
   koan "Errors are shaped differently than sucessful results" do
-    result = case Map.fetch(%{}, :obviously_not_a_key) do
+    dog = %{type: "dog"}
+
+    result = case Map.fetch(dog, :type) do
+      {:ok, value} -> value
       :error -> "not present"
-      _ -> flunk("I should not happen")
     end
 
     assert result == ___
+  end
+
+  defmodule Animal do
+    defstruct [:kind, :name]
+  end
+
+  koan "You can pattern match into the fields of a struct" do
+    %Animal{name: name} = %Animal{kind: "dog", name: "Max"}
+    assert name == ___
   end
 end

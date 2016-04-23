@@ -33,10 +33,6 @@ defmodule Lists do
     assert List.flatten([1, [2, 3], 4, [5]]) == ___
   end
 
-  koan "Same rules apply to new members that arrive late" do
-    assert List.flatten([1, [2, 3]], [4]) == ___
-  end
-
   koan "Order can also be specified for new members" do
     assert List.insert_at([1, 2, 3], 1, 4) == ___
   end
@@ -45,7 +41,7 @@ defmodule Lists do
     assert List.replace_at([1, 2, 3], 0, 10) == ___
   end
 
-  koan "Replacing something which is not" do
+  koan "When a replacement cannot be found, the list remains the same" do
     assert List.replace_at([1, 2, 3], 10, 0) == ___
   end
 
@@ -62,10 +58,6 @@ defmodule Lists do
   end
 
   koan "Wrapping other values is a handy option" do
-    assert List.wrap("value") == :___
-  end
-
-  koan "Zipping can be a useful operation" do
-    assert List.zip([[1, 2], [3, 4], [5, 6]]) == :___
+    assert List.wrap("value") == ___
   end
 end

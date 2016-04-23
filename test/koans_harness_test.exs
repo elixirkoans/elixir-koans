@@ -19,7 +19,7 @@ defmodule KoansHarnessTest do
     answers = [
       "hello",
       "hello ",
-      ["hello", "world"],
+      "hello world",
       "An incredible day",
       "incredible",
       "banana",
@@ -33,8 +33,8 @@ defmodule KoansHarnessTest do
 
   test "Tuples" do
     answers = [
-      3,
       {:a, 1, "hi"},
+      3,
       "hi",
       {:a, "bye"},
       {:a, :new_thing, "hi"},
@@ -47,7 +47,8 @@ defmodule KoansHarnessTest do
   end
 
   test "Lists" do
-    answers = [1,
+    answers = [
+               1,
                3,
                [1, 2, :a, "b"],
                [1,2],
@@ -55,7 +56,6 @@ defmodule KoansHarnessTest do
                [1,3],
                ["life", "life", "life"],
                [1, 2, 3, 4, 5],
-               [1, 2, 3, 4],
                [1, 4, 2, 3],
                [10, 2, 3],
                [1, 2, 3],
@@ -63,7 +63,6 @@ defmodule KoansHarnessTest do
                [1, 2, 3, 4],
                {1, 2, 3},
                ["value"],
-               [{1, 3, 5}, {2, 4, 6}]
                ]
 
     test_all(Lists, answers)
@@ -93,8 +92,6 @@ defmodule KoansHarnessTest do
       nil,
       "Joe",
       33,
-      {:multiple, [33, 23]},
-      22,
       {:multiple, [true, false]},
       22,
     ]
@@ -113,8 +110,9 @@ defmodule KoansHarnessTest do
       "eggs, milk",
       "Honda",
       [1,2,3],
-      {:multiple, ["Woof", "Meow", "Eh?",]},
-      "not present"
+      {:multiple, ["Meow", "Woof", "Eh?",]},
+      "dog",
+      "Max"
     ]
 
     test_all(PatternMatching, answers)
@@ -185,7 +183,7 @@ defmodule KoansHarnessTest do
       10,
       :ok,
       nil,
-      nil,
+      false,
       9,
       [1,4,9,16]
       ]
@@ -198,7 +196,7 @@ defmodule KoansHarnessTest do
       "Hi there",
       "HI THERE",
       {:multiple, [["Milk"], ["Bread", "Milk"]]},
-      :ok,
+      false
     ]
 
     test_all(Agents, answers)

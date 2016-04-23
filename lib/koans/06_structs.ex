@@ -10,7 +10,7 @@ defmodule Structs do
     assert person == ___
   end
 
-  koan "You can access the fields of a struct" do
+  koan "Unless previously defined, fields begin as nil" do
     nobody = %Person{}
     assert nobody.age == ___
   end
@@ -26,17 +26,6 @@ defmodule Structs do
     assert older.age == ___
   end
 
-  koan "The original struct is not affected by updates" do
-    joe = %Person{name: "Joe", age: 23}
-    assert %{ joe | age: joe.age + 10}.age == ___
-    assert joe.age == ___
-  end
-
-  koan "You can pattern match into the fields of a struct" do
-    %Person{age: age} = %Person{age: 22, name: "Silvia"}
-    assert age == ___
-  end
-
   defmodule Plane do
     defstruct passengers: 0, maker: :boeing
   end
@@ -49,7 +38,7 @@ defmodule Structs do
     assert plane?(%Person{}) == ___
   end
 
-  koan "Are basically maps" do
+  koan "Struct can be treated like maps" do
     silvia = %Person{age: 22, name: "Silvia"}
 
     assert Map.fetch!(silvia, :age) == ___

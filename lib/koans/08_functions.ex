@@ -11,7 +11,7 @@ defmodule Functions do
 
   def multiply(a, b), do: a * b
   koan "Single line functions are cool, but mind the comma and the colon!" do
-    assert multiply(2, ___) == 6
+    assert 6 == multiply(2, ___)
   end
 
   def first(foo, bar), do: "#{foo} and #{bar}"

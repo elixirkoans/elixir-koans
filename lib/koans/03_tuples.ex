@@ -1,12 +1,12 @@
 defmodule Tuples do
   use Koans
 
-  koan "Tuples have a size" do
-    assert tuple_size({:a, :b, :c}) == ___
-  end
-
   koan "Tuples can contain different things" do
     assert {:a, 1, "hi"} == ___
+  end
+
+  koan "Tuples have a size" do
+    assert tuple_size({:a, :b, :c}) == ___
   end
 
   koan "You can pull out individual elements" do
