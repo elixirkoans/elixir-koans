@@ -51,4 +51,38 @@ defmodule BlanksTest do
 
     assert Blanks.count(ast) == 2
   end
+
+  test "replaces whole line containing blank" do
+    ast = quote do
+      1 + 2
+      2 + ___
+    end
+
+    expected_result = quote do
+      1 + 2
+      true
+    end
+
+    actual_result = Blanks.replace_line(ast, fn(_) -> true end)
+
+    assert actual_result == expected_result
+  end
+
+  test "replacement fn can access line" do
+    ast = quote do
+      1 + 2
+      2 + ___
+    end
+
+    expected_result = quote do
+      1 + 2
+      some_fun(2 + ___)
+    end
+
+    actual_result = Blanks.replace_line(ast, fn(line) ->
+      quote do: some_fun(unquote(line))
+    end)
+
+    assert actual_result == expected_result
+  end
 end
