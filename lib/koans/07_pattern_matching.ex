@@ -35,7 +35,7 @@ defmodule PatternMatching do
     assert third == ___
   end
 
-  koan "Strings come apart just a easily" do
+  koan "Strings come apart just as easily" do
     "Shopping list: " <> items = "Shopping list: eggs, milk"
 
     assert items == ___

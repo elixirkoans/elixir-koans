@@ -44,7 +44,7 @@ defmodule Processes do
     assert Process.alive?(pid) == ___
   end
 
-  koan "You can also terminate other processes than yourself" do
+  koan "You can also terminate processes other than yourself" do
     pid = spawn(fn -> receive do end end)
 
     assert Process.alive?(pid) == ___
