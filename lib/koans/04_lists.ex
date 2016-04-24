@@ -29,7 +29,7 @@ defmodule Lists do
     assert List.duplicate("life", 3) == ___
   end
 
-  koan "Sometimes levelling the playing field is desired" do
+  koan "Sometimes leveling the playing field is desired" do
     assert List.flatten([1, [2, 3], 4, [5]]) == ___
   end
 
