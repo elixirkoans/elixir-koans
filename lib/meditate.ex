@@ -5,7 +5,8 @@ defmodule Mix.Tasks.Meditate do
   def run(args) do
     Application.ensure_all_started(:elixir_koans)
     Code.compiler_options(ignore_module_conflict: true)
-    Watcher.start
+    {:ok, watcher} = Watcher.start
+    Process.monitor(watcher)
 
     Options.start(args)
 
@@ -15,7 +16,9 @@ defmodule Mix.Tasks.Meditate do
     |> Tracker.start
     |> Runner.run
 
-    :timer.sleep(:infinity)
+    receive do
+      {:DOWN, _references, :process, watcher, _reason} -> nil
+    end
   end
 
   defp ok?(koan) do
