@@ -52,13 +52,9 @@ defmodule Display do
   end
 
   defp format_failure(%{error: %ExUnit.AssertionError{expr: expr}, file: file, line: line}) do
-    format_assertion_error(expr, file, line)
-  end
-
-  defp format_assertion_error(error, file, line) do
     """
     #{format_cyan("Assertion failed in #{file}:#{line}")}
-    #{format_red(Macro.to_string(error))}
+    #{format_red(Macro.to_string(expr))}
     """
   end
 

@@ -7,8 +7,11 @@ defmodule Koans do
     if not valid_name(name) do
       raise "Name does not start with a capital ltter: #{name}"
     end
+
     compiled_name = String.to_atom(name)
     number_of_args = Blanks.count(body)
+    compiled_body = Blanks.replace_line(body, &blank_line_replacement/1)
+
     quote do
       @koans unquote(compiled_name)
 
@@ -16,7 +19,7 @@ defmodule Koans do
 
       def unquote(compiled_name)() do
         try do
-          unquote(body)
+          unquote(compiled_body)
           :ok
         rescue
           e in _ -> e
@@ -47,6 +50,16 @@ defmodule Koans do
     end
   end
 
+  defp blank_line_replacement({:assert, _meta, [expr]}) do
+    code = Macro.escape(expr)
+    quote do: raise ExUnit.AssertionError, expr: unquote(code)
+  end
+
+  defp blank_line_replacement(line) do
+    code = Macro.escape(line)
+    quote do: raise ExUnit.AssertionError, expr: unquote(code)
+  end
+
   defp create_vars(amount) do
     for id <- 0..amount, do: quote do: elem(converted, unquote(id))
   end
@@ -57,8 +70,8 @@ defmodule Koans do
       Module.register_attribute(__MODULE__, :koans, accumulate: true)
 
       require ExUnit.Assertions
+      import ExUnit.Assertions
       import Koans
-      import BlankAssertions
 
       @before_compile Koans
     end
