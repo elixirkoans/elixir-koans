@@ -14,7 +14,7 @@ defmodule MapsTests do
       [:last_name, :name],
       %{:name => "Jon", :last_name => "Snow"},
       {:ok, "Baratheon"},
-      %{ :name => "Jon", :last_name => "Snow"}
+      %{ :name => "Jon", :last_name => "Snow"},
     ]
 
     test_all(Maps, answers)

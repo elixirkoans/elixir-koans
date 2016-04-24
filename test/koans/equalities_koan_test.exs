@@ -10,7 +10,7 @@ defmodule EqualitiesTests do
       2,
       1,
       4,
-      2
+      2,
     ]
 
     test_all(Equalities, answers)

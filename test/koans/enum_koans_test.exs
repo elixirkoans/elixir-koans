@@ -19,7 +19,7 @@ defmodule EnumTests do
       2,
       nil,
       :no_such_element,
-      6
+      6,
     ]
 
     test_all(Enums, answers)

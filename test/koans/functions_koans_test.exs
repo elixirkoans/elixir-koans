@@ -14,7 +14,7 @@ defmodule FunctionsTests do
       6,
       6,
       100,
-      "Full Name"
+      "Full Name",
     ]
 
     test_all(Functions, answers)
