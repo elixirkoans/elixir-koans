@@ -2,7 +2,7 @@ defmodule Structs do
   use Koans
 
   defmodule Person do
-    defstruct [:name, :age ]
+    defstruct [:name, :age]
   end
 
   koan "Structs are defined and named after a module" do
@@ -22,7 +22,7 @@ defmodule Structs do
 
   koan "Update fields with the pipe '|' operator" do
     joe = %Person{name: "Joe", age: 23}
-    older = %{ joe | age: joe.age + 10}
+    older = %{joe | age: joe.age + 10}
     assert older.age == ___
   end
 

@@ -37,7 +37,7 @@ defmodule Maps do
   end
 
   koan "Or you can use some syntactic sugar for existing elements" do
-    younger_person = %{ @person | age: 16 }
+    younger_person = %{@person | age: 16}
     assert Map.fetch(younger_person, :age) == ___
   end
 
@@ -51,12 +51,12 @@ defmodule Maps do
   end
 
   koan "When merging, the last map wins" do
-    merged = Map.merge(@person, %{ last_name: "Baratheon"})
+    merged = Map.merge(@person, %{last_name: "Baratheon"})
     assert Map.fetch(merged, :last_name) == ___
   end
 
   koan "You can also select sub-maps out of a larger map" do
-    initial = %{ name: "Jon", last_name: "Snow", age: 15}
+    initial = %{name: "Jon", last_name: "Snow", age: 15}
     assert Map.take(initial, [:name, :last_name]) == ___
   end
 end

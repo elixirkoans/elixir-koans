@@ -37,7 +37,7 @@ defmodule Tasks do
   end
 
   koan "You can yield to multiple tasks at once and extract the results" do
-   squares = [1,2,3,4]
+   squares = [1 ,2 ,3 ,4]
              |> Enum.map(fn(number) -> Task.async(fn -> number * number end) end)
              |> Task.yield_many(100)
              |> Enum.map(fn({_task,{:ok, result}}) -> result end)
