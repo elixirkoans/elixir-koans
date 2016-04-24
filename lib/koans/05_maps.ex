@@ -4,7 +4,7 @@ defmodule Maps do
   @person %{
     name: "Jon",
     last_name: "Snow",
-    age: 27
+    age: 27,
   }
 
   koan "Maps represent structured data, like a person" do

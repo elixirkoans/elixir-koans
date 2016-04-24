@@ -15,7 +15,7 @@ defmodule ProcessesTests do
       true,
       false,
       {:exited, :normal},
-      {:exited, :normal}
+      {:exited, :normal},
       ]
 
     test_all(Processes, answers)

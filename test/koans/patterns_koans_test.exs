@@ -15,7 +15,7 @@ defmodule PatternsTests do
       [1,2,3],
       {:multiple, ["Meow", "Woof", "Eh?",]},
       "dog",
-      "Max"
+      "Max",
     ]
 
     test_all(PatternMatching, answers)
