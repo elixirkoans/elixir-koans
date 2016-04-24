@@ -2,6 +2,8 @@ defmodule Display do
   alias IO.ANSI
   @current_dir File.cwd!
   @no_value :ex_unit_no_meaningful_value
+  @window_width 40
+  @half_window 20
 
   def invalid_koan(koan, modules) do
     koans_names = module_names(modules)
@@ -22,9 +24,52 @@ defmodule Display do
 
   def show_failure(failure, module, name) do
     IO.puts("Now meditate upon #{format_module(module)}")
-    IO.puts("---------------------------------------")
+    IO.puts(progress_bar(Tracker.get))
+    IO.puts(bar())
     IO.puts(name)
     IO.puts(format_failure(failure))
+  end
+
+  defp bar() do
+    String.duplicate("-", @window_width + 1)
+  end
+
+  def progress_bar(%{current: current, total: total}) do
+    progress = caluculate_progress(current, total)
+    progress_notification = "(#{current}/#{total})"
+
+    if current/total < 0.5 do
+      left_progress(progress_notification, progress)
+    else
+      right_progress(progress_notification, progress)
+    end
+  end
+
+  defp caluculate_progress(current, total) do
+    round( Float.floor((current/total) * @window_width))
+  end
+
+  def left_progress(progress_notification, progress) do
+    left  = String.ljust("#{arrow(progress)}", @half_window - 1)
+    right = String.ljust(progress_notification, @half_window)
+
+    in_bars(left<>right)
+  end
+
+  def right_progress(progress_notification, progress) do
+    arrow_length = progress - @half_window - 1
+    left  = String.ljust(progress_notification, @half_window - 1, ?=)
+    right = String.ljust(arrow(arrow_length), @half_window)
+
+    in_bars(left<>right)
+  end
+
+  defp in_bars(thing) do
+    "|" <> thing <> "|"
+  end
+
+  defp arrow(length) do
+    String.duplicate("=", length) <> ">"
   end
 
   def show_compile_error(error) do
