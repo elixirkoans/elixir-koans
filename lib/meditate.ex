@@ -7,6 +7,7 @@ defmodule Mix.Tasks.Meditate do
     Code.compiler_options(ignore_module_conflict: true)
     Watcher.start
 
+    Tracker.start(Runner.modules)
     Options.start(args)
     Runner.run
 
