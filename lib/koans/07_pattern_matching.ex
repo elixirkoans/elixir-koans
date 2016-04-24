@@ -16,7 +16,7 @@ defmodule PatternMatching do
   end
 
   koan "Patterns can be used to pull things apart" do
-    [head | tail] = [1,2,3,4]
+    [head | tail] = [1, 2, 3, 4]
 
     assert head == ___
     assert tail == ___
@@ -24,13 +24,13 @@ defmodule PatternMatching do
 
   koan "And then put them back together" do
     head = 1
-    tail = [2,3,4]
+    tail = [2, 3, 4]
 
     assert ___ == [head | tail]
   end
 
   koan "Some values can be ignored" do
-    [_first, _second, third, _fourth] = [1,2,3,4]
+    [_first, _second, third, _fourth] = [1, 2, 3, 4]
 
     assert third == ___
   end

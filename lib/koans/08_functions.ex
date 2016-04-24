@@ -35,7 +35,7 @@ defmodule Functions do
   def sum_up(_thing), do: :single_thing
 
   koan "Functions can be picky and apply only to certain types" do
-    assert sum_up([1,2,3]) == ___
+    assert sum_up([1 ,2 ,3]) == ___
     assert sum_up(1) == ___
   end
 
