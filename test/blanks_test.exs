@@ -4,8 +4,7 @@ defmodule BlanksTest do
   test "simple replacement" do
     ast = quote do: 1 + ___
 
-    mangled = Blanks.replace(ast, 37)
-    assert {:+, [context: BlanksTest, import: Kernel], [1, 37]} == mangled
+    assert Blanks.replace(ast, 37) == quote(do: 1 + 37)
   end
 
   test "Work with multiple different replacements" do
@@ -14,15 +13,15 @@ defmodule BlanksTest do
   end
 
   test "complex example" do
-    ast = [do: {:assert, [line: 5], [{:==, [line: 5], [true, {:___, [], __MODULE__}]}]}]
+    ast = quote do: assert true == ___
 
-    assert [do: {:assert, [line: 5], [{:==, [line: 5], [true, true]}]}] == Blanks.replace(ast, true)
+    assert Blanks.replace(ast, true) == quote(do: assert true == true)
   end
 
   test "multiple arguments" do
-    ast = [do: {:assert, [line: 5], [{:==, [line: 5], [{:___, [], __MODULE__}, {:___, [], __MODULE__}]}]}]
+    ast = quote do: assert ___ == ___
 
-    assert [do: {:assert, [line: 5], [{:==, [line: 5], [true, false]}]}] == Blanks.replace(ast, [true, false])
+    assert Blanks.replace(ast, [true, false]) == quote(do: assert true == false)
   end
 
   test "counts simple blanks" do
@@ -32,7 +31,7 @@ defmodule BlanksTest do
   end
 
   test "counts multiple blanks" do
-    ast = [do: {:assert, [line: 5], [{:==, [line: 5], [{:___, [], __MODULE__}, {:___, __MODULE__}]}]}]
+    ast = quote do: assert ___ == ___
 
     assert Blanks.count(ast) == 2
   end
