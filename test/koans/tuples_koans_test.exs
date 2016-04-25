@@ -2,7 +2,7 @@ defmodule TupleTests do
   use ExUnit.Case
   import TestHarness
 
- test "Tuples" do
+  test "Tuples" do
     answers = [
       {:a, 1, "hi"},
       3,
