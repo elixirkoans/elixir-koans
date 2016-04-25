@@ -1,6 +1,6 @@
 defmodule PatternsTests do
   use ExUnit.Case
-  use TestHarness
+  import TestHarness
 
   test "Pattern Matching" do
     answers = [

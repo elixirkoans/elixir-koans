@@ -1,6 +1,6 @@
 defmodule EqualitiesTests do
   use ExUnit.Case
-  use TestHarness
+  import TestHarness
 
   test "Equalities" do
     answers = [

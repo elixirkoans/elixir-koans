@@ -1,6 +1,6 @@
 defmodule ListsTests do
   use ExUnit.Case
-  use TestHarness
+  import TestHarness
 
   test "Lists" do
     answers = [1,

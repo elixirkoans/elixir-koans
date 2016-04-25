@@ -6,7 +6,7 @@ defmodule ExecuteTest do
   end
 
   test "stops at the first failing koan" do
-    {:failed, %{error: _, file: file, line: line}, SampleKoan, _name} = Execute.run_module(SampleKoan)
+    {:failed, %{file: file, line: line}, SampleKoan, _name} = Execute.run_module(SampleKoan)
     assert file == 'test/support/sample_koan.ex'
     assert line == 4
   end

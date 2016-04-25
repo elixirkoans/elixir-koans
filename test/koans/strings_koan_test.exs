@@ -1,6 +1,6 @@
 defmodule StringTests do
   use ExUnit.Case
-  use TestHarness
+  import TestHarness
 
   test "Strings" do
     answers = [

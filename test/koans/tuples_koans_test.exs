@@ -1,8 +1,8 @@
 defmodule TupleTests do
   use ExUnit.Case
-  use TestHarness
+  import TestHarness
 
- test "Tuples" do
+  test "Tuples" do
     answers = [
       {:a, 1, "hi"},
       3,
