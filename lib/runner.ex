@@ -29,7 +29,6 @@ defmodule Runner do
 
   def run_module(module) do
     module
-    |> Display.considering
     |> Execute.run_module(&track/2)
     |> display
   end

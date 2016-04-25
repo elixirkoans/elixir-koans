@@ -53,11 +53,6 @@ defmodule Display do
     format_error(error) |> IO.puts
   end
 
-  def considering(module) do
-    IO.puts("Considering #{format_module(module)}...")
-    module
-  end
-
   def clear_screen do
     if Options.clear_screen? do
       IO.puts(ANSI.clear)
