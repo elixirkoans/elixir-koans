@@ -13,21 +13,6 @@ defmodule BlanksTest do
     assert :ok == apply(SampleKoan, koan, [{:multiple, [3,4]}])
   end
 
-  def complex_example do
-    [head | tail] = [1,2,3,4]
-
-    assert head == 1
-    assert tail == [2,3,4]
-  end
-
-  def foo(answer) do
-    if answer == :yes do
-      :bar
-    else
-      :batz
-    end
-  end
-
   test "complex example" do
     ast = [do: {:assert, [line: 5], [{:==, [line: 5], [true, {:___, [], __MODULE__}]}]}]
 
