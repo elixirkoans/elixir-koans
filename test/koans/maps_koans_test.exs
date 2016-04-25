@@ -1,6 +1,6 @@
 defmodule MapsTests do
   use ExUnit.Case
-  use TestHarness
+  import TestHarness
 
   test "Maps" do
     answers = [

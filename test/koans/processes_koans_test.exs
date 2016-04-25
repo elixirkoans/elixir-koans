@@ -1,6 +1,6 @@
 defmodule ProcessesTests do
   use ExUnit.Case
-  use TestHarness
+  import TestHarness
 
   test "Processes" do
     answers = [

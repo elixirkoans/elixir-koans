@@ -1,6 +1,6 @@
 defmodule FunctionsTests do
   use ExUnit.Case
-  use TestHarness
+  import TestHarness
 
   test "Functions" do
     answers = [

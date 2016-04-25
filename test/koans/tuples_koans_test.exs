@@ -1,6 +1,6 @@
 defmodule TupleTests do
   use ExUnit.Case
-  use TestHarness
+  import TestHarness
 
  test "Tuples" do
     answers = [

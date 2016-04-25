@@ -1,6 +1,6 @@
 defmodule StructsTests do
   use ExUnit.Case
-  use TestHarness
+  import TestHarness
 
   test "Structs" do
     answers = [

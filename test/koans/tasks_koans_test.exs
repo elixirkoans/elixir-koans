@@ -1,6 +1,6 @@
 defmodule TasksTests do
   use ExUnit.Case
-  use TestHarness
+  import TestHarness
 
   test "Tasks" do
     answers = [
