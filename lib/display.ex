@@ -2,8 +2,7 @@ defmodule Display do
   alias IO.ANSI
   @current_dir File.cwd!
   @no_value :ex_unit_no_meaningful_value
-  @window_width 40
-  @half_window 20
+  @progress_bar_length 30
 
   def invalid_koan(koan, modules) do
     koans_names = module_names(modules)
@@ -31,45 +30,22 @@ defmodule Display do
   end
 
   defp bar() do
-    String.duplicate("-", @window_width + 1)
+    "----------------------------------------"
   end
 
   def progress_bar(%{current: current, total: total}) do
-    progress = caluculate_progress(current, total)
-    progress_notification = "(#{current}/#{total})"
+    arrow = caluculate_progress(current, total) |> build_arrow
 
-    if current/total < 0.5 do
-      left_progress(progress_notification, progress)
-    else
-      right_progress(progress_notification, progress)
-    end
+    "|" <> String.ljust(arrow, @progress_bar_length) <> "| #{current} of #{total}"
   end
 
   defp caluculate_progress(current, total) do
-    round( Float.floor((current/total) * @window_width))
+    round( (current/total) * @progress_bar_length)
   end
 
-  def left_progress(progress_notification, progress) do
-    left  = String.ljust("#{arrow(progress)}", @half_window - 1)
-    right = String.ljust(progress_notification, @half_window)
-
-    in_bars(left<>right)
-  end
-
-  def right_progress(progress_notification, progress) do
-    arrow_length = progress - @half_window - 1
-    left  = String.ljust(progress_notification, @half_window - 1, ?=)
-    right = String.ljust(arrow(arrow_length), @half_window)
-
-    in_bars(left<>right)
-  end
-
-  defp in_bars(thing) do
-    "|" <> thing <> "|"
-  end
-
-  defp arrow(length) do
-    String.duplicate("=", length) <> ">"
+  defp build_arrow(0), do: ""
+  defp build_arrow(length) do
+    String.duplicate("=", length-1) <> ">"
   end
 
   def show_compile_error(error) do
@@ -95,20 +71,23 @@ defmodule Display do
     #{format_red(message)}
     """
   end
-
   defp format_failure(%{error: %ExUnit.AssertionError{expr: expr}, file: file, line: line}) do
-    """
-    #{format_cyan("Assertion failed in #{file}:#{line}")}
-    #{format_red(Macro.to_string(expr))}
-    """
+    format_assertion_error(expr, file, line)
   end
-
   defp format_failure(%{error: error, file: file, line: line}) do
     """
     #{format_cyan("Error in #{file}:#{line}")}
     #{format_error(error)}
     """
   end
+
+  defp format_assertion_error(error, file, line) do
+    """
+    #{format_cyan("Assertion failed in #{file}:#{line}")}
+    #{format_red(Macro.to_string(error))}
+    """
+  end
+
 
   defp format_error(error) do
     trace = System.stacktrace |> Enum.take(2)
