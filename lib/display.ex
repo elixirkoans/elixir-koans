@@ -53,6 +53,12 @@ defmodule Display do
     format_error(error) |> IO.puts
   end
 
+  def congratulate do
+    format_green("\nYou have learned much. You must find your own path now.")
+    |> IO.puts
+    exit(:normal)
+  end
+
   def clear_screen do
     if Options.clear_screen? do
       IO.puts(ANSI.clear)
@@ -95,6 +101,10 @@ defmodule Display do
 
   defp format_cyan(str) do
     Enum.join([ANSI.cyan, str, ANSI.reset], "")
+  end
+
+  defp format_green(str) do
+    Enum.join([ANSI.green, str, ANSI.reset], "")
   end
 
   defp format_module(module) do
