@@ -9,7 +9,7 @@ defmodule Tracker do
 
   def get do
     Agent.get(__MODULE__, &(&1))
-    |> summirize
+    |> summarize
   end
 
   def completed(koan) do
@@ -18,7 +18,7 @@ defmodule Tracker do
     end)
   end
 
-  def summirize({total, completed}) do
+  def summarize({total, completed}) do
     %{total: total, current: MapSet.size(completed)}
   end
 end

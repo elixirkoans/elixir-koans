@@ -18,8 +18,6 @@ defmodule TrackerTest do
     Tracker.start(@sample_modules)
     Tracker.completed(:"Hi there")
     Tracker.completed(:"Hi there")
-    Tracker.completed(:"Hi there")
-    Tracker.completed(:"Hi there")
     assert Tracker.get == %{total: 2, current: 1}
   end
 end
