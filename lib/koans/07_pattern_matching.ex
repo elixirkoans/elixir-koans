@@ -8,12 +8,14 @@ defmodule PatternMatching do
   koan "A pattern can change" do
     a = 1
     a = 2
-    assert (a == 2) == ___
+    assert a == ___
   end
 
   koan "A pattern can also be strict" do
     a = 1
-    assert ^a = ___
+    assert_raise ___, fn() ->
+      ^a = 2
+    end
   end
 
   koan "Patterns can be used to pull things apart" do

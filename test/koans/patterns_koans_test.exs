@@ -5,8 +5,8 @@ defmodule PatternsTests do
   test "Pattern Matching" do
     answers = [
       1,
-      true,
-      1,
+      2,
+      MatchError,
       {:multiple, [1, [2,3,4]]},
       [1,2,3,4],
       3,
