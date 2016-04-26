@@ -19,7 +19,7 @@ defmodule Mix.Tasks.Meditate do
     if Tracker.complete?, do: Display.congratulate
 
     receive do
-      {:DOWN, _references, :process, watcher, _reason} -> nil
+      {:DOWN, _references, :process, ^watcher, _reason} -> nil
     end
   end
 
