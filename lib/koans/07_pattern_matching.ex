@@ -65,6 +65,18 @@ defmodule PatternMatching do
     assert make_noise(snake) == ___
   end
 
+  koan "And they will only run the code that matches the argument" do
+    name = fn
+      ("duck")  -> "Donald"
+      ("mouse") -> "Mickey"
+      (_other)  -> "I need a name!"
+    end
+
+    assert name.("mouse") == ___
+    assert name.("duck") == ___
+    assert name.("donkey") == ___
+  end
+
   koan "Errors are shaped differently than sucessful results" do
     dog = %{type: "dog"}
 

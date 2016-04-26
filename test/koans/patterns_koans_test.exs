@@ -14,6 +14,7 @@ defmodule PatternsTests do
       "Honda",
       [1,2,3],
       {:multiple, ["Meow", "Woof", "Eh?",]},
+      {:multiple, ["Mickey", "Donald", "I need a name!"]},
       "dog",
       "Max",
     ]
