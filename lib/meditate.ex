@@ -9,11 +9,21 @@ defmodule Mix.Tasks.Meditate do
 
     Options.start(args)
 
-    modules = Runner.modules_to_run
-    Tracker.start(modules)
-    Runner.run(modules)
+    Options.initial_koan
+    |> ok?
+    |> Runner.modules_to_run
+    |> Tracker.start
+    |> Runner.run
 
     :timer.sleep(:infinity)
+  end
+
+  defp ok?(koan) do
+    if Runner.koan?(koan) do
+      koan
+    else
+      Display.invalid_koan(koan, Runner.modules)
+    end
   end
 end
 

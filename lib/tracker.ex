@@ -5,6 +5,7 @@ defmodule Tracker do
             |> Enum.count
 
     Agent.start_link(fn -> {total, MapSet.new()} end, name: __MODULE__)
+    modules
   end
 
   def get do
