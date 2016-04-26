@@ -16,7 +16,10 @@ defmodule Mix.Tasks.Meditate do
     |> Tracker.start
     |> Runner.run
 
-    if Tracker.complete?, do: Display.congratulate
+    if Tracker.complete? do
+      Display.congratulate
+      exit(:normal)
+    end
 
     receive do
       {:DOWN, _references, :process, ^watcher, _reason} -> nil

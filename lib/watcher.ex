@@ -13,7 +13,10 @@ defmodule Watcher do
         e -> Display.show_compile_error(e)
       end
 
-      if Tracker.complete?, do: Display.congratulate
+      if Tracker.complete? do
+        Display.congratulate
+        exit(:normal)
+      end
     end
   end
 end

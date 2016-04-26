@@ -56,7 +56,6 @@ defmodule Display do
   def congratulate do
     format_green("\nYou have learned much. You must find your own path now.")
     |> IO.puts
-    exit(:normal)
   end
 
   def clear_screen do
