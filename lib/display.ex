@@ -23,7 +23,7 @@ defmodule Display do
 
   def show_failure(failure, module, name) do
     IO.puts("Now meditate upon #{format_module(module)}")
-    IO.puts(progress_bar(Tracker.get))
+    IO.puts(progress_bar(Tracker.summarize))
     IO.puts(bar())
     IO.puts(name)
     IO.puts(format_failure(failure))
