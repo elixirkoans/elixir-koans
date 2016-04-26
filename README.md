@@ -2,31 +2,38 @@
 
 [![Build Status](https://travis-ci.org/elixirkoans/elixir-koans.svg?branch=master)](https://travis-ci.org/elixirkoans/elixir-koans)
 
-Elixir koans is a fun, easy way to get started with the elixir programming language. It is a tour
+Elixir koans is a fun way to get started with the elixir programming language. It is a tour
 of the most important features and idiomatic usage of the language.
 
 ### Prerequisites
 
-To install Elixir, please refer to the [official guide](http://elixir-lang.org/install.html) for instructions.
+You need to have Elixir installed. Please refer to the [official guide](http://elixir-lang.org/install.html) for instructions.
 
-To fetch mix dependencies, run:
+Next, fetch mix dependencies by running:
+
 ```sh
 $ mix deps.get
 ```
 
-On Linux, you'll need to install `inotify-tools` if you already haven't to be able
+You might get prompted to install further dependencies. Reply "y".
+
+On Linux, you'll need to install `inotify-tools` to be able
 to use the autorunner in this project.
 
 ### Running
 
-With the dependencies installed, just navigate to the root directory of this project and run:
+With the dependencies installed, navigate to the root directory of this project and run:
+
 ```sh
 $ mix meditate
 ```
-to get going. You should see the first failure with a blank line in it. The goal is
-to fill in the blanks and make all the koans pass by doing so.
+
+You should see the first failure. Open the corresponding file in your favourite text editor
+and fill in the blanks to make the koans pass one by one.
+The autorunner will give you feedback each time you save.
 
 To make the autorunner less noisy, you can start the koans with
+
 ```sh
 $ mix meditate --clear-screen
 ```
