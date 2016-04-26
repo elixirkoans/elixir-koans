@@ -41,6 +41,6 @@ defmodule Structs do
   koan "Struct can be treated like maps" do
     silvia = %Person{age: 22, name: "Silvia"}
 
-    assert Map.fetch!(silvia, :age) == ___
+    assert Map.fetch(silvia, :age) == ___
   end
 end
