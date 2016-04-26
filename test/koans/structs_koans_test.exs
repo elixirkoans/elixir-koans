@@ -9,7 +9,7 @@ defmodule StructsTests do
       "Joe",
       33,
       {:multiple, [true, false]},
-      22,
+      {:ok, 22},
     ]
 
     test_all(Structs, answers)
