@@ -19,6 +19,11 @@ defmodule Tracker do
     end)
   end
 
+  def complete? do
+    {total, completed} = Agent.get(__MODULE__, &(&1))
+    total == Enum.count(completed)
+  end
+
   def summarize({total, completed}) do
     %{total: total, current: MapSet.size(completed)}
   end
