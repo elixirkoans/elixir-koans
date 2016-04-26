@@ -7,7 +7,8 @@ defmodule PatternMatching do
 
   koan "A pattern can change" do
     a = 1
-    assert a = ___
+    a = 2
+    assert (a == 2) == ___
   end
 
   koan "A pattern can also be strict" do
@@ -65,7 +66,19 @@ defmodule PatternMatching do
     assert make_noise(snake) == ___
   end
 
-  koan "Errors are shaped differently than sucessful results" do
+  koan "And they will only run the code that matches the argument" do
+    name = fn
+      ("duck")  -> "Donald"
+      ("mouse") -> "Mickey"
+      (_other)  -> "I need a name!"
+    end
+
+    assert name.("mouse") == ___
+    assert name.("duck") == ___
+    assert name.("donkey") == ___
+  end
+
+  koan "Errors are shaped differently than successful results" do
     dog = %{type: "dog"}
 
     result = case Map.fetch(dog, :type) do
