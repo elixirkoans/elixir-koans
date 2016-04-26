@@ -20,7 +20,7 @@ defmodule Structs do
     assert joe.name == ___
   end
 
-  koan "Update fields with the pipe '|' operator" do
+  koan "Update fields with the cons '|' operator" do
     joe = %Person{name: "Joe", age: 23}
     older = %{joe | age: joe.age + 10}
     assert older.age == ___
