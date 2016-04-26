@@ -78,7 +78,7 @@ defmodule PatternMatching do
     assert name.("donkey") == ___
   end
 
-  koan "Errors are shaped differently than sucessful results" do
+  koan "Errors are shaped differently than successful results" do
     dog = %{type: "dog"}
 
     result = case Map.fetch(dog, :type) do
