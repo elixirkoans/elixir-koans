@@ -7,7 +7,8 @@ defmodule PatternMatching do
 
   koan "A pattern can change" do
     a = 1
-    assert a = ___
+    a = 2
+    assert (a == 2) == ___
   end
 
   koan "A pattern can also be strict" do

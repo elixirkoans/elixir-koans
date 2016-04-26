@@ -5,7 +5,7 @@ defmodule PatternsTests do
   test "Pattern Matching" do
     answers = [
       1,
-      2,
+      true,
       1,
       {:multiple, [1, [2,3,4]]},
       [1,2,3,4],
@@ -13,7 +13,7 @@ defmodule PatternsTests do
       "eggs, milk",
       "Honda",
       [1,2,3],
-      {:multiple, ["Meow", "Woof", "Eh?",]},
+      {:multiple, ["Meow", "Woof", "Eh?"]},
       {:multiple, ["Mickey", "Donald", "I need a name!"]},
       "dog",
       "Max",
