@@ -1,10 +1,16 @@
 defmodule Execute do
-  def run_module(module) do
+  def run_module(module, callback \\ fn(_result, _koan) -> nil end) do
     Enum.reduce_while(module.all_koans, :passed, fn(koan, _) ->
       module
       |> run_koan(koan)
+      |> hook(koan, callback)
       |> continue?
     end)
+  end
+
+  defp hook(result,koan, callback) do
+    callback.(result, koan)
+    result
   end
 
   defp continue?(:passed), do: {:cont, :passed}

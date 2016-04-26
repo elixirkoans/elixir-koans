@@ -2,6 +2,7 @@ defmodule Display do
   alias IO.ANSI
   @current_dir File.cwd!
   @no_value :ex_unit_no_meaningful_value
+  @progress_bar_length 30
 
   def invalid_koan(koan, modules) do
     koans_names = module_names(modules)
@@ -22,19 +23,34 @@ defmodule Display do
 
   def show_failure(failure, module, name) do
     IO.puts("Now meditate upon #{format_module(module)}")
-    IO.puts("---------------------------------------")
+    IO.puts(progress_bar(Tracker.get))
+    IO.puts(bar())
     IO.puts(name)
     IO.puts(format_failure(failure))
+  end
+
+  defp bar() do
+    "----------------------------------------"
+  end
+
+  def progress_bar(%{current: current, total: total}) do
+    arrow = caluculate_progress(current, total) |> build_arrow
+
+    "|" <> String.ljust(arrow, @progress_bar_length) <> "| #{current} of #{total}"
+  end
+
+  defp caluculate_progress(current, total) do
+    round( (current/total) * @progress_bar_length)
+  end
+
+  defp build_arrow(0), do: ""
+  defp build_arrow(length) do
+    String.duplicate("=", length-1) <> ">"
   end
 
   def show_compile_error(error) do
     IO.puts("")
     format_error(error) |> IO.puts
-  end
-
-  def considering(module) do
-    IO.puts("Considering #{format_module(module)}...")
-    module
   end
 
   def clear_screen do
@@ -50,20 +66,23 @@ defmodule Display do
     #{format_red(message)}
     """
   end
-
   defp format_failure(%{error: %ExUnit.AssertionError{expr: expr}, file: file, line: line}) do
-    """
-    #{format_cyan("Assertion failed in #{file}:#{line}")}
-    #{format_red(Macro.to_string(expr))}
-    """
+    format_assertion_error(expr, file, line)
   end
-
   defp format_failure(%{error: error, file: file, line: line}) do
     """
     #{format_cyan("Error in #{file}:#{line}")}
     #{format_error(error)}
     """
   end
+
+  defp format_assertion_error(error, file, line) do
+    """
+    #{format_cyan("Assertion failed in #{file}:#{line}")}
+    #{format_red(Macro.to_string(error))}
+    """
+  end
+
 
   defp format_error(error) do
     trace = System.stacktrace |> Enum.take(2)
