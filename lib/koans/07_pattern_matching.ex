@@ -13,8 +13,8 @@ defmodule PatternMatching do
 
   koan "A pattern can also be strict" do
     a = 1
-    assert_raise ___, fn() ->
-      ^a = 2
+    assert_raise MatchError, fn() ->
+      ^a = ___
     end
   end
 
