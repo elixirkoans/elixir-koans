@@ -1,5 +1,6 @@
 defmodule Display do
   alias IO.ANSI
+
   @current_dir File.cwd!
   @no_value :ex_unit_no_meaningful_value
   @progress_bar_length 30
@@ -7,7 +8,6 @@ defmodule Display do
   def invalid_koan(koan, modules) do
     koans_names = module_names(modules)
     IO.puts("Did not find koan #{name(koan)} in " <> koans_names )
-    exit(:normal)
   end
 
   defp module_names(modules) do
