@@ -33,8 +33,12 @@ defmodule Koans do
     single_var = Blanks.replace(body, Macro.var(:answer, Koans))
     quote do
       def unquote(name)(answer) do
-        unquote(single_var)
-        :ok
+        try do
+          unquote(single_var)
+          :ok
+        rescue
+          e in _ -> e
+        end
       end
     end
   end
@@ -44,8 +48,12 @@ defmodule Koans do
     quote do
       def unquote(name)({:multiple, answers}) do
         converted = List.to_tuple(answers)
-        unquote(multi_var)
-        :ok
+        try do
+          unquote(multi_var)
+          :ok
+        rescue
+          e in _ -> e
+        end
       end
     end
   end
