@@ -15,7 +15,7 @@ defmodule Display do
     |> Enum.map(&Atom.to_string/1)
     |> Enum.map(&name/1)
     |> Enum.join(", ")
-    |> format_red
+    |> Colours.red
   end
 
   defp name("Elixir." <> module), do: module
@@ -54,7 +54,7 @@ defmodule Display do
   end
 
   def congratulate do
-    format_green("\nYou have learned much. You must find your own path now.")
+    Colours.green("\nYou have learned much. You must find your own path now.")
     |> IO.puts
   end
 
@@ -67,8 +67,8 @@ defmodule Display do
 
   defp format_failure(%{error: %ExUnit.AssertionError{expr: @no_value, message: message}, file: file, line: line}) do
     """
-    #{format_cyan("Assertion failed in #{file}:#{line}")}
-    #{format_red(message)}
+    #{Colours.cyan("Assertion failed in #{file}:#{line}")}
+    #{Colours.red(message)}
     """
   end
   defp format_failure(%{error: %ExUnit.AssertionError{expr: expr}, file: file, line: line}) do
@@ -76,34 +76,21 @@ defmodule Display do
   end
   defp format_failure(%{error: error, file: file, line: line}) do
     """
-    #{format_cyan("Error in #{file}:#{line}")}
+    #{Colours.cyan("Error in #{file}:#{line}")}
     #{format_error(error)}
     """
   end
 
   defp format_assertion_error(error, file, line) do
     """
-    #{format_cyan("Assertion failed in #{file}:#{line}")}
-    #{format_red(Macro.to_string(error))}
+    #{Colours.cyan("Assertion failed in #{file}:#{line}")}
+    #{Colours.red(Macro.to_string(error))}
     """
   end
 
-
   defp format_error(error) do
     trace = System.stacktrace |> Enum.take(2)
-    format_red(Exception.format(:error, error, trace))
-  end
-
-  defp format_red(str) do
-    Enum.join([ANSI.red, str, ANSI.reset], "")
-  end
-
-  defp format_cyan(str) do
-    Enum.join([ANSI.cyan, str, ANSI.reset], "")
-  end
-
-  defp format_green(str) do
-    Enum.join([ANSI.green, str, ANSI.reset], "")
+    Colours.red(Exception.format(:error, error, trace))
   end
 
   defp format_module(module) do
