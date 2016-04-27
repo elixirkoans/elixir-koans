@@ -1,7 +1,6 @@
 defmodule Display do
   alias IO.ANSI
 
-  @current_dir File.cwd!
   @no_value :ex_unit_no_meaningful_value
   @progress_bar_length 30
 
@@ -22,15 +21,17 @@ defmodule Display do
   defp name(module), do: name(Atom.to_string(module))
 
   def show_failure(failure, module, name) do
-    IO.puts("Now meditate upon #{format_module(module)}")
-    IO.puts(progress_bar(Tracker.summarize))
-    IO.puts(bar())
-    IO.puts(name)
-    IO.puts(format_failure(failure))
+    IO.puts(format(failure, module, name))
   end
 
-  defp bar() do
-    "----------------------------------------"
+  def format(failure, module, name) do
+    """
+    Now meditate upon #{format_module(module)}
+    #{progress_bar(Tracker.summarize)}
+    ----------------------------------------
+    #{name}
+    #{format_failure(failure)}
+    """
   end
 
   def progress_bar(%{current: current, total: total}) do
@@ -54,8 +55,7 @@ defmodule Display do
   end
 
   def congratulate do
-    Colours.green("\nYou have learned much. You must find your own path now.")
-    |> IO.puts
+    IO.puts(Colours.green("\nYou have learned much. You must find your own path now."))
   end
 
   def clear_screen do
