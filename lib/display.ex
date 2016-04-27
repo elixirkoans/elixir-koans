@@ -23,7 +23,7 @@ defmodule Display do
 
   def show_failure(failure, module, name) do
     IO.puts("Now meditate upon #{format_module(module)}")
-    IO.puts(progress_bar(Tracker.get))
+    IO.puts(progress_bar(Tracker.summarize))
     IO.puts(bar())
     IO.puts(name)
     IO.puts(format_failure(failure))
@@ -51,6 +51,11 @@ defmodule Display do
   def show_compile_error(error) do
     IO.puts("")
     format_error(error) |> IO.puts
+  end
+
+  def congratulate do
+    format_green("\nYou have learned much. You must find your own path now.")
+    |> IO.puts
   end
 
   def clear_screen do
@@ -95,6 +100,10 @@ defmodule Display do
 
   defp format_cyan(str) do
     Enum.join([ANSI.cyan, str, ANSI.reset], "")
+  end
+
+  defp format_green(str) do
+    Enum.join([ANSI.green, str, ANSI.reset], "")
   end
 
   defp format_module(module) do

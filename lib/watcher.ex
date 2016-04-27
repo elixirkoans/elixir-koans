@@ -12,6 +12,11 @@ defmodule Watcher do
       rescue
         e -> Display.show_compile_error(e)
       end
+
+      if Tracker.complete? do
+        Display.congratulate
+        exit(:normal)
+      end
     end
   end
 end
