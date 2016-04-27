@@ -23,7 +23,7 @@ defmodule TestHarness do
   end
 
   defp check_results(results) do
-    Enum.each results, &(assert &1 == :passed)
+    Enum.each(results, &(assert &1 == :passed))
   end
 
   def run_all(pairs, module) do
