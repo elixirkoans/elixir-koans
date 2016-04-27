@@ -1,11 +1,14 @@
 ExUnit.start()
 
 defmodule TestHarness do
+  import ExUnit.Assertions
+
   def test_all(module, answers) do
     module.all_koans
     |> check_answer_count(answers, module)
     |> Enum.zip(answers)
     |> run_all(module)
+    |> check_results
   end
 
   defp check_answer_count(koans, answers, module) do
@@ -17,6 +20,10 @@ defmodule TestHarness do
     else
       koans
     end
+  end
+
+  defp check_results(results) do
+    Enum.each results, &(assert &1 == :passed)
   end
 
   def run_all(pairs, module) do
