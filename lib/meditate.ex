@@ -31,6 +31,7 @@ defmodule Mix.Tasks.Meditate do
       koan
     else
       Display.invalid_koan(koan, Runner.modules)
+      exit(:normal)
     end
   end
 end
