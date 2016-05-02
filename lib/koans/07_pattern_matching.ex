@@ -5,7 +5,12 @@ defmodule PatternMatching do
     assert match?(1, ___)
   end
 
-  koan "A pattern can change" do
+  koan "A value can be bound to a variable" do
+    a = 1
+    assert a == ___
+  end
+
+  koan "A variable can be rebound" do
     a = 1
     a = 2
     assert a == ___

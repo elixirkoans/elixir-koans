@@ -5,6 +5,7 @@ defmodule PatternsTests do
   test "Pattern Matching" do
     answers = [
       1,
+      1,
       2,
       2,
       {:multiple, [1, [2,3,4]]},
