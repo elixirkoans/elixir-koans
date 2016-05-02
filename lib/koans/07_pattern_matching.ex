@@ -110,4 +110,9 @@ defmodule PatternMatching do
     %Animal{name: name} = %Animal{kind: "dog", name: "Max"}
     assert name == ___
   end
+
+  koan "Structs will even match with a regular map" do
+    %{name: name} = %Animal{kind: "dog", name: "Max"}
+    assert name == ___
+  end
 end
