@@ -11,7 +11,7 @@ defmodule PatternMatching do
     assert a == ___
   end
 
-  koan "A pattern can also be strict" do
+  koan "A variable can be pinned to be prevent it from being rebound" do
     a = 1
     assert_raise MatchError, fn() ->
       ^a = ___
