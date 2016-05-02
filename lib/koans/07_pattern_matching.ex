@@ -49,7 +49,7 @@ defmodule PatternMatching do
     assert items == ___
   end
 
-  koan "Patterns show what you really care about" do
+  koan "Maps support partial pattern matching" do
     %{make: make} = %{type: "car", year: 2016, make: "Honda", color: "black"}
 
     assert make == ___
