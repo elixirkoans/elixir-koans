@@ -69,7 +69,11 @@ defmodule Processes do
                         {:EXIT, _pid, reason} -> send parent, {:exited, reason}
                       end
     end)
-    wait()
+
+    receive do
+      :ready -> true
+    end
+
     Process.exit(pid, :random_reason)
 
     assert_receive ___
@@ -117,11 +121,5 @@ defmodule Processes do
      end)
 
     assert_receive ___
-  end
-
-  def wait do
-    receive do
-      :ready -> true
-    end
   end
 end
