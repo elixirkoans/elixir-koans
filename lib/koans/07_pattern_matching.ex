@@ -55,6 +55,12 @@ defmodule PatternMatching do
     assert make == ___
   end
 
+  koan "Lists must match exactly" do
+    assert_raise ___, fn ->
+      [a, b] = [1,2,3]
+    end
+  end
+
   koan "The pattern can make assertions about what it expects" do
     assert match?([1, _second, _third], ___)
   end
