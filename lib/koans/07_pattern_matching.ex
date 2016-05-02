@@ -69,7 +69,7 @@ defmodule PatternMatching do
   def make_noise(%{type: "dog"}), do: "Woof"
   def make_noise(_anything), do: "Eh?"
 
-  koan "Functions can declare what kind of arguments they accept" do
+  koan "Functions perform pattern matching on their arguments" do
     cat = %{type: "cat"}
     dog = %{type: "dog"}
     snake = %{type: "snake"}
