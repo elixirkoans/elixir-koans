@@ -25,7 +25,7 @@ defmodule Processes do
     end
   end
 
-  koan "A common pattern is to include the sender in the message" do
+  koan "A common pattern is to include the sender in the message, so that it can reply" do
     pid = spawn(fn -> receive do
                          {:hello, sender} -> send sender, :how_are_you?
                          _ -> assert false
