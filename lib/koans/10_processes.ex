@@ -88,12 +88,7 @@ defmodule Processes do
   end
 
   koan "Exiting yourself on the other hand DOES terminate you" do
-    pid = spawn(fn -> receive do
-                        :bye -> Process.exit(self(), :normal)
-                      end
-                end)
-
-    send pid, :bye
+    pid = spawn(fn -> Process.exit(self, :normal) end)
     :timer.sleep(100)
     assert Process.alive?(pid) == ___
   end
