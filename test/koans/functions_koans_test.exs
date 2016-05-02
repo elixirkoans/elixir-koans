@@ -14,6 +14,7 @@ defmodule FunctionsTests do
       6,
       6,
       100,
+      1000,
       "Full Name",
     ]
 

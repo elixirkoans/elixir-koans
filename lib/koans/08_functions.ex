@@ -72,6 +72,11 @@ defmodule Functions do
     assert times_five_and_then(2, &square/1) == ___
   end
 
+  koan "The '&' operation is not needed for anonymous functions" do
+    cube = fn number -> number * number * number end
+    assert times_five_and_then(2, cube) == ___
+  end
+
   koan "Functions can be combined elegantly with the pipe operator" do
     result = "full-name"
     |> String.split("-")
