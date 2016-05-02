@@ -94,27 +94,15 @@ defmodule Processes do
   end
 
   koan "Parent processes can be informed about exiting children, if they trap and link" do
-    parent = self()
-    spawn(fn ->
-            Process.flag(:trap_exit, true)
-            spawn_link(fn -> Process.exit(self(), :normal) end)
-            receive do
-              {:EXIT, _pid ,reason} -> send parent, {:exited, reason}
-            end
-     end)
+    Process.flag(:trap_exit, true)
+    spawn_link(fn -> Process.exit(self, :normal) end)
 
-    assert_receive ___
+    assert_receive {:EXIT, _pid, ___}
   end
 
   koan "If you monitor your children, you'll be automatically informed for their depature" do
-    parent = self()
-    spawn(fn ->
-            spawn_monitor(fn -> Process.exit(self(), :normal) end)
-            receive do
-              {:DOWN, _ref, :process, _pid, reason} -> send parent, {:exited, reason}
-            end
-     end)
+    spawn_monitor(fn -> Process.exit(self(), :normal) end)
 
-    assert_receive ___
+    assert_receive {:DOWN, _ref, :process, _pid, ___}
   end
 end
