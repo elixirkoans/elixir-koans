@@ -26,7 +26,7 @@ defmodule Functions do
     String.duplicate(message, times)
   end
 
-  koan "Not all arguments are always needed" do
+  koan "Functions can have default argument values" do
     assert repeat_again("Hello ") == ___
     assert repeat_again("Hello ", 2) == ___
   end
