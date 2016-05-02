@@ -2,11 +2,11 @@ defmodule Processes do
   use Koans
 
   koan "You are a process" do
-    assert Process.alive?(self()) == ___
+    assert Process.alive?(self) == ___
   end
 
   koan "You can ask a process to introduce itself" do
-    information = Process.info(self())
+    information = Process.info(self)
 
     assert information[:status] == ___
   end
@@ -18,7 +18,7 @@ defmodule Processes do
   end
 
   koan "You can send messages to processes" do
-    send self(), "hola!"
+    send self, "hola!"
 
     receive do
       msg -> assert msg == ___
@@ -31,12 +31,12 @@ defmodule Processes do
                       end
                  end)
 
-    send pid, {:hello, self()}
+    send pid, {:hello, self}
     assert_receive ___
   end
 
   koan "Waiting for a message can get boring" do
-    parent = self()
+    parent = self
     spawn(fn -> receive do
                 after
                   5 -> send parent, {:waited_too_long, "I am impatient"}
@@ -47,7 +47,7 @@ defmodule Processes do
   end
 
   koan "Killing a process will terminate it" do
-    pid = spawn(fn -> Process.exit(self(), :kill) end)
+    pid = spawn(fn -> Process.exit(self, :kill) end)
     :timer.sleep(500)
     assert Process.alive?(pid) == ___
   end
@@ -61,7 +61,7 @@ defmodule Processes do
   end
 
   koan "Trapping will allow you to react to someone terminating the process" do
-    parent = self()
+    parent = self
     pid = spawn(fn ->
                       Process.flag(:trap_exit, true)
                       send parent, :ready
@@ -101,7 +101,7 @@ defmodule Processes do
   end
 
   koan "If you monitor your children, you'll be automatically informed for their depature" do
-    spawn_monitor(fn -> Process.exit(self(), :normal) end)
+    spawn_monitor(fn -> Process.exit(self, :normal) end)
 
     assert_receive {:DOWN, _ref, :process, _pid, ___}
   end
