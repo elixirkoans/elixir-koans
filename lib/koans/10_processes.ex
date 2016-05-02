@@ -87,7 +87,7 @@ defmodule Processes do
     assert Process.alive?(pid) == ___
   end
 
-  koan "Exiting yourself on the other hand DOES terminate you" do
+  koan "Exiting normally yourself on the other hand DOES terminate you" do
     pid = spawn(fn -> Process.exit(self, :normal) end)
     :timer.sleep(100)
     assert Process.alive?(pid) == ___
