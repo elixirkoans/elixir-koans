@@ -19,7 +19,10 @@ defmodule Processes do
 
   koan "You can send messages to any process you want" do
     send self(), "hola!"
-    assert_receive ___
+
+    receive do
+      msg -> assert msg == ___
+    end
   end
 
   koan "A common pattern is to include the sender in the message" do
