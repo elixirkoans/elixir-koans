@@ -50,7 +50,7 @@ defmodule Functions do
   def the_length(0), do: "It was zero"
   def the_length(number), do: "The length was #{number}"
 
-  koan "For those individual one-offs, you can even guard on the arguments themselves" do
+  koan "For simpler cases, pattern matching is effective" do
     assert the_length(0) == ___
     assert the_length(5) == ___
   end
