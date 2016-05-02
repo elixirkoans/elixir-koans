@@ -13,7 +13,7 @@ defmodule Processes do
 
   koan "You can send messages to any process you want" do
     send self(), "hola!"
-    assert_receive ___
+    assert_receive ^___
   end
 
   koan "A common pattern is to include the sender in the message" do
@@ -24,7 +24,7 @@ defmodule Processes do
                  end)
 
     send pid, {:hello, self()}
-    assert_receive ___
+    assert_receive ^___
   end
 
   koan "Waiting for a message can get boring" do
@@ -35,7 +35,7 @@ defmodule Processes do
                 end
            end)
 
-    assert_receive ___
+    assert_receive ^___
   end
 
   koan "Killing a process will terminate it" do
@@ -64,7 +64,7 @@ defmodule Processes do
     wait()
     Process.exit(pid, :random_reason)
 
-    assert_receive ___
+    assert_receive ^___
   end
 
   koan "Trying to quit normally has no effect" do
@@ -96,7 +96,7 @@ defmodule Processes do
             end
      end)
 
-    assert_receive ___
+    assert_receive ^___
   end
 
   koan "If you monitor your children, you'll be automatically informed for their depature" do
@@ -108,7 +108,7 @@ defmodule Processes do
             end
      end)
 
-    assert_receive ___
+    assert_receive ^___
   end
 
   def wait do
