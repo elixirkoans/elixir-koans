@@ -8,7 +8,7 @@ defmodule ProcessesTests do
       :running,
       "hola!",
       :how_are_you?,
-      {:waited_too_long, "I am inpatient"},
+      {:waited_too_long, "I am impatient"},
       false,
       {:multiple, [true, false]},
       {:exited, :random_reason},
