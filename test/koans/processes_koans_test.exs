@@ -6,6 +6,7 @@ defmodule ProcessesTests do
     answers = [
       true,
       :running,
+      true,
       "hola!",
       :how_are_you?,
       {:waited_too_long, "I am inpatient"},

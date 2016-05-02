@@ -11,6 +11,12 @@ defmodule Processes do
     assert information[:status] == ___
   end
 
+  koan "New processes are spawned" do
+    pid = spawn(fn -> nil end)
+
+    assert Process.alive?(pid) == ___
+  end
+
   koan "You can send messages to any process you want" do
     send self(), "hola!"
     assert_receive ___
