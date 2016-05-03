@@ -53,12 +53,6 @@ defmodule Processes do
     assert_receive ___
   end
 
-  koan "Killing a process will terminate it" do
-    pid = spawn(fn -> Process.exit(self, :kill) end)
-    :timer.sleep(500)
-    assert Process.alive?(pid) == ___
-  end
-
   koan "You can also terminate processes other than yourself" do
     pid = spawn(fn -> receive do end end)
 
@@ -89,13 +83,6 @@ defmodule Processes do
   koan "Trying to quit normally has no effect" do
     pid = spawn(fn -> receive do end end)
     Process.exit(pid, :normal)
-
-    assert Process.alive?(pid) == ___
-  end
-
-  koan "Exiting normally yourself on the other hand DOES terminate you" do
-    pid = spawn(fn -> Process.exit(self, :normal) end)
-    :timer.sleep(100)
 
     assert Process.alive?(pid) == ___
   end
