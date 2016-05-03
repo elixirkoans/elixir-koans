@@ -18,7 +18,7 @@ defmodule ProcessesTests do
       false,
       :normal,
       :normal,
-      ]
+    ]
 
     test_all(Processes, answers)
   end
