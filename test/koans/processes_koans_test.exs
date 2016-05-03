@@ -7,6 +7,7 @@ defmodule ProcessesTests do
       true,
       :running,
       true,
+      true,
       "hola!",
       :how_are_you?,
       {:waited_too_long, "I am impatient"},

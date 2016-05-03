@@ -11,6 +11,10 @@ defmodule Processes do
     assert information[:status] == ___
   end
 
+  koan "Processes are referenced by their process ID (pid)" do
+    assert is_pid(self) == ___
+  end
+
   koan "New processes are spawned functions" do
     pid = spawn(fn -> nil end)
 
