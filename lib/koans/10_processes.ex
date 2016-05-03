@@ -80,16 +80,16 @@ defmodule Processes do
   end
 
   koan "Trying to quit normally has no effect" do
-    pid = spawn(fn -> receive do
-                      end
-                end)
+    pid = spawn(fn -> receive do end end)
     Process.exit(pid, :normal)
+
     assert Process.alive?(pid) == ___
   end
 
   koan "Exiting normally yourself on the other hand DOES terminate you" do
     pid = spawn(fn -> Process.exit(self, :normal) end)
     :timer.sleep(100)
+
     assert Process.alive?(pid) == ___
   end
 
