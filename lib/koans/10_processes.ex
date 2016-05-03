@@ -30,10 +30,13 @@ defmodule Processes do
   end
 
   koan "A common pattern is to include the sender in the message, so that it can reply" do
-    pid = spawn(fn -> receive do
-                         {:hello, sender} -> send sender, :how_are_you?
-                      end
-                 end)
+    greeter = fn ->
+      receive do
+        {:hello, sender} -> send sender, :how_are_you?
+      end
+    end
+
+    pid = spawn(greeter)
 
     send pid, {:hello, self}
     assert_receive ___
