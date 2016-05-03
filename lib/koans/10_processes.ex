@@ -1,7 +1,7 @@
 defmodule Processes do
   use Koans
 
-  koan "Tests run in a process" do
+  koan "You are a process" do
     assert Process.alive?(self()) == ___
   end
 
@@ -11,15 +11,23 @@ defmodule Processes do
     assert information[:status] == ___
   end
 
-  koan "You can send messages to any process you want" do
-    send self(), "hola!"
-    assert_receive ___
+  koan "New processes are spawned functions" do
+    pid = spawn(fn -> nil end)
+
+    assert Process.alive?(pid) == ___
   end
 
-  koan "A common pattern is to include the sender in the message" do
+  koan "You can send messages to processes" do
+    send self(), "hola!"
+
+    receive do
+      msg -> assert msg == ___
+    end
+  end
+
+  koan "A common pattern is to include the sender in the message, so that it can reply" do
     pid = spawn(fn -> receive do
                          {:hello, sender} -> send sender, :how_are_you?
-                         _ -> assert false
                       end
                  end)
 
@@ -61,59 +69,40 @@ defmodule Processes do
                         {:EXIT, _pid, reason} -> send parent, {:exited, reason}
                       end
     end)
-    wait()
+
+    receive do
+      :ready -> true
+    end
+
     Process.exit(pid, :random_reason)
 
     assert_receive ___
   end
 
   koan "Trying to quit normally has no effect" do
-    pid = spawn(fn -> receive do
-                      end
-                end)
+    pid = spawn(fn -> receive do end end)
     Process.exit(pid, :normal)
+
     assert Process.alive?(pid) == ___
   end
 
-  koan "Exiting yourself on the other hand DOES terminate you" do
-    pid = spawn(fn -> receive do
-                        :bye -> Process.exit(self(), :normal)
-                      end
-                end)
-
-    send pid, :bye
+  koan "Exiting normally yourself on the other hand DOES terminate you" do
+    pid = spawn(fn -> Process.exit(self, :normal) end)
     :timer.sleep(100)
+
     assert Process.alive?(pid) == ___
   end
 
   koan "Parent processes can be informed about exiting children, if they trap and link" do
-    parent = self()
-    spawn(fn ->
-            Process.flag(:trap_exit, true)
-            spawn_link(fn -> Process.exit(self(), :normal) end)
-            receive do
-              {:EXIT, _pid ,reason} -> send parent, {:exited, reason}
-            end
-     end)
+    Process.flag(:trap_exit, true)
+    spawn_link(fn -> Process.exit(self, :normal) end)
 
-    assert_receive ___
+    assert_receive {:EXIT, _pid, ___}
   end
 
   koan "If you monitor your children, you'll be automatically informed for their depature" do
-    parent = self()
-    spawn(fn ->
-            spawn_monitor(fn -> Process.exit(self(), :normal) end)
-            receive do
-              {:DOWN, _ref, :process, _pid, reason} -> send parent, {:exited, reason}
-            end
-     end)
+    spawn_monitor(fn -> Process.exit(self(), :normal) end)
 
-    assert_receive ___
-  end
-
-  def wait do
-    receive do
-      :ready -> true
-    end
+    assert_receive {:DOWN, _ref, :process, _pid, ___}
   end
 end

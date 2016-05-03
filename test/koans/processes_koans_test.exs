@@ -6,6 +6,7 @@ defmodule ProcessesTests do
     answers = [
       true,
       :running,
+      true,
       "hola!",
       :how_are_you?,
       {:waited_too_long, "I am inpatient"},
@@ -14,8 +15,8 @@ defmodule ProcessesTests do
       {:exited, :random_reason},
       true,
       false,
-      {:exited, :normal},
-      {:exited, :normal},
+      :normal,
+      :normal,
       ]
 
     test_all(Processes, answers)
