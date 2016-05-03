@@ -1,7 +1,7 @@
 defmodule Processes do
   use Koans
 
-  koan "Tests run in a process" do
+  koan "You are a process" do
     assert Process.alive?(self()) == ___
   end
 
@@ -11,13 +11,13 @@ defmodule Processes do
     assert information[:status] == ___
   end
 
-  koan "New processes are spawned" do
+  koan "New processes are spawned functions" do
     pid = spawn(fn -> nil end)
 
     assert Process.alive?(pid) == ___
   end
 
-  koan "You can send messages to any process you want" do
+  koan "You can send messages to processes" do
     send self(), "hola!"
 
     receive do
