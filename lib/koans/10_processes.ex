@@ -21,6 +21,21 @@ defmodule Processes do
     assert Process.alive?(pid) == ___
   end
 
+  koan "You can kill processes other than yourself" do
+    pid = spawn(fn -> receive do end end)
+
+    assert Process.alive?(pid) == ___
+    Process.exit(pid, :kill)
+    assert Process.alive?(pid) == ___
+  end
+
+  koan "However, trying to exit normally has no effect" do
+    pid = spawn(fn -> receive do end end)
+    Process.exit(pid, :normal)
+
+    assert Process.alive?(pid) == ___
+  end
+
   koan "Processes can send and receive messages; it's like a mailbox!" do
     send self, "hola!"
 
@@ -53,14 +68,6 @@ defmodule Processes do
     assert_receive ___
   end
 
-  koan "You can also terminate processes other than yourself" do
-    pid = spawn(fn -> receive do end end)
-
-    assert Process.alive?(pid) == ___
-    Process.exit(pid, :kill)
-    assert Process.alive?(pid) == ___
-  end
-
   koan "Trapping will allow you to react to someone terminating the process" do
     parent = self
     pid = spawn(fn ->
@@ -78,13 +85,6 @@ defmodule Processes do
     Process.exit(pid, :random_reason)
 
     assert_receive ___
-  end
-
-  koan "Trying to quit normally has no effect" do
-    pid = spawn(fn -> receive do end end)
-    Process.exit(pid, :normal)
-
-    assert Process.alive?(pid) == ___
   end
 
   koan "Parent processes can trap exits for children they are linked to" do
