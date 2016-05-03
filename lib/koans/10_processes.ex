@@ -57,6 +57,31 @@ defmodule Processes do
     assert_receive ___
   end
 
+  def yelling_echo_loop do
+    receive do
+      {caller, value} ->
+        send caller, String.upcase(value)
+        yelling_echo_loop
+    end
+  end
+
+  koan "Use tail recursion (calling a function as the very last statement) to receive multiple messages" do
+    pid = spawn &yelling_echo_loop/0
+
+    send pid, {self, "o"}
+    send pid, {self, "hai"}
+
+    receive do
+      msg -> assert msg == ___
+    end
+
+    receive do
+      msg -> assert msg == ___
+    end
+
+    Process.exit(pid, :kill)
+  end
+
   koan "Waiting for a message can get boring" do
     parent = self
     spawn(fn -> receive do
