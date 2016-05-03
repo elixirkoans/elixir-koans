@@ -21,7 +21,7 @@ defmodule Processes do
     assert Process.alive?(pid) == ___
   end
 
-  koan "You can send messages to processes" do
+  koan "Processes can send and receive messages; it's like a mailbox!" do
     send self, "hola!"
 
     receive do
@@ -97,7 +97,7 @@ defmodule Processes do
     assert Process.alive?(pid) == ___
   end
 
-  koan "Parent processes can be informed about exiting children, if they trap and link" do
+  koan "Parent processes can trap exits for children they are linked to" do
     Process.flag(:trap_exit, true)
     spawn_link(fn -> Process.exit(self, :normal) end)
 
