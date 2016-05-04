@@ -14,8 +14,8 @@ defmodule Maps do
   end
 
   koan "A map has keys and values" do
-    assert Map.keys(@person) |> Enum.sort == ___
-    assert Map.values(@person) |> Enum.sort == ___
+    assert Enum.sort(Map.keys(@person)) == ___
+    assert Enum.sort(Map.values(@person)) == ___
   end
 
   koan "Fetching a value returns a tuple with ok when it exists" do
@@ -43,7 +43,7 @@ defmodule Maps do
 
   koan "Can remove pairs by key" do
     without_age = Map.delete(@person, :age)
-    assert Map.keys(without_age) |> Enum.sort == ___
+    assert Enum.sort(Map.keys(without_age)) == ___
   end
 
   koan "Can merge maps" do
