@@ -24,6 +24,16 @@ defmodule BlanksTest do
     assert Blanks.replace(ast, [true, false]) == quote(do: assert true == false)
   end
 
+  test "pins variables in assert_receive replacement" do
+    ast = quote do: assert_receive ___
+    assert Blanks.replace(ast, Macro.var(:answer, __MODULE__)) == quote(do: assert_receive ^answer)
+  end
+
+  test "does not pin values in assert_receive replacement" do
+    ast = quote do: assert_receive ___
+    assert Blanks.replace(ast, :lolwat) == quote(do: assert_receive :lolwat)
+  end
+
   test "counts simple blanks" do
     ast = quote do: 1 + ___
 

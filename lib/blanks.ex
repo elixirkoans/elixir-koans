@@ -7,9 +7,24 @@ defmodule Blanks do
     |> elem(0)
   end
 
+  defp pre({:assert_receive, _, args} = node, replacements) do
+    {args, replacements} = Macro.prewalk(args, replacements, &pre_pin/2)
+    {put_elem(node, 2, args), replacements}
+  end
   defp pre(:___, [first | remainder]), do: {first, remainder}
   defp pre({:___, _, _}, [first | remainder]), do: {first, remainder}
   defp pre(node, acc), do: {node, acc}
+
+  defp pre_pin(:___, [first | remainder]), do: {pin(first), remainder}
+  defp pre_pin({:___, _, _}, [first | remainder]), do: {pin(first), remainder}
+  defp pre_pin(node, acc), do: {node, acc}
+
+  defp pin(var) when is_tuple(var) do
+    quote do
+      ^unquote(var)
+    end
+  end
+  defp pin(var), do: var
 
   def count(ast) do
     ast
