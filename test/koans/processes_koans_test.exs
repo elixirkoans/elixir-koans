@@ -10,6 +10,7 @@ defmodule ProcessesTests do
       true,
       true,
       "hola!",
+      {:multiple, ["hola!", "como se llama?"]},
       :how_are_you?,
       {:multiple, ["O", "HAI"]},
       {:multiple, ["foo", "bar"]},

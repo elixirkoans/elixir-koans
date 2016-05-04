@@ -28,12 +28,20 @@ defmodule Processes do
     assert Process.alive?(pid) == ___
   end
 
-  koan "Processes can send and receive messages; it's like a mailbox!" do
+  koan "Processes can send and receive messages" do
     send self, "hola!"
 
     receive do
       msg -> assert msg == ___
     end
+  end
+
+  koan "Received messages are queued, first in first out" do
+    send self, "hola!"
+    send self, "como se llama?"
+
+    assert_receive ___
+    assert_receive ___
   end
 
   koan "A common pattern is to include the sender in the message, so that it can reply" do
