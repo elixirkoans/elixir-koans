@@ -2,6 +2,8 @@ defmodule Mix.Tasks.Meditate do
   use Mix.Task
   alias Options
 
+  @shortdoc "Start the koans"
+
   def run(args) do
     Application.ensure_all_started(:elixir_koans)
     Code.compiler_options(ignore_module_conflict: true)
@@ -35,4 +37,3 @@ defmodule Mix.Tasks.Meditate do
     end
   end
 end
-
