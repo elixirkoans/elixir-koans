@@ -21,14 +21,6 @@ defmodule Processes do
     assert Process.alive?(pid) == ___
   end
 
-  koan "You can kill processes other than yourself" do
-    pid = spawn(fn -> receive do end end)
-
-    assert Process.alive?(pid) == ___
-    Process.exit(pid, :kill)
-    assert Process.alive?(pid) == ___
-  end
-
   koan "However, trying to exit normally has no effect" do
     pid = spawn(fn -> receive do end end)
     Process.exit(pid, :normal)

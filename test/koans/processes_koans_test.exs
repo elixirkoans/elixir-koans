@@ -8,7 +8,6 @@ defmodule ProcessesTests do
       :running,
       true,
       true,
-      {:multiple, [true, false]},
       true,
       "hola!",
       :how_are_you?,
