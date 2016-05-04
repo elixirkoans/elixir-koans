@@ -12,7 +12,7 @@ defmodule Enums do
   def less_than_five?(n), do: n < 5
   koan "Elements can have a lot in common" do
     assert Enum.all?([1 ,2 ,3], &less_than_five?/1) == ___
-    assert Enum.all?([6 ,7 ,8 ,9], &less_than_five?/1) == ___
+    assert Enum.all?([4, 6 ,8], &less_than_five?/1) == ___
   end
 
   def even?(n), do: rem(n, 2) == 0
@@ -61,7 +61,7 @@ defmodule Enums do
   end
 
   koan "When you want to find that one pesky element" do
-    assert Enum.find([1 ,2 ,3], &even?/1) == ___
+    assert Enum.find([1 ,2 ,3, 4], &even?/1) == ___
   end
 
   def divisible_by_five?(n), do: rem(n, 5) == 0
