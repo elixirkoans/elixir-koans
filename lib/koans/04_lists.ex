@@ -60,4 +60,8 @@ defmodule Lists do
   koan "Wrapping other values is a handy option" do
     assert List.wrap("value") == ___
   end
+
+  koan "When there is already a list do not wrap it again" do
+    assert List.wrap(["value"]) == ___
+  end
 end
