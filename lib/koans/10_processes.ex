@@ -82,6 +82,34 @@ defmodule Processes do
     Process.exit(pid, :kill)
   end
 
+  def state(value) do
+    receive do
+      {caller, :get} ->
+        send caller, value
+        state(value)
+      {caller, :set, new_value} ->
+        state(new_value)
+    end
+  end
+
+  koan "Processes can be used to hold state" do
+    initial_state = "foo"
+    pid = spawn fn ->
+      state(initial_state)
+    end
+
+    send pid, {self, :get}
+    receive do
+      value -> assert value == ___
+    end
+
+    send pid, {self, :set, "bar"}
+    send pid, {self, :get}
+    receive do
+      value -> assert value == ___
+    end
+  end
+
   koan "Waiting for a message can get boring" do
     parent = self
     spawn(fn -> receive do

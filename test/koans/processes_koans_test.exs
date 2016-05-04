@@ -13,6 +13,7 @@ defmodule ProcessesTests do
       "hola!",
       :how_are_you?,
       {:multiple, ["O", "HAI"]},
+      {:multiple, ["foo", "bar"]},
       {:waited_too_long, "I am impatient"},
       {:exited, :random_reason},
       :normal,
