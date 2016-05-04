@@ -3,20 +3,30 @@ defmodule Watcher do
 
   def callback(file, events)  do
     if Enum.member?(events, :modified) do
-      try do
-        Code.load_file(file)
-          |> Enum.map(&(elem(&1, 0)))
-          |> Enum.find(&Runner.koan?/1)
-          |> Runner.modules_to_run
-          |> Runner.run
-      rescue
-        e -> Display.show_compile_error(e)
-      end
+      reload(file)
 
       if Tracker.complete? do
         Display.congratulate
         exit(:normal)
       end
     end
+  end
+
+  defp reload(file) do
+    try do
+      file
+      |> normalize
+      |> Code.load_file
+      |> Enum.map(&(elem(&1, 0)))
+      |> Enum.find(&Runner.koan?/1)
+      |> Runner.modules_to_run
+      |> Runner.run
+    rescue
+      e -> Display.show_compile_error(e)
+    end
+  end
+
+  defp normalize(file) do
+    String.replace_suffix(file, "___jb_tmp___", "")
   end
 end
