@@ -61,7 +61,7 @@ defmodule Enums do
   end
 
   koan "When you want to find that one pesky element" do
-    assert Enum.find([1 ,2 ,3], &even?/1) == ___
+    assert Enum.find([1 ,2 ,3, 4], &even?/1) == ___
   end
 
   def divisible_by_five?(n), do: rem(n, 5) == 0
