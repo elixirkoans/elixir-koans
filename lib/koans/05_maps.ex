@@ -38,7 +38,7 @@ defmodule Maps do
 
   koan "Can remove pairs by key" do
     without_age = Map.delete(@person, :age)
-    assert Enum.sort(Map.keys(without_age)) == ___
+    assert Map.has_key?(without_age, :age) == ___
   end
 
   koan "Can merge maps" do

@@ -10,7 +10,7 @@ defmodule MapsTests do
       {:ok, "Kayaking"},
       {:ok, 37},
       {:ok, 16},
-      [:last_name, :name],
+      false,
       %{:name => "Jon", :last_name => "Snow"},
       {:ok, "Baratheon"},
       %{ :name => "Jon", :last_name => "Snow"},
