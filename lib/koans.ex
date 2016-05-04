@@ -43,11 +43,11 @@ defmodule Koans do
     end
   end
   defmacro generate_test_method(name, number_of_args, body) do
-    answer_placeholders = create_vars(number_of_args)
-    multi_var = Blanks.replace(body, answer_placeholders)
+    answer_vars = for id <- 1..number_of_args, do: Macro.var(String.to_atom("answer#{id}"), Koans)
+    multi_var = Blanks.replace(body, answer_vars)
+
     quote do
-      def unquote(name)({:multiple, answers}) do
-        converted = List.to_tuple(answers)
+      def unquote(name)({:multiple, unquote(answer_vars)}) do
         try do
           unquote(multi_var)
           :ok
@@ -66,10 +66,6 @@ defmodule Koans do
   defp blank_line_replacement(line) do
     code = Macro.escape(line)
     quote do: raise ExUnit.AssertionError, expr: unquote(code)
-  end
-
-  defp create_vars(amount) do
-    for id <- 0..amount, do: quote do: elem(converted, unquote(id))
   end
 
   defmacro __using__(_opts) do
