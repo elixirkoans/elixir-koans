@@ -13,11 +13,6 @@ defmodule Maps do
                         age: 27 }
   end
 
-  koan "A map has keys and values" do
-    assert Enum.sort(Map.keys(@person)) == ___
-    assert Enum.sort(Map.values(@person)) == ___
-  end
-
   koan "Fetching a value returns a tuple with ok when it exists" do
     assert Map.fetch(@person, :age) == ___
   end
