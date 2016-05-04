@@ -11,13 +11,17 @@ defmodule Processes do
     assert information[:status] == ___
   end
 
+  koan "Processes are referenced by their process ID (pid)" do
+    assert is_pid(self) == ___
+  end
+
   koan "New processes are spawned functions" do
     pid = spawn(fn -> nil end)
 
     assert Process.alive?(pid) == ___
   end
 
-  koan "You can send messages to processes" do
+  koan "Processes can send and receive messages" do
     send self, "hola!"
 
     receive do
@@ -25,13 +29,66 @@ defmodule Processes do
     end
   end
 
+  koan "Received messages are queued, first in first out" do
+    send self, "hola!"
+    send self, "como se llama?"
+
+    assert_receive ___
+    assert_receive ___
+  end
+
   koan "A common pattern is to include the sender in the message, so that it can reply" do
-    pid = spawn(fn -> receive do
-                         {:hello, sender} -> send sender, :how_are_you?
-                      end
-                 end)
+    greeter = fn ->
+      receive do
+        {:hello, sender} -> send sender, :how_are_you?
+      end
+    end
+
+    pid = spawn(greeter)
 
     send pid, {:hello, self}
+    assert_receive ___
+  end
+
+  def yelling_echo_loop do
+    receive do
+      {caller, value} ->
+        send caller, String.upcase(value)
+        yelling_echo_loop
+    end
+  end
+
+  koan "Use tail recursion to receive multiple messages" do
+    pid = spawn_link(&yelling_echo_loop/0)
+
+    send pid, {self, "o"}
+    assert_receive ___
+
+    send pid, {self, "hai"}
+    assert_receive ___
+  end
+
+  def state(value) do
+    receive do
+      {caller, :get} ->
+        send caller, value
+        state(value)
+      {caller, :set, new_value} ->
+        state(new_value)
+    end
+  end
+
+  koan "Processes can be used to hold state" do
+    initial_state = "foo"
+    pid = spawn(fn ->
+      state(initial_state)
+    end)
+
+    send pid, {self, :get}
+    assert_receive ___
+
+    send pid, {self, :set, "bar"}
+    send pid, {self, :get}
     assert_receive ___
   end
 
@@ -44,20 +101,6 @@ defmodule Processes do
            end)
 
     assert_receive ___
-  end
-
-  koan "Killing a process will terminate it" do
-    pid = spawn(fn -> Process.exit(self, :kill) end)
-    :timer.sleep(500)
-    assert Process.alive?(pid) == ___
-  end
-
-  koan "You can also terminate processes other than yourself" do
-    pid = spawn(fn -> receive do end end)
-
-    assert Process.alive?(pid) == ___
-    Process.exit(pid, :kill)
-    assert Process.alive?(pid) == ___
   end
 
   koan "Trapping will allow you to react to someone terminating the process" do
@@ -79,21 +122,7 @@ defmodule Processes do
     assert_receive ___
   end
 
-  koan "Trying to quit normally has no effect" do
-    pid = spawn(fn -> receive do end end)
-    Process.exit(pid, :normal)
-
-    assert Process.alive?(pid) == ___
-  end
-
-  koan "Exiting normally yourself on the other hand DOES terminate you" do
-    pid = spawn(fn -> Process.exit(self, :normal) end)
-    :timer.sleep(100)
-
-    assert Process.alive?(pid) == ___
-  end
-
-  koan "Parent processes can be informed about exiting children, if they trap and link" do
+  koan "Parent processes can trap exits for children they are linked to" do
     Process.flag(:trap_exit, true)
     spawn_link(fn -> Process.exit(self, :normal) end)
 
