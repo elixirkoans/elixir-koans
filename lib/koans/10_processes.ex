@@ -59,7 +59,7 @@ defmodule Processes do
   end
 
   koan "Use tail recursion to receive multiple messages" do
-    pid = spawn &yelling_echo_loop/0
+    pid = spawn(&yelling_echo_loop/0)
 
     send pid, {self, "o"}
     assert_receive ___
@@ -82,9 +82,9 @@ defmodule Processes do
 
   koan "Processes can be used to hold state" do
     initial_state = "foo"
-    pid = spawn fn ->
+    pid = spawn(fn ->
       state(initial_state)
-    end
+    end)
 
     send pid, {self, :get}
     assert_receive ___
