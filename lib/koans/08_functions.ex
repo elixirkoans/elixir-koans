@@ -26,7 +26,7 @@ defmodule Functions do
     String.duplicate(message, times)
   end
 
-  koan "Not all arguments are always needed" do
+  koan "Functions can have default argument values" do
     assert repeat_again("Hello ") == ___
     assert repeat_again("Hello ", 2) == ___
   end
@@ -50,7 +50,7 @@ defmodule Functions do
   def the_length(0), do: "It was zero"
   def the_length(number), do: "The length was #{number}"
 
-  koan "For those individual one-offs, you can even guard on the arguments themselves" do
+  koan "For simpler cases, pattern matching is effective" do
     assert the_length(0) == ___
     assert the_length(5) == ___
   end
@@ -70,6 +70,11 @@ defmodule Functions do
 
   koan "You can pass functions around as arguments. Place an '&' before the name and state the arity" do
     assert times_five_and_then(2, &square/1) == ___
+  end
+
+  koan "The '&' operation is not needed for anonymous functions" do
+    cube = fn number -> number * number * number end
+    assert times_five_and_then(2, cube) == ___
   end
 
   koan "Functions can be combined elegantly with the pipe operator" do

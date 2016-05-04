@@ -5,13 +5,18 @@ defmodule PatternMatching do
     assert match?(1, ___)
   end
 
-  koan "A pattern can change" do
+  koan "A value can be bound to a variable" do
+    a = 1
+    assert a == ___
+  end
+
+  koan "A variable can be rebound" do
     a = 1
     a = 2
     assert a == ___
   end
 
-  koan "A pattern can also be strict" do
+  koan "A variable can be pinned to be prevent it from being rebound" do
     a = 1
     assert_raise MatchError, fn() ->
       ^a = ___
@@ -44,10 +49,16 @@ defmodule PatternMatching do
     assert items == ___
   end
 
-  koan "Patterns show what you really care about" do
+  koan "Maps support partial pattern matching" do
     %{make: make} = %{type: "car", year: 2016, make: "Honda", color: "black"}
 
     assert make == ___
+  end
+
+  koan "Lists must match exactly" do
+    assert_raise ___, fn ->
+      [a, b] = [1,2,3]
+    end
   end
 
   koan "The pattern can make assertions about what it expects" do
@@ -58,7 +69,7 @@ defmodule PatternMatching do
   def make_noise(%{type: "dog"}), do: "Woof"
   def make_noise(_anything), do: "Eh?"
 
-  koan "Functions can declare what kind of arguments they accept" do
+  koan "Functions perform pattern matching on their arguments" do
     cat = %{type: "cat"}
     dog = %{type: "dog"}
     snake = %{type: "snake"}
@@ -97,6 +108,11 @@ defmodule PatternMatching do
 
   koan "You can pattern match into the fields of a struct" do
     %Animal{name: name} = %Animal{kind: "dog", name: "Max"}
+    assert name == ___
+  end
+
+  koan "Structs will even match with a regular map" do
+    %{name: name} = %Animal{kind: "dog", name: "Max"}
     assert name == ___
   end
 end
