@@ -21,13 +21,6 @@ defmodule Processes do
     assert Process.alive?(pid) == ___
   end
 
-  koan "However, trying to exit normally has no effect" do
-    pid = spawn(fn -> receive do end end)
-    Process.exit(pid, :normal)
-
-    assert Process.alive?(pid) == ___
-  end
-
   koan "Processes can send and receive messages" do
     send self, "hola!"
 
