@@ -57,7 +57,7 @@ defmodule Processes do
     end
   end
 
-  koan "Use tail recursion (calling a function as the very last statement) to receive multiple messages" do
+  koan "Use tail recursion to receive multiple messages" do
     pid = spawn &yelling_echo_loop/0
 
     send pid, {self, "o"}
