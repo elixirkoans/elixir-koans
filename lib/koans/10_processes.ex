@@ -69,9 +69,9 @@ defmodule Processes do
     pid = spawn &yelling_echo_loop/0
 
     send pid, {self, "o"}
-    send pid, {self, "hai"}
-
     assert_receive ___
+
+    send pid, {self, "hai"}
     assert_receive ___
 
     Process.exit(pid, :kill)
