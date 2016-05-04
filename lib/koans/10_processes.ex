@@ -71,13 +71,8 @@ defmodule Processes do
     send pid, {self, "o"}
     send pid, {self, "hai"}
 
-    receive do
-      msg -> assert msg == ___
-    end
-
-    receive do
-      msg -> assert msg == ___
-    end
+    assert_receive ___
+    assert_receive ___
 
     Process.exit(pid, :kill)
   end
@@ -99,15 +94,11 @@ defmodule Processes do
     end
 
     send pid, {self, :get}
-    receive do
-      value -> assert value == ___
-    end
+    assert_receive ___
 
     send pid, {self, :set, "bar"}
     send pid, {self, :get}
-    receive do
-      value -> assert value == ___
-    end
+    assert_receive ___
   end
 
   koan "Waiting for a message can get boring" do
