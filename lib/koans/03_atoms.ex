@@ -11,14 +11,6 @@ defmodule Atoms do
     assert Atom.to_string(:stringified) == ___
   end
 
-  koan "Atoms are often used as keys, because they're faster than strings" do
-    map = %{name: "Jay"}
-    list = [name: "Jay"]
-
-    assert map[:name] == ___
-    assert list[:name] == ___
-  end
-
   koan "It is surprising to find out that booleans are atoms" do
     assert is_atom(true) == ___
     assert is_atom(false) == ___

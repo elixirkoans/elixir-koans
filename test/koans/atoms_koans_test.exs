@@ -6,7 +6,6 @@ defmodule AtomsTests do
     answers = [
       :human,
       {:multiple, [:atomized, "stringified"]},
-      {:multiple, ["Jay", "Jay"]},
       {:multiple, [true, true, true, false]},
       {:multiple, [true, String, "HELLO"]},
       {:multiple, [true, [1,2,3]]},
