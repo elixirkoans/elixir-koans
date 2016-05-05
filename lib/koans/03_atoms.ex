@@ -19,22 +19,6 @@ defmodule Atoms do
     assert list[:name] == ___
   end
 
-  #koan "Only atom keys may be accessed with dot syntax" do
-  #  map = %{name: "Jay"}
-  #  assert map.name == ___
-
-  #  map = %{"name" => "Jay"}
-  #  assert_raise KeyError, fn -> ___ end
-  #  assert map["name"] == ___
-  #end
-
-  #koan "Dot syntax is stricter than access with brackets" do
-  #  map = %{name: "Jay"}
-
-  #  assert map[:age] == ___
-  #  assert_raise KeyError, fn -> ___ end
-  #end
-
   koan "It is surprising to find out that booleans are atoms" do
     assert is_atom(true) == ___
     assert is_atom(false) == ___
