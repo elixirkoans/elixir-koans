@@ -37,26 +37,4 @@ defmodule KeywordLists do
 
     assert transform.("good", upcase: true) == ___
   end
-
-  def foo(kw_list), do: kw_list
-
-  koan "Actually function bodies are a sneaky use of keyword lists" do
-    list = foo do
-      :good
-    end
-
-    assert list == [do: ___]
-  end
-
-  def iff(kw_list), do: kw_list
-
-  koan "Turns out our beloved if statements are also using keyword lists" do
-    list = iff do
-      :this
-    else
-      :that
-    end
-
-    assert list == [do: ___, else: ___]
-  end
 end
