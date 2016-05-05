@@ -15,7 +15,7 @@ defmodule EnumTests do
       [1,2,3],
       [1,2,3,4,5],
       [1,2,3],
-      [{1, :a}, {2, :b}, {3, :c}],
+      [a: 1, b: 2, c: 3],
       2,
       nil,
       :no_such_element,
