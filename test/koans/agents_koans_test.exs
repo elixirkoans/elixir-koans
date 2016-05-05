@@ -5,6 +5,7 @@ defmodule AgentTests do
   test "Agents" do
     answers = [
       "Hi there",
+      "Why hello",
       "HI THERE",
       {:multiple, [["Milk"], ["Bread", "Milk"]]},
       false,

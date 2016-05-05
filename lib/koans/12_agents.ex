@@ -2,8 +2,13 @@ defmodule Agents do
   use Koans
 
   koan "Agents maintain state, so you can ask them about it" do
-    Agent.start_link(fn() -> "Hi there" end, name: __MODULE__)
-    assert Agent.get(__MODULE__, &(&1)) == ___
+    {:ok, pid} = Agent.start_link(fn -> "Hi there" end)
+    assert Agent.get(pid, &(&1)) == ___
+  end
+
+  koan "Agents may also be named so that you don't have to keep the pid around" do
+    Agent.start_link(fn -> "Why hello" end, name: AgentSmith)
+    assert Agent.get(AgentSmith, &(&1)) == ___
   end
 
   koan "Update to update the state" do
