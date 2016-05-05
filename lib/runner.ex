@@ -5,6 +5,7 @@ defmodule Runner do
     Atoms,
     Tuples,
     Lists,
+    KeywordLists,
     Maps,
     Structs,
     PatternMatching,
