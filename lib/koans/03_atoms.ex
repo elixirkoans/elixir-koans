@@ -20,12 +20,10 @@ defmodule Atoms do
 
   koan "Modules are also atoms" do
     assert is_atom(String) == ___
-    assert :"Elixir.String" == ___
-    assert :"Elixir.String".upcase("hello") == ___
   end
 
-  koan "Atoms are used to access Erlang" do
-    assert :erlang.is_list([]) == ___
-    assert :lists.sort([2, 3, 1]) == ___
+  koan "Functions can be called on the atom too" do
+    assert :"Elixir.String" == String
+    assert :"Elixir.String".upcase("hello") == ___
   end
 end

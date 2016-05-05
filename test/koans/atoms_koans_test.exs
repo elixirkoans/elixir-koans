@@ -7,8 +7,8 @@ defmodule AtomsTests do
       :human,
       {:multiple, [:atomized, "stringified"]},
       {:multiple, [true, true, true, false]},
-      {:multiple, [true, String, "HELLO"]},
-      {:multiple, [true, [1,2,3]]},
+      true,
+      "HELLO",
     ]
 
     test_all(Atoms, answers)
