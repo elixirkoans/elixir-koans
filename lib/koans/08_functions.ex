@@ -77,7 +77,7 @@ defmodule Functions do
     assert times_five_and_then(2, cube) == ___
   end
 
-  koan "Functions can be combined elegantly with the pipe operator" do
+  koan "The result of a function can be piped into the first argument of another function" do
     result = "full-name"
     |> String.split("-")
     |> Enum.map(&(String.capitalize(&1)))
