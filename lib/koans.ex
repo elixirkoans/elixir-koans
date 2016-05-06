@@ -5,7 +5,7 @@ defmodule Koans do
 
   defmacro koan(name, body) do
     if not valid_name(name) do
-      raise "Name does not start with a capital ltter: #{name}"
+      raise "Name does not start with a capital letter: #{name}"
     end
 
     compiled_name = String.to_atom(name)
