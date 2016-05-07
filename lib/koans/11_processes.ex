@@ -81,8 +81,8 @@ defmodule Processes do
   koan "Processes can be used to hold state" do
     initial_state = "foo"
     pid = spawn(fn ->
-            state(initial_state)
-          end)
+      state(initial_state)
+    end)
 
     send pid, {self, :get}
     assert_receive ___
