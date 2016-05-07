@@ -2,13 +2,13 @@ defmodule Maps do
   use Koans
 
   @person %{
-    name: "Jon",
+    first_name: "Jon",
     last_name: "Snow",
     age: 27,
   }
 
   koan "Maps represent structured data, like a person" do
-    assert @person == %{name: ___,
+    assert @person == %{first_name: ___,
                         last_name: "Snow",
                         age: 27 }
   end
@@ -42,7 +42,7 @@ defmodule Maps do
   end
 
   koan "Can merge maps" do
-    assert Map.merge(%{name: "Jon"}, %{last_name: "Snow"}) == ___
+    assert Map.merge(%{first_name: "Jon"}, %{last_name: "Snow"}) == ___
   end
 
   koan "When merging, the last map wins" do
@@ -51,7 +51,7 @@ defmodule Maps do
   end
 
   koan "You can also select sub-maps out of a larger map" do
-    initial = %{name: "Jon", last_name: "Snow", age: 15}
-    assert Map.take(initial, [:name, :last_name]) == ___
+    initial = %{first_name: "Jon", last_name: "Snow", age: 15}
+    assert Map.take(initial, [:first_name, :last_name]) == ___
   end
 end
