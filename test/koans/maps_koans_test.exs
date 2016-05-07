@@ -11,9 +11,9 @@ defmodule MapsTests do
       {:ok, 37},
       {:ok, 16},
       false,
-      %{:name => "Jon", :last_name => "Snow"},
+      %{:first_name => "Jon", :last_name => "Snow"},
       {:ok, "Baratheon"},
-      %{ :name => "Jon", :last_name => "Snow"},
+      %{:first_name => "Jon", :last_name => "Snow"},
     ]
 
     test_all(Maps, answers)
