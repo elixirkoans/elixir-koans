@@ -26,7 +26,7 @@ defmodule Display do
   end
 
   defp intro(module, modules) do
-    if ! module in modules do
+    if not module in modules do
       show_intro(module.intro)
     end
   end
