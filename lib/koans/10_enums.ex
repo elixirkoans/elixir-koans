@@ -22,7 +22,7 @@ defmodule Enums do
   end
 
   koan "Sometimes you just want to know if an element is part of the party" do
-    input = [1 ,2 ,3]
+    input = [1, 2, 3]
     assert Enum.member?(input, 1) == ___
     assert Enum.member?(input, 30) == ___
   end
@@ -56,7 +56,7 @@ defmodule Enums do
 
   koan "Zip-up in pairs!" do
     letters = [:a, :b, :c]
-    numbers = [1 ,2 ,3]
+    numbers = [1, 2, 3]
     assert Enum.zip(letters, numbers) == ___
   end
 

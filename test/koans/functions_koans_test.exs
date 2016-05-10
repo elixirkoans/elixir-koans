@@ -10,7 +10,7 @@ defmodule FunctionsTests do
       {:multiple, ["Hello Hello Hello Hello Hello ","Hello Hello "]},
       {:multiple, [:entire_list, :single_thing]},
       {:multiple, ["10 is bigger than 5", "4 is not bigger than 27"]},
-      {:multiple, ["It was zero", "The length was 5"]},
+      {:multiple, ["The number was zero", "The number was 5"]},
       6,
       6,
       100,

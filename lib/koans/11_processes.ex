@@ -111,7 +111,7 @@ defmodule Processes do
                       receive do
                         {:EXIT, _pid, reason} -> send parent, {:exited, reason}
                       end
-    end)
+              end)
 
     receive do
       :ready -> true

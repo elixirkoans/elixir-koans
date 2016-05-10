@@ -16,7 +16,7 @@ defmodule PatternMatching do
     assert a == ___
   end
 
-  koan "A variable can be pinned to be prevent it from being rebound" do
+  koan "A variable can be pinned to prevent it from being rebounded" do
     a = 1
     assert_raise MatchError, fn() ->
       ^a = ___

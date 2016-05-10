@@ -34,8 +34,8 @@ defmodule Functions do
   def sum_up(thing) when is_list(thing), do: :entire_list
   def sum_up(_thing), do: :single_thing
 
-  koan "Functions can be picky and apply only to certain types" do
-    assert sum_up([1 ,2 ,3]) == ___
+  koan "Functions can have guard expressions" do
+    assert sum_up([1, 2, 3]) == ___
     assert sum_up(1) == ___
   end
 
@@ -47,12 +47,12 @@ defmodule Functions do
     assert bigger(4, 27) == ___
   end
 
-  def the_length(0), do: "It was zero"
-  def the_length(number), do: "The length was #{number}"
+  def get_number(0), do: "The number was zero"
+  def get_number(number), do: "The number was #{number}"
 
   koan "For simpler cases, pattern matching is effective" do
-    assert the_length(0) == ___
-    assert the_length(5) == ___
+    assert get_number(0) == ___
+    assert get_number(5) == ___
   end
 
   koan "Little anonymous functions are common, and called with a dot" do
@@ -60,7 +60,7 @@ defmodule Functions do
     assert multiply.(2,3) == ___
   end
 
-  koan "You can even go shorter, by using &(..) and positional arguments" do
+  koan "You can even go shorter, by using capture syntax `&()` and positional arguments" do
     multiply = &(&1 * &2)
     assert multiply.(2,3) == ___
   end
@@ -77,11 +77,11 @@ defmodule Functions do
     assert times_five_and_then(2, cube) == ___
   end
 
-  koan "The result of a function can be piped into the first argument of another function" do
+  koan "The result of a function can be piped into another function as its first argument" do
     result = "full-name"
-    |> String.split("-")
-    |> Enum.map(&(String.capitalize(&1)))
-    |> Enum.join(" ")
+            |> String.split("-")
+            |> Enum.map(&(String.capitalize(&1)))
+            |> Enum.join(" ")
 
     assert result == ___
   end

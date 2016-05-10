@@ -12,7 +12,7 @@ defmodule Tasks do
     assert result == ___
   end
 
-  koan "Yield returns nothing if the task isn't done yet" do
+  koan "Yield returns nil if the task isn't done yet" do
     handle = Task.async(fn ->
                              :timer.sleep(100)
                              3 * 3
@@ -25,8 +25,10 @@ defmodule Tasks do
                              :timer.sleep(100)
                              3 * 3
                          end)
+
     %Task{pid: pid} = handle
     Task.shutdown(handle)
+
     assert Process.alive?(pid) == ___
   end
 
