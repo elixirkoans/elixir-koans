@@ -5,7 +5,7 @@ defmodule Equalities do
   Welcome to the Elixir koans.
   Let these be your first humble steps towards learning a new language.
 
-  The path layed infront of you us but one of many.
+  The path laid in front of you is one of many.
   """
 
   # Replace ___ with the answer to make the koan pass.
