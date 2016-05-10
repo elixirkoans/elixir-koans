@@ -19,6 +19,10 @@ defmodule Tracker do
     end)
   end
 
+  def visited do
+    summarize[:visited_modules]
+  end
+
   def complete? do
     %{total: total, current: completed} = summarize
     total == completed

@@ -40,15 +40,9 @@ defmodule Runner do
   defp track(_, _, _), do: nil
 
   defp display({:failed, error, module, name}) do
-    intro(module, Tracker.summarize)
     Display.show_failure(error, module, name)
     :failed
   end
   defp display(_), do: :passed
 
-  defp intro(module, %{visited_modules: modules}) do
-    if ! module in modules do
-      Display.intro(module)
-    end
-  end
 end

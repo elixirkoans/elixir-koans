@@ -20,9 +20,15 @@ defmodule Display do
   defp name("Elixir." <> module), do: module
   defp name(module), do: name(Atom.to_string(module))
 
-  def intro(module) do
-    show_intro(module.intro)
-    module
+  def show_failure(failure, module, name) do
+    intro(module, Tracker.visited)
+    IO.puts(format(failure, module, name))
+  end
+
+  defp intro(module, modules) do
+    if ! module in modules do
+      show_intro(module.intro)
+    end
   end
 
   defp show_intro(""), do: nil
@@ -32,9 +38,6 @@ defmodule Display do
     |> IO.puts
   end
 
-  def show_failure(failure, module, name) do
-    IO.puts(format(failure, module, name))
-  end
 
   def format(failure, module, name) do
     """
