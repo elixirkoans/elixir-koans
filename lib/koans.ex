@@ -82,11 +82,32 @@ defmodule Koans do
   end
 
   defmacro __before_compile__(env) do
-    koans = Module.get_attribute(env.module, :koans) |> Enum.reverse
+    koans = koans(env)
+    intro = extract_into(env)
     quote do
       def all_koans do
         unquote(koans)
       end
+
+      def intro do
+        unquote(intro)
+      end
     end
   end
+
+  defp koans(env) do
+    env.module
+    |> Module.get_attribute(:koans)
+    |> Enum.reverse
+  end
+
+  defp extract_into(env) do
+    env.module
+    |> Module.get_attribute(:intro)
+    |> default("")
+    |> String.strip
+  end
+
+  defp default(nil, n), do: n
+  defp default(n, _), do: n
 end
