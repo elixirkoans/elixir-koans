@@ -20,6 +20,18 @@ defmodule Display do
   defp name("Elixir." <> module), do: module
   defp name(module), do: name(Atom.to_string(module))
 
+  def intro(module) do
+    show_intro(module.intro)
+    module
+  end
+
+  defp show_intro(""), do: nil
+  defp show_intro(message) do
+    message <> "\n"
+    |> Colours.green
+    |> IO.puts
+  end
+
   def show_failure(failure, module, name) do
     IO.puts(format(failure, module, name))
   end
