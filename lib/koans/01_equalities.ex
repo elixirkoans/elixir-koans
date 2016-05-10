@@ -1,6 +1,13 @@
 defmodule Equalities do
   use Koans
 
+  @intro  """
+  Welcome to the Elixir koans.
+  Let these be your first humble steps towards learning a new language.
+
+  The path layed infront of you us but one of many.
+  """
+
   # Replace ___ with the answer to make the koan pass.
   koan "We shall contemplate truth by testing reality, via equality" do
     assert true == ___
