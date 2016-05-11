@@ -1,6 +1,8 @@
 defmodule Functions do
   use Koans
 
+  @intro "Functions"
+
   def greet(name) do
     "Hello, #{name}!"
   end

@@ -1,6 +1,8 @@
 defmodule KeywordLists do
   use Koans
 
+  @intro "KeywordLists"
+
   koan "Like maps, keyword lists are key-value pairs" do
     kw_list = [foo: "bar"]
 

@@ -1,6 +1,8 @@
 defmodule Atoms do
   use Koans
 
+  @intro "Atoms"
+
   koan "Atoms are sort of like strings" do
     adam = :human
     assert adam == ___

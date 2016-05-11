@@ -1,6 +1,8 @@
 defmodule Tuples do
   use Koans
 
+  @intro "Tuples"
+
   koan "Tuples can contain different things" do
     assert {:a, 1, "hi"} == ___
   end

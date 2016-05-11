@@ -1,6 +1,8 @@
 defmodule Strings do
   use Koans
 
+  @intro "Strings"
+
   koan "Strings are there to represent text" do
     assert "hello" == ___
   end

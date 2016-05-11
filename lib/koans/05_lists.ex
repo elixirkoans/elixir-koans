@@ -1,6 +1,8 @@
 defmodule Lists do
   use Koans
 
+  @intro "Lists"
+
   koan "We can see what is ahead" do
     assert List.first([1, 2, 3]) == ___
   end

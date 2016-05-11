@@ -1,6 +1,8 @@
 defmodule Agents do
   use Koans
 
+  @intro "Agents"
+
   koan "Agents maintain state, so you can ask them about it" do
     {:ok, pid} = Agent.start_link(fn -> "Hi there" end)
     assert Agent.get(pid, &(&1)) == ___
