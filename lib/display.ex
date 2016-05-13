@@ -21,8 +21,18 @@ defmodule Display do
   defp name(module), do: name(Atom.to_string(module))
 
   def show_failure(failure, module, name) do
-    intro(module, Tracker.visited)
     IO.puts(format(failure, module, name))
+  end
+
+  def format(failure, module, name) do
+    """
+    #{intro(module, Tracker.visited)}
+    Now meditate upon #{format_module(module)}
+    #{progress_bar(Tracker.summarize)}
+    ----------------------------------------
+    #{name}
+    #{format_failure(failure)}
+    """
   end
 
   defp intro(module, modules) do
@@ -36,17 +46,6 @@ defmodule Display do
     message <> "\n"
     |> Colours.green
     |> IO.puts
-  end
-
-
-  def format(failure, module, name) do
-    """
-    Now meditate upon #{format_module(module)}
-    #{progress_bar(Tracker.summarize)}
-    ----------------------------------------
-    #{name}
-    #{format_failure(failure)}
-    """
   end
 
   def progress_bar(%{current: current, total: total}) do
