@@ -7,7 +7,6 @@ defmodule Display.Intro do
     end
   end
 
-  def show_intro(""), do: nil
   def show_intro(message) do
     message <> "\n"
     |> Colours.green
