@@ -1,4 +1,6 @@
 defmodule Display.Intro do
+  alias Display.Colours
+
   def intro(module, modules) do
     if not module in modules do
       show_intro(module.intro)

@@ -1,6 +1,8 @@
 defmodule Display.Notifications do
+  alias Display.Paint
+
   def congratulate do
-    Colours.green("\nYou have learned much. You must find your own path now.")
+    Paint.green("\nYou have learned much. You must find your own path now.")
   end
 
   def invalid_koan(koan, modules) do
@@ -13,7 +15,7 @@ defmodule Display.Notifications do
     |> Enum.map(&Atom.to_string/1)
     |> Enum.map(&name/1)
     |> Enum.join(", ")
-    |> Colours.red
+    |> Paint.red
   end
 
   defp name("Elixir." <> module), do: module

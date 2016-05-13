@@ -1,4 +1,6 @@
 defmodule Display.ProgressBar do
+  alias Display.Colours
+
   @progress_bar_length 30
 
   def progress_bar(%{current: current, total: total}) do
