@@ -26,12 +26,26 @@ defmodule Display do
 
   def format(failure, module, name) do
     """
+    #{intro(module, Tracker.visited)}
     Now meditate upon #{format_module(module)}
     #{progress_bar(Tracker.summarize)}
     ----------------------------------------
     #{name}
     #{format_failure(failure)}
     """
+  end
+
+  defp intro(module, modules) do
+    if not module in modules do
+      show_intro(module.intro)
+    end
+  end
+
+  defp show_intro(""), do: nil
+  defp show_intro(message) do
+    message <> "\n"
+    |> Colours.green
+    |> IO.puts
   end
 
   def progress_bar(%{current: current, total: total}) do

@@ -1,6 +1,8 @@
 defmodule Maps do
   use Koans
 
+  @intro "Maps"
+
   @person %{
     first_name: "Jon",
     last_name: "Snow",

@@ -1,6 +1,8 @@
 defmodule Structs do
   use Koans
 
+  @intro "Structs"
+
   defmodule Person do
     defstruct [:name, :age]
   end

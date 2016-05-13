@@ -1,6 +1,8 @@
 defmodule Processes do
   use Koans
 
+  @intro "Processes"
+
   koan "You are a process" do
     assert Process.alive?(self) == ___
   end

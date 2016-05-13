@@ -17,6 +17,7 @@ defmodule Runner do
   ]
 
   def koan?(koan), do: Enum.member?(@modules, koan)
+
   def modules, do: @modules
 
   def modules_to_run, do: Options.initial_koan |> modules_to_run
@@ -31,16 +32,17 @@ defmodule Runner do
 
   def run_module(module) do
     module
-    |> Execute.run_module(&track/2)
+    |> Execute.run_module(&track/3)
     |> display
   end
 
-  defp track(:passed, koan), do: Tracker.completed(koan)
-  defp track(_, _), do: nil
+  defp track(:passed, module, koan), do: Tracker.completed(module, koan)
+  defp track(_, _, _), do: nil
 
   defp display({:failed, error, module, name}) do
     Display.show_failure(error, module, name)
     :failed
   end
   defp display(_), do: :passed
+
 end

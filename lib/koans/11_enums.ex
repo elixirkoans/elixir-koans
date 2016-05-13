@@ -1,6 +1,8 @@
 defmodule Enums do
   use Koans
 
+  @intro "Enums"
+
   koan "Knowing how many elements are in a list is important for book-keeping" do
     assert Enum.count([1, 2, 3]) == ___
   end

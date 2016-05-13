@@ -1,6 +1,8 @@
 defmodule PatternMatching do
   use Koans
 
+  @intro "PatternMatching"
+
   koan "One matches one" do
     assert match?(1, ___)
   end
