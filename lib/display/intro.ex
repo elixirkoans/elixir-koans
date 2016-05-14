@@ -1,5 +1,5 @@
 defmodule Display.Intro do
-  alias Display.Colours
+  alias Display.Paint
 
   def intro(module, modules) do
     if not module in modules do
@@ -11,6 +11,6 @@ defmodule Display.Intro do
 
   def show_intro(message) do
     message <> "\n"
-    |> Colours.green
+    |> Paint.green
   end
 end

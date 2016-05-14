@@ -4,7 +4,7 @@ defmodule IntroTest do
   alias Display.Intro
 
   test "module not visited yet" do
-    assert Intro.intro(SampleKoan, []) == "\e[32mThere is something\n\n\e[0m"
+    assert Intro.intro(SampleKoan, []) == "There is something\n\n"
   end
 
   test "module has been visited" do

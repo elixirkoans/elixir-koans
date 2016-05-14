@@ -1,5 +1,4 @@
 defmodule Display.ProgressBar do
-  alias Display.Colours
 
   @progress_bar_length 30
 
