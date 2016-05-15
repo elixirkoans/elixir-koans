@@ -3,12 +3,12 @@ defmodule OptionTest do
 
   test "has default options" do
     Options.start([])
-    refute Options.clear_screen?
+    assert Options.clear_screen?
   end
 
   test "override clearing of screen" do
-    Options.start(["--clear-screen"])
-    assert Options.clear_screen?
+    Options.start(["--no-clear-screen"])
+    refute Options.clear_screen?
   end
 
   test "can target specifc koans" do
@@ -18,6 +18,6 @@ defmodule OptionTest do
 
   test "ignores unknown options" do
     Options.start(["--foo"])
-    refute Options.clear_screen?
+    assert Options.clear_screen?
   end
 end
