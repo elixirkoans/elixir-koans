@@ -32,10 +32,10 @@ You should see the first failure. Open the corresponding file in your favourite 
 and fill in the blanks to make the koans pass one by one.
 The autorunner will give you feedback each time you save.
 
-To make the autorunner less noisy, you can start the koans with
 
+If you want the autorunner to show you your previous results, run it with `--no-clear-screen`
 ```sh
-$ mix meditate --clear-screen
+$ mix meditate --no-clear-screen
 ```
 
 ### Contributing

@@ -1,6 +1,6 @@
 defmodule Options do
   @defaults %{
-    clear_screen: false,
+    clear_screen: true,
     initial_koan: Equalities,
   }
 
@@ -27,6 +27,6 @@ defmodule Options do
   end
 
   def parse_argument("--koan="<>module), do: %{ initial_koan: String.to_atom("Elixir."<> module)}
-  def parse_argument("--clear-screen"), do: %{ clear_screen: true}
+  def parse_argument("--no-clear-screen"), do: %{ clear_screen: false}
   def parse_argument(_), do: %{}
 end
