@@ -9,9 +9,9 @@ defmodule SigilsTests do
       true,
       "1 + 1 = 2",
       ~S(1 + 1 = #{1+1}),
-      {:multiple, ["Hello", "world"]},
-      {:multiple, ["Hello", "123"]},
-      ~S(#{1+1}),
+      ["Hello", "world"],
+      ["Hello", "123"],
+      ["Hello", ~S(#{1+1})],
     ]
 
     test_all(Sigils, answers)

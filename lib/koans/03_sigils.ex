@@ -25,15 +25,15 @@ defmodule Sigils do
   end
 
   koan "The ~w sigil creates word lists" do
-    assert ~w(Hello world) == [___, ___]
+    assert ~w(Hello world) == ___
   end
 
   koan "The ~w sigil also allows interpolation" do
-    assert ~w(Hello 1#{1+1}3) == [___, ___]
+    assert ~w(Hello 1#{1+1}3) == ___
   end
 
   koan "The ~W sigil behaves to ~w as ~S behaves to ~s" do
-    assert ~W(Hello #{1+1}) == ["Hello", ___]
+    assert ~W(Hello #{1+1}) == ___
   end
 end
 
