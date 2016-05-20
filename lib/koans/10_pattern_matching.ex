@@ -7,24 +7,6 @@ defmodule PatternMatching do
     assert match?(1, ___)
   end
 
-  koan "A value can be bound to a variable" do
-    a = 1
-    assert a == ___
-  end
-
-  koan "A variable can be rebound" do
-    a = 1
-    a = 2
-    assert a == ___
-  end
-
-  koan "A variable can be pinned to prevent it from being rebounded" do
-    a = 1
-    assert_raise MatchError, fn() ->
-      ^a = ___
-    end
-  end
-
   koan "Patterns can be used to pull things apart" do
     [head | tail] = [1, 2, 3, 4]
 
@@ -116,5 +98,46 @@ defmodule PatternMatching do
   koan "Structs will even match with a regular map" do
     %{name: name} = %Animal{kind: "dog", name: "Max"}
     assert name == ___
+  end
+
+  koan "A value can be bound to a variable" do
+    a = 1
+    assert a == ___
+  end
+
+  koan "A variable can be rebound" do
+    a = 1
+    a = 2
+    assert a == ___
+  end
+
+  koan "A variable can be pinned to use its value when matching instead of binding to a new value" do
+    pinned_variable = 1
+
+    example = fn
+      (^pinned_variable) -> "The number One"
+      (2) -> "The number Two"
+      (number) -> "The number #{number}"
+    end
+    assert example.(1) == ___
+    assert example.(2) == ___
+    assert example.(3) == ___
+  end
+
+  koan "Pinning works anywhere one would match, including 'case'" do
+    pinned_variable = 1
+    result = case 1 do
+               ^pinned_variable -> "same"
+               other -> "different #{other}"
+             end
+
+    assert result == ___
+  end
+
+  koan "Trying to rebind a pinned variable will result in an error" do
+    a = 1
+    assert_raise MatchError, fn() ->
+      ^a = ___
+    end
   end
 end

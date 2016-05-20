@@ -5,9 +5,6 @@ defmodule PatternsTests do
   test "Pattern Matching" do
     answers = [
       1,
-      1,
-      2,
-      2,
       {:multiple, [1, [2,3,4]]},
       [1,2,3,4],
       3,
@@ -20,6 +17,11 @@ defmodule PatternsTests do
       "dog",
       "Max",
       "Max",
+      1,
+      2,
+      {:multiple, ["The number One", "The number Two", "The number 3"]},
+      "same",
+      2
     ]
 
     test_all(PatternMatching, answers)
