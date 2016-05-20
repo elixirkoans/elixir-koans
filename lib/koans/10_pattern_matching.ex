@@ -111,7 +111,7 @@ defmodule PatternMatching do
     assert a == ___
   end
 
-  koan "A variable can be pinned to prevent it from being rebound" do
+  koan "A variable can be pinned to use its value when matching instead of binding to a new value" do
     pinned_variable = 1
 
     example = fn
@@ -124,14 +124,20 @@ defmodule PatternMatching do
     assert example.(3) == ___
   end
 
-  koan "Pinning works on anywhere one would match, including 'case'" do
+  koan "Pinning works anywhere one would match, including 'case'" do
     pinned_variable = 1
-    other_variable = 1
-    result = case other_variable do
+    result = case 1 do
                ^pinned_variable -> "same"
                other -> "different #{other}"
              end
 
     assert result == ___
+  end
+
+  koan "Trying to rebind a pinned variable will result in an error" do
+    a = 1
+    assert_raise MatchError, fn() ->
+      ^a = ___
+    end
   end
 end

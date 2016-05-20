@@ -20,7 +20,8 @@ defmodule PatternsTests do
       1,
       2,
       {:multiple, ["The number One", "The number Two", "The number 3"]},
-      "same"
+      "same",
+      2
     ]
 
     test_all(PatternMatching, answers)
