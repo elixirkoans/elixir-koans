@@ -2,6 +2,7 @@ defmodule Runner do
   @modules [
     Equalities,
     Strings,
+    Sigils,
     Atoms,
     Tuples,
     Lists,
