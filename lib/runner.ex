@@ -15,7 +15,7 @@ defmodule Runner do
     Processes,
     Tasks,
     Agents,
-	Integers,
+    Integers,
   ]
 
   def koan?(koan), do: Enum.member?(@modules, koan)
