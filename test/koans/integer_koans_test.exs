@@ -10,6 +10,7 @@ defmodule IntegerTests do
       1234,
       '7',
       "1234",
+      42
     ]
 
     test_all(Integers, answers)
