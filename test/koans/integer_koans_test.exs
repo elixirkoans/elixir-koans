@@ -5,7 +5,7 @@ defmodule IntegerTests do
   test "Integers" do
     answers = [
       true,
-      false,
+      true,
       [5, 8, 1, 2, 7],
       1234,
       '7',
