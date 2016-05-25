@@ -69,4 +69,25 @@ defmodule Numbers do
     assert Float.round(8.94, 1) == ___
     assert Float.round(-5.5674, 3) == ___
   end
+
+  koan "I want the first and last in the range" do
+    first..last = Range.new(1, 10)
+
+    assert first == ___
+    assert last == ___
+  end
+
+  koan "Does my number exist in the range?" do
+    range = Range.new(1, 10)
+
+    assert 4 in range == ___
+    assert 10 in range == ___
+    assert 0 in range == ___
+  end
+
+  koan "Is this a range?" do    
+    assert Range.range?(1..10) == ___
+    assert Range.range?(0) == ___
+  end
+
 end

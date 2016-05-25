@@ -18,6 +18,9 @@ defmodule NumbersTests do
       34.5,
       1.0,
       {:multiple, [6.0, 5.0, 8.9, -5.567]},
+      {:multiple, [1, 10]},
+      {:multiple, [true, true, false]},
+      {:multiple, [true, false]},
     ]
 
     test_all(Numbers, answers)
