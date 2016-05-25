@@ -16,7 +16,7 @@ defmodule NumbersTests do
       99.0,
       12.34,
       {34.5, ""},
-      1.0,
+      {1.0, " million dollars"},
       {:multiple, [6.0, 5.0, 8.94, -5.567]},
     ]
 
