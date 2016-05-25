@@ -3,6 +3,7 @@ defmodule Runner do
     Equalities,
     Strings,
     Sigils,
+    Numbers,
     Atoms,
     Tuples,
     Lists,
@@ -15,7 +16,6 @@ defmodule Runner do
     Processes,
     Tasks,
     Agents,
-    Integers,
   ]
 
   def koan?(koan), do: Enum.member?(@modules, koan)
