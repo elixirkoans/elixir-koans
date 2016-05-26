@@ -1,7 +1,7 @@
 defmodule MapSets do
   use Koans
 
-  @intro "Map sets"
+  @intro "My name is Set, MapSet"
 
   @set MapSet.new([1, 2, 3, 4, 5])
 
