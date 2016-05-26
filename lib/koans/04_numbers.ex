@@ -2,7 +2,7 @@ defmodule Numbers do
   require Integer
   use Koans
 
-  @intro "Numbers"
+  @intro "Why is the number six so scared? Because seven eight nine!\nWe should get to know numbers a bit more!"
 
   koan "Are you odd?" do
     assert Integer.is_odd(3) == ___
@@ -89,5 +89,4 @@ defmodule Numbers do
     assert Range.range?(1..10) == ___
     assert Range.range?(0) == ___
   end
-
 end
