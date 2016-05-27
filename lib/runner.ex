@@ -9,6 +9,7 @@ defmodule Runner do
     Lists,
     KeywordLists,
     Maps,
+    MapSets,
     Structs,
     PatternMatching,
     Functions,
