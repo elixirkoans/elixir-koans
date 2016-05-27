@@ -3,6 +3,7 @@ defmodule Runner do
     Equalities,
     Strings,
     Sigils,
+    Numbers,
     Atoms,
     Tuples,
     Lists,
