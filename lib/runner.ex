@@ -16,6 +16,7 @@ defmodule Runner do
     Processes,
     Tasks,
     Agents,
+    Protocols,
     MapSets,
   ]
 
