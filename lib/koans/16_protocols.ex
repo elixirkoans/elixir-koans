@@ -6,8 +6,8 @@ defmodule Protocols do
   defprotocol School, do: def enrol(person)
 
   defimpl School, for: Any do
-    def enrol(person) do
-      "#{person.name} enrolled at school"
+    def enrol(_) do
+      "Pupil enrolled at school"
     end
   end
 
