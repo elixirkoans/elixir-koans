@@ -1,2 +1,2 @@
-%{"exfswatch": {:hex, :exfswatch, "0.1.1"},
-  "fs": {:hex, :fs, "0.9.2"}}
+%{"exfswatch": {:hex, :exfswatch, "0.1.1", "7ccf6fc9b443d04dada3e50b21f910b4d0e4546ce7772dc6d4181fb929ea186f", [:mix], [{:fs, "~> 0.9", [hex: :fs, optional: false]}]},
+  "fs": {:hex, :fs, "0.9.2", "ed17036c26c3f70ac49781ed9220a50c36775c6ca2cf8182d123b6566e49ec59", [:rebar], []}}
