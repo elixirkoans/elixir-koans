@@ -1,7 +1,7 @@
 defmodule Protocols do
   use Koans
 
-  @intro "Protocols"
+  @intro "Wan't to follow the rules? Adhere to the protocol!"
 
   defprotocol School, do: def enrol(person)
 
