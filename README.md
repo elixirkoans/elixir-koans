@@ -43,3 +43,5 @@ $ mix meditate --no-clear-screen
 We welcome contributions! If something does not make sense along the way or you feel
 like an important lesson is missing from the koans, feel free to fork the project
 and open a pull request.
+
+List of [contributors](CONTRIBUTORS.md).
