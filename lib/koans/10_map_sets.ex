@@ -1,19 +1,25 @@
 defmodule MapSets do
   use Koans
 
-  @intro "My name is Set, MapSet"
+  @intro "My name is Set, MapSet."
 
   @set MapSet.new([1, 2, 3, 4, 5])
 
-  koan "Does this value exist in the map set?" do
-    assert MapSet.member?(@set, 3) == ___
-  end
-
-  koan "Multiply everything by 3 in my set" do
+  koan "I am merely another collection but, you can perform some operations on me" do
     new_set = MapSet.new(@set, fn x -> 3 * x end)
 
     assert MapSet.member?(new_set, 15) == ___
     assert MapSet.member?(new_set, 1) == ___
+  end
+
+  koan "However, I do not allow duplication" do
+    new_set = MapSet.new([1, 1, 2, 3, 3, 3])
+
+    assert MapSet.size(new_set) == ___
+  end
+
+  koan "Does this value exist in the map set?" do
+    assert MapSet.member?(@set, 3) == ___
   end
 
   koan "Add this value into a map set" do
@@ -42,12 +48,6 @@ defmodule MapSets do
     intersection_set = MapSet.intersection(@set, MapSet.new([5, 6, 7]))
 
     assert MapSet.member?(intersection_set, 5) == ___
-  end
-
-  koan "Duplication is a no-no" do
-    new_set = MapSet.new([1, 1, 2, 3, 3])
-
-    assert MapSet.size(new_set) == ___
   end
 
   koan "Unify my sets" do

@@ -9,6 +9,7 @@ defmodule Runner do
     Lists,
     KeywordLists,
     Maps,
+    MapSets,
     Structs,
     PatternMatching,
     Functions,
@@ -17,7 +18,6 @@ defmodule Runner do
     Tasks,
     Agents,
     Protocols,
-    MapSets,
   ]
 
   def koan?(koan), do: Enum.member?(@modules, koan)
