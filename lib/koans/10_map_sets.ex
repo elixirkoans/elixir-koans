@@ -7,7 +7,7 @@ defmodule MapSets do
 
   koan "I am very similar to a list" do
     assert Enum.fetch(@set, 0) == {:ok, ___}
-  end 
+  end
 
   koan "However, I do not allow duplication" do
     new_set = MapSet.new([1, 1, 2, 3, 3, 3])
