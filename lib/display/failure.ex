@@ -10,19 +10,15 @@ defmodule Display.Failure do
     """
   end
   def format_failure(%{error: %ExUnit.AssertionError{expr: expr}, file: file, line: line}) do
-    format_assertion_error(expr, file, line)
+    """
+    #{Paint.cyan("Assertion failed in #{file}:#{line}")}
+    #{Paint.red(Macro.to_string(expr))}
+    """
   end
   def format_failure(%{error: error, file: file, line: line}) do
     """
     #{Paint.cyan("Error in #{file}:#{line}")}
     #{format_error(error)}
-    """
-  end
-
-  defp format_assertion_error(error, file, line) do
-    """
-    #{Paint.cyan("Assertion failed in #{file}:#{line}")}
-    #{Paint.red(Macro.to_string(error))}
     """
   end
 
