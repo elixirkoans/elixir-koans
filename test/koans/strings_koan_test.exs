@@ -11,8 +11,8 @@ defmodule StringTests do
       "incredible",
       "banana",
       "banana",
-      "String",
-      "listen",
+      "StringStringString",
+      "LISTEN",
     ]
 
     test_all(Strings, answers)
