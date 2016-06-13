@@ -18,6 +18,7 @@ defmodule ListsTests do
                [1, 2, 3, 4],
                {1, 2, 3},
                ["value"],
+               [],
                ["value"],
                ]
 

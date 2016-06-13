@@ -63,6 +63,10 @@ defmodule Lists do
     assert List.wrap("value") == ___
   end
 
+  koan "Wrapping nothing produces a list of nothing" do
+    assert List.wrap(nil) == ___
+  end
+
   koan "When there is already a list do not wrap it again" do
     assert List.wrap(["value"]) == ___
   end
