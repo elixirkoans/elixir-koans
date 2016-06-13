@@ -44,7 +44,7 @@ defmodule Numbers do
   end
 
   koan "Hmm, I want to parse this but it has some strings" do
-    assert Float.parse("1 million dollars") == {___, " million dollars"}
+    assert Float.parse("1.5 million dollars") == {___, " million dollars"}
   end
 
   koan "I don't want this decimal point, let's round up" do
