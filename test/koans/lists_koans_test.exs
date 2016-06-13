@@ -7,7 +7,7 @@ defmodule ListsTests do
                3,
                [1, 2, :a, "b"],
                [1,2],
-               [1,2,3],
+               [:a, :c],
                [1,3],
                ["life", "life", "life"],
                [1, 2, 3, 4, 5],

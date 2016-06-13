@@ -20,7 +20,7 @@ defmodule Lists do
   end
 
   koan "Evolution can have different forms" do
-    assert List.delete([1, 2, 2, 3], 2) == ___
+    assert List.delete([:a, :b, :c], :b) == ___
   end
 
   koan "Precision is also valued" do
