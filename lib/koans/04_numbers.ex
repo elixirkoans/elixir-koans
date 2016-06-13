@@ -39,6 +39,14 @@ defmodule Numbers do
     assert Integer.parse("2A", 16) == {___, ""}
   end
 
+  koan "The remaining unparsable part is also returned" do
+    assert Integer.parse("5 years") == {5, ___}
+  end
+
+  koan "What if you parse a floating point value as an integer?" do
+    assert Integer.parse("1.2") == {___, ___}
+  end
+
   koan "Just want to parse to a float" do
     assert Float.parse("34.5") == {___, ""}
   end

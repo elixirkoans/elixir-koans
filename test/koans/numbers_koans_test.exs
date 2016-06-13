@@ -11,6 +11,8 @@ defmodule NumbersTests do
       '7',
       "1234",
       42,
+      " years",
+      {:multiple, [1, ".2"]},
       34.5,
       1.5,
       35.0,
