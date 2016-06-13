@@ -20,11 +20,11 @@ defmodule Lists do
   end
 
   koan "Evolution can have different forms" do
-    assert List.delete([1, 2, 2, 3], 2) == ___
+    assert List.delete([:a, :b, :c], :b) == ___
   end
 
   koan "Precision is also valued" do
-    assert List.delete_at([1, 2, 3], 1) == ___
+    assert List.delete_at([:a, :b, :c], 2) == ___
   end
 
   koan "Replication is also possible" do
@@ -61,6 +61,10 @@ defmodule Lists do
 
   koan "Wrapping other values is a handy option" do
     assert List.wrap("value") == ___
+  end
+
+  koan "Wrapping nothing produces a list of nothing" do
+    assert List.wrap(nil) == ___
   end
 
   koan "When there is already a list do not wrap it again" do
