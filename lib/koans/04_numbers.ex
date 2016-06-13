@@ -39,6 +39,14 @@ defmodule Numbers do
     assert Integer.parse("2A", 16) == {___, ""}
   end
 
+  koan "Just want to parse to a float" do
+    assert Float.parse("34.5") == {___, ""}
+  end
+
+  koan "Hmm, I want to parse this but it has some strings" do
+    assert Float.parse("1 million dollars") == {___, " million dollars"}
+  end
+
   koan "I don't want this decimal point, let's round up" do
     assert Float.ceil(34.25) == ___
   end
@@ -53,14 +61,6 @@ defmodule Numbers do
 
   koan "Rounding down to 2 decimal places" do
     assert Float.floor(12.345, 2) == ___
-  end
-
-  koan "Just want to parse to a float" do
-    assert Float.parse("34.5") == {___, ""}
-  end
-
-  koan "Hmm, I want to parse this but it has some strings" do
-    assert Float.parse("1 million dollars") == {___, " million dollars"}
   end
 
   koan "Round the number up or down for me" do
