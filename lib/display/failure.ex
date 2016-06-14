@@ -9,8 +9,12 @@ defmodule Display.Failure do
     #{Paint.red(message)}
     """
   end
-  def format_failure(%{error: %ExUnit.AssertionError{expr: expr}, file: file, line: line}) do
-    format_assertion_error(expr, file, line)
+  def format_failure(%{error: %ExUnit.AssertionError{expr: expr} = error, file: file, line: line}) do
+    """
+    #{Paint.cyan("Assertion failed in #{file}:#{line}")}
+    #{Paint.red(Macro.to_string(expr))}
+    """
+    |> format_inequality(error)
   end
   def format_failure(%{error: error, file: file, line: line}) do
     """
@@ -19,10 +23,14 @@ defmodule Display.Failure do
     """
   end
 
-  defp format_assertion_error(error, file, line) do
+  defp format_inequality(message, %{left: @no_value, right: @no_value}) do
+    message
+  end
+  defp format_inequality(message, %{left: left, right: right}) do
     """
-    #{Paint.cyan("Assertion failed in #{file}:#{line}")}
-    #{Paint.red(Macro.to_string(error))}
+    #{message}
+    left:  #{left |> inspect |> Paint.yellow}
+    right: #{right |> inspect |> Paint.yellow}
     """
   end
 
