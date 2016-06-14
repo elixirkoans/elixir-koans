@@ -32,22 +32,21 @@ defmodule Execute do
 
   defp exec(module, name, args, parent) do
     result = apply(module, name, args)
-    send parent, expand(result)
+    send parent, expand(result, module)
     Process.exit(self(), :kill)
   end
 
-  defp expand(:ok), do: :ok
-  defp expand(error) do
+  defp expand(:ok, _), do: :ok
+  defp expand(error, module) do
     {file, line} = System.stacktrace
-      |> Enum.drop_while(&in_ex_unit?/1)
+      |> Enum.drop_while(&!in_koan?(&1, module))
       |> List.first
       |> extract_file_and_line
 
       %{error: error, file: file, line: line}
   end
 
-  defp in_ex_unit?({ExUnit.Assertions, _, _, _}), do: true
-  defp in_ex_unit?(_), do: false
+  defp in_koan?({module, _, _, _}, koan), do: module == koan
 
   defp extract_file_and_line({_, _, _, [file: file, line: line]}) do
    {file, line}
