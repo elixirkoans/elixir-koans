@@ -45,7 +45,7 @@ defmodule Blanks do
     {:__block__, meta, replaced_lines}
   end
   def replace_line(line, replacement_fn) do
-    if Blanks.count(line) > 0 do
+    if count(line) > 0 do
       replacement_fn.(line)
     else
       line
