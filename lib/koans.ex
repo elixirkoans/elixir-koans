@@ -30,7 +30,7 @@ defmodule Koans do
 
   defmacro generate_test_method(_name, 0, _body), do: false
   defmacro generate_test_method(name, 1, body) do
-    single_var = Blanks.replace(body, Macro.var(:answer, Koans))
+    single_var = Blanks.replace(body, Macro.var(:answer, __MODULE__))
     quote do
       def unquote(name)(answer) do
         try do
@@ -43,7 +43,7 @@ defmodule Koans do
     end
   end
   defmacro generate_test_method(name, number_of_args, body) do
-    answer_vars = for id <- 1..number_of_args, do: Macro.var(String.to_atom("answer#{id}"), Koans)
+    answer_vars = for id <- 1..number_of_args, do: Macro.var(String.to_atom("answer#{id}"), __MODULE__)
     multi_var = Blanks.replace(body, answer_vars)
 
     quote do
