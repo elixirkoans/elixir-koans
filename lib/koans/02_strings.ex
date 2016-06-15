@@ -32,10 +32,10 @@ defmodule Strings do
   end
 
   koan "Repetition is the mother of learning" do
-    assert String.duplicate("String", 3) == ___
+    assert String.duplicate("String", 3) == "StringStringString"
   end
 
   koan "Strings can be louder when necessary" do
-    assert String.upcase("listen") == ___
+    assert String.upcase("listen") == "LISTEN"
   end
 end
