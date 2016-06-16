@@ -32,8 +32,8 @@ defmodule Blanks do
     |> elem(1)
   end
 
-  defp count(:___, acc), do: {node, acc+1}
-  defp count({:___, _, _}, acc), do: {node, acc+1}
+  defp count(:___ = node, acc), do: {node, acc+1}
+  defp count({:___, _, _} = node, acc), do: {node, acc+1}
   defp count(node, acc), do: {node, acc}
 
   def replace_line([do: ast], replacement_fn), do: [do: replace_line(ast, replacement_fn)]
@@ -45,7 +45,7 @@ defmodule Blanks do
     {:__block__, meta, replaced_lines}
   end
   def replace_line(line, replacement_fn) do
-    if Blanks.count(line) > 0 do
+    if count(line) > 0 do
       replacement_fn.(line)
     else
       line
