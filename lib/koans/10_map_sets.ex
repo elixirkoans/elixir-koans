@@ -19,15 +19,15 @@ defmodule MapSets do
     assert 1..33 |> MapSet.new() |> Enum.fetch(0) == {___, 11}
   end
 
+  koan "Does this value exist in the map set?" do
+    assert MapSet.member?(@set, 3) == ___
+  end
+  
   koan "I am merely another collection but, you can perform some operations on me" do
     new_set = MapSet.new(@set, fn x -> 3 * x end)
 
     assert MapSet.member?(new_set, 15) == ___
     assert MapSet.member?(new_set, 1) == ___
-  end
-
-  koan "Does this value exist in the map set?" do
-    assert MapSet.member?(@set, 3) == ___
   end
 
   koan "Add this value into a map set" do
