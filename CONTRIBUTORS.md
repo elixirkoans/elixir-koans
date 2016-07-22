@@ -10,6 +10,7 @@
 *  Makis Otman
 *  Rabea Gleissner
 *  Ria Cataquian
+*  Simone D'Amico
 *  snikolau
 *  Trung Lê
 *  Uku Taht
