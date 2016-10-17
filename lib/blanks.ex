@@ -1,7 +1,7 @@
 defmodule Blanks do
-  def replace(ast, replacement) when not is_list(replacement), do: replace(ast, [replacement])
   def replace([do: ast], replacements), do: [do: replace(ast, replacements)]
   def replace(ast, replacements) do
+    replacements = List.wrap(replacements)
     ast
     |> Macro.prewalk(replacements, &pre/2)
     |> elem(0)
