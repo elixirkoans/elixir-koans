@@ -1,5 +1,4 @@
 defmodule Blanks do
-  def replace([do: ast], replacements), do: [do: replace(ast, replacements)]
   def replace(ast, replacements) do
     replacements = List.wrap(replacements)
     ast
@@ -33,7 +32,6 @@ defmodule Blanks do
   defp count({:___, _, _} = node, acc), do: {node, acc+1}
   defp count(node, acc), do: {node, acc}
 
-  def replace_line([do: ast], replacement_fn), do: [do: replace_line(ast, replacement_fn)]
   def replace_line({:__block__, meta, lines}, replacement_fn) do
     replaced_lines = Enum.map(lines, fn(line) ->
       replace_line(line, replacement_fn)
