@@ -97,7 +97,4 @@ defmodule Koans do
     |> Module.get_attribute(:koans)
     |> Enum.reverse
   end
-
-  defp default(nil, n), do: n
-  defp default(n, _), do: n
 end
