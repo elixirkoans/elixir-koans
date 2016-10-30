@@ -13,6 +13,8 @@ defmodule FunctionsTests do
       {:multiple, ["The number was zero", "The number was 5"]},
       6,
       6,
+      "Hello, Foo!",
+      ["foo", "foo", "foo"],
       100,
       1000,
       "Full Name",
