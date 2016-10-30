@@ -67,6 +67,16 @@ defmodule Functions do
     assert multiply.(2,3) == ___
   end
 
+  koan "Prefix a string with & to build a simple anonymous greet function" do
+    greet = &"Hello, #{&1}!"
+    assert greet("Foo") == ___
+  end
+
+  koan "You can build anonymous functions out of any elixir expression by prefixing it with &" do
+    three_times = &[&1, &1, &1]
+    assert three_times.("foo") == ___
+  end
+
   def times_five_and_then(number, fun), do: fun.(number*5)
   def square(number), do: number * number
 
