@@ -14,6 +14,17 @@ defmodule FailureTests do
     assert Failure.format_failure(error) == "Assertion failed in some_file.ex:42\nhola\n"
   end
 
+  test "equality failure" do
+    error = error(%ExUnit.AssertionError{expr: quote(do: :lol == :wat), left: :lol, right: :wat})
+
+    assert Failure.format_failure(error) == """
+                                            Assertion failed in some_file.ex:42
+                                            :lol == :wat
+
+                                            left:  :lol
+                                            right: :wat
+                                            """
+  end
   defp error(error) do
     %{
       error: error,
