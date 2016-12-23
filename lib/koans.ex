@@ -3,7 +3,7 @@ defmodule Koans do
     Regex.match?(~r/([A-Z]|\.\.\.).+/, name)
   end
 
-  defmacro koan(name, body) do
+  defmacro koan(name, do: body) do
     if not valid_name(name) do
       raise "Name does not start with a capital letter: #{name}"
     end
