@@ -27,8 +27,6 @@ end
 
 defmodule Display.Uncoloured do
   def red(str), do: str
-
   def cyan(str), do: str
-
   def green(str), do: str
 end
