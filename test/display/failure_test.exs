@@ -25,6 +25,18 @@ defmodule FailureTests do
                                             right: :wat
                                             """
   end
+
+  test "match failure" do
+    error = error(%ExUnit.AssertionError{expr: quote(do: match?(:lol,:wat)), right: :wat})
+
+    assert Failure.format_failure(error) == """
+                                            Assertion failed in some_file.ex:42
+                                            match?(:lol, :wat)
+
+                                            value does not match: :wat
+                                            """
+  end
+
   defp error(error) do
     %{
       error: error,
