@@ -26,6 +26,12 @@ defmodule Display.Failure do
   defp format_inequality(message, %{left: @no_value, right: @no_value}) do
     message
   end
+  defp format_inequality(message, %{left: @no_value, right: match_value}) do
+    """
+    #{message}
+    value does not match: #{match_value |> inspect |> Paint.yellow}
+    """
+  end
   defp format_inequality(message, %{left: left, right: right}) do
     """
     #{message}
