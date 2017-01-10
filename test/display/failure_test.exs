@@ -37,6 +37,15 @@ defmodule FailureTests do
                                             """
   end
 
+  test "only offending lines are displayed for errors" do
+    [koan] = SingleArity.all_koans
+    error  = apply(SingleArity, koan, []) |> error()
+
+    assert Failure.format_failure(error) == """
+    Assertion failed in some_file.ex:42\nmatch?(:foo, ___)
+    """
+  end
+
   defp error(error) do
     %{
       error: error,
