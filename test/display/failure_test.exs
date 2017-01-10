@@ -37,7 +37,7 @@ defmodule FailureTests do
                                             """
   end
 
-  test "single arity failure" do
+  test "only offending lines are displayed for errors" do
     [koan] = SingleArity.all_koans
     error  = apply(SingleArity, koan, []) |> error()
 
