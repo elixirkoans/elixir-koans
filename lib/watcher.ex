@@ -3,7 +3,7 @@ defmodule Watcher do
 
   def callback(file, events)  do
     if Enum.member?(events, :modified) do
-      reload(file)
+      file |> normalize |> reload
 
       if Tracker.complete? do
         Display.congratulate
@@ -16,7 +16,6 @@ defmodule Watcher do
     if Path.extname(file) == ".ex" do
       try do
         file
-        |> normalize
         |> Code.load_file
         |> Enum.map(&(elem(&1, 0)))
         |> Enum.find(&Runner.koan?/1)
