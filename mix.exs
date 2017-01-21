@@ -14,7 +14,7 @@ defmodule Koans.Mixfile do
   end
 
   defp deps do
-    [{:exfswatch, "~> 0.1.1"}]
+    [{:exfswatch, "~> 0.3"}]
   end
 
   defp elixirc_path(:test), do: ["lib/", "test/support"]
