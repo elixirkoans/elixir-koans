@@ -6,7 +6,7 @@ defmodule Koans.Mixfile do
      version: "0.0.1",
      elixir: ">= 1.2.1 and <= 1.4.0",
      elixirc_paths: elixirc_path(Mix.env),
-     deps: deps]
+     deps: deps()]
   end
 
   def application do
@@ -14,7 +14,7 @@ defmodule Koans.Mixfile do
   end
 
   defp deps do
-    [{:exfswatch, "~> 0.1.1"}]
+    [{:exfswatch, "~> 0.3"}]
   end
 
   defp elixirc_path(:test), do: ["lib/", "test/support"]

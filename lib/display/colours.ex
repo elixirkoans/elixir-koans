@@ -2,7 +2,7 @@ defmodule Display.Paint do
   def red(str), do: painter().red(str)
   def cyan(str), do: painter().cyan(str)
   def green(str), do: painter().green(str)
-  def yellow(str), do: painter.yellow(str)
+  def yellow(str), do: painter().yellow(str)
 
   defp painter do
     case Mix.env do

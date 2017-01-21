@@ -20,15 +20,15 @@ defmodule Tracker do
   end
 
   def visited do
-    summarize[:visited_modules]
+    summarize()[:visited_modules]
   end
 
   def complete? do
-    %{total: total, current: completed} = summarize
+    %{total: total, current: completed} = summarize()
     total == completed
   end
 
-  def summarize, do: get |> summarize
+  def summarize, do: get() |> summarize()
   defp summarize(%{total: total,
                   koans: completed,
                   visited_modules: modules}) do
