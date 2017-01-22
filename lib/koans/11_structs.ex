@@ -54,4 +54,9 @@ defmodule Structs do
     airline = %Airline{plane: %Plane{maker: :boeing}}
     assert put_in(airline.plane.maker, :airbus) == ___
   end
+
+  koan "Use the update_in macro to modify a nested value" do
+    airline = %Airline{plane: %Plane{maker: :boeing, passengers: 200}}
+    assert update_in(airline.plane.passengers, &(&1 + 2)) == ___
+  end
 end

@@ -11,6 +11,7 @@ defmodule StructsTests do
       {:multiple, [true, false]},
       {:ok, 22},
       %Structs.Airline{plane: %Structs.Plane{maker: :airbus}, name: "Southwest"},
+      %Structs.Airline{plane: %Structs.Plane{maker: :boeing, passengers: 202}, name: "Southwest"},
     ]
 
     test_all(Structs, answers)
