@@ -69,7 +69,7 @@ defmodule Functions do
 
   koan "Prefix a string with & to build a simple anonymous greet function" do
     greet = &"Hello, #{&1}!"
-    assert greet("Foo") == ___
+    assert greet.("Foo") == ___
   end
 
   koan "You can build anonymous functions out of any elixir expression by prefixing it with &" do
