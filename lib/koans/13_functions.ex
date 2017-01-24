@@ -68,7 +68,7 @@ defmodule Functions do
   end
 
   koan "Prefix a string with & to build a simple anonymous greet function" do
-    greet = &"Hello, #{&1}!"
+    greet = &"Hi, #{&1}!"
     assert greet.("Foo") == ___
   end
 
