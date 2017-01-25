@@ -12,6 +12,7 @@
 *  Ria Cataquian
 *  Simone D'Amico
 *  snikolau
+*  Stephen Rufle
 *  Trung Lê
 *  Uku Taht
 *  Zander Mackie
