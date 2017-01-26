@@ -45,4 +45,23 @@ defmodule Structs do
 
     assert Map.fetch(silvia, :age) == ___
   end
+
+  defmodule Airline do
+    defstruct plane: %Plane{}, name: "Southwest"
+  end
+
+  koan "Use the put_in macro to replace a nested value" do
+    airline = %Airline{plane: %Plane{maker: :boeing}}
+    assert put_in(airline.plane.maker, :airbus) == ___
+  end
+
+  koan "Use the update_in macro to modify a nested value" do
+    airline = %Airline{plane: %Plane{maker: :boeing, passengers: 200}}
+    assert update_in(airline.plane.passengers, &(&1 + 2)) == ___
+  end
+
+  koan "Use the put_in macro with atoms to replace a nested value in a non-struct" do
+    airline = %{plane: %{maker: :boeing}, name: "Southwest"}
+    assert put_in(airline[:plane][:maker], :cessna) == ___
+  end
 end
