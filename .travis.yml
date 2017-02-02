@@ -5,5 +5,5 @@ matrix:
       otp_release: 18.2.1
     - elixir: 1.3.4
       otp_release: 19.1
-    - elixir: 1.4.0
+    - elixir: 1.4.1
       otp_release: 19.1
