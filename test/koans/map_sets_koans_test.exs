@@ -4,13 +4,13 @@ defmodule MapSetsTest do
 
   test "MapSets" do
     answers = [
-      1,      
+      1,
       3,
       :ok,
       true,
       {:multiple, [true, false]},
       true,
-      false, 
+      false,
       5,
       false,
       true,
