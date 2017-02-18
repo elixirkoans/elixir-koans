@@ -18,7 +18,9 @@ defmodule Processes do
   end
 
   koan "New processes are spawned functions" do
-    value = spawn(fn -> nil end)
+    value = spawn(fn -> receive do
+                      end
+                end)
 
     assert is_pid(value) == ___
   end
