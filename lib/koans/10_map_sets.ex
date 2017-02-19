@@ -18,8 +18,9 @@ defmodule MapSets do
   koan "Even though I am like a list I am unordered, especially with 33+ elements" do
     new_set = MapSet.new 1..33
     ordered_list = Enum.to_list 1..33
-    assert (ordered_list == MapSet.to_list(new_set)) == ___
-    assert (ordered_list == MapSet.to_list(new_set) |> Enum.sort()) == ___
+    set_list = MapSet.to_list(new_set)
+    assert (ordered_list == set_list) == ___
+    assert (ordered_list == Enum.sort(set_list)) == ___
   end
 
   koan "Does this value exist in the map set?" do
