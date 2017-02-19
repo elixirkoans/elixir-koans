@@ -6,7 +6,7 @@ defmodule MapSetsTest do
     answers = [
       1,
       3,
-      :ok,
+      {:multiple, [false, true]},
       true,
       {:multiple, [true, false]},
       true,

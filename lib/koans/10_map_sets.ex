@@ -15,8 +15,22 @@ defmodule MapSets do
     assert MapSet.size(new_set) == ___
   end
 
-  koan "Even though I am like a list I am unordered after 32 elements" do
-    assert 1..33 |> MapSet.new() |> Enum.fetch(0) == {___, 11}
+  def sorted?(set) do
+    list = MapSet.to_list(set)
+    sorted = Enum.sort(list)
+    list == sorted
+  end
+
+  koan "You cannot depend on my order" do
+    new_set = MapSet.new(1..33)
+    assert sorted?(new_set) == ___
+
+    # Note: The number "33" is actually special here. Erlang uses a different
+    # implementation for maps after 32 elements which does not maintain order.
+    # http://stackoverflow.com/a/40408469
+
+    # What do you think this answer to this assertion is?
+    assert sorted?(@set) == ___
   end
 
   koan "Does this value exist in the map set?" do
