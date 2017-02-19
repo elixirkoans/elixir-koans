@@ -22,6 +22,9 @@ defmodule MapSets do
     assert (ordered_list == set_list) == ___
     assert (ordered_list == Enum.sort(set_list)) == ___
   end
+  # Note: The number "33" is actually special here. Erlang uses a different
+  # implementation for maps after 32 elements which does not maintain order.
+  # http://stackoverflow.com/a/40408469
 
   koan "Does this value exist in the map set?" do
     assert MapSet.member?(@set, 3) == ___
