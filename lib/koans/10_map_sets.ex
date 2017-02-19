@@ -16,8 +16,9 @@ defmodule MapSets do
   end
 
   def sorted?(set) do
-    sorted = MapSet.to_list(set) |> Enum.sort
-    set == sorted
+    list = MapSet.to_list(set)
+    sorted = Enum.sort(list)
+    list == sorted
   end
 
   koan "You cannot depend on my order" do
