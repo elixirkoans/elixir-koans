@@ -15,7 +15,7 @@ defmodule MapSets do
     assert MapSet.size(new_set) == ___
   end
 
-  koan "Even though I am like a list I am unordered, especially with 33+ elements" do
+  koan "You cannot depend on my order" do
     new_set = MapSet.new 1..33
     ordered_list = Enum.to_list 1..33
     set_list = MapSet.to_list(new_set)
