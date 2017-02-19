@@ -16,11 +16,12 @@ defmodule MapSets do
   end
 
   koan "You cannot depend on my order" do
-    new_set = MapSet.new 1..33
-    ordered_list = Enum.to_list 1..33
-    set_list = MapSet.to_list(new_set)
-    assert (ordered_list == set_list) == ___
-    assert (ordered_list == Enum.sort(set_list)) == ___
+    set = MapSet.new(1..33)
+    list = Enum.to_list(1..33)
+    set_list = MapSet.to_list(set)
+
+    assert (list == set_list) == ___
+    assert (list == Enum.sort(set_list)) == ___
   end
   # Note: The number "33" is actually special here. Erlang uses a different
   # implementation for maps after 32 elements which does not maintain order.
