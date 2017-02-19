@@ -28,7 +28,7 @@ defmodule Strings do
   end
 
   koan "Other times a little cleaning is in order" do
-    assert String.strip("  \n banana\n  ") == ___
+    assert String.trim("  \n banana\n  ") == ___
   end
 
   koan "Repetition is the mother of learning" do
