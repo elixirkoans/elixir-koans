@@ -30,7 +30,7 @@ defmodule MapSets do
     # http://stackoverflow.com/a/40408469
 
     # What do you think this answer to this assertion is?
-    # assert sorted?(@set) == ___
+    assert sorted?(@set) == ___
   end
 
   koan "Does this value exist in the map set?" do
