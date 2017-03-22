@@ -17,8 +17,19 @@ defmodule Processes do
     assert is_pid(self()) == ___
   end
 
-  koan "New processes are spawned functions" do
+  koan "Like our current process, new processes are spawned functions" do
     pid = spawn(fn -> nil end)
+
+    assert is_pid(pid) == ___
+  end
+
+  koan "Processes exit after executing their function, unless they wait for something" do
+    wait_forever = fn ->
+      receive do
+      end
+    end
+
+    pid = spawn(wait_forever)
 
     assert Process.alive?(pid) == ___
   end
