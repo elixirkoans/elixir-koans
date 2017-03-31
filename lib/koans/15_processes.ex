@@ -18,9 +18,22 @@ defmodule Processes do
   end
 
   koan "New processes are spawned functions" do
-    pid = spawn(fn -> nil end)
+    value = spawn(fn -> nil end)
 
-    assert Process.alive?(pid) == ___
+    assert is_pid(value) == ___
+  end
+
+  koan "Processes die when their function exits" do
+    fast_process = spawn(fn -> :timer.sleep(10) end)
+    slow_process = spawn(fn -> :timer.sleep(1000) end)
+
+    # All spawned functions are executed concurrently with the current process.
+    # You check back on slow_process and fast_process 50ms later. Let's
+    # see if they are still alive!
+    :timer.sleep(50)
+
+    assert Process.alive?(fast_process) == ___
+    assert Process.alive?(slow_process) == ___
   end
 
   koan "Processes can send and receive messages" do
@@ -29,6 +42,17 @@ defmodule Processes do
     receive do
       msg -> assert msg == ___
     end
+  end
+
+  koan "A process will wait forever for a message" do
+    wait_forever = fn ->
+      receive do
+      end
+    end
+
+    pid = spawn(wait_forever)
+
+    assert Process.alive?(pid) == ___
   end
 
   koan "Received messages are queued, first in first out" do
