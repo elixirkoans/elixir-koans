@@ -5,6 +5,7 @@ defmodule StringTests do
   test "Strings" do
     answers = [
       "hello",
+      "1 + 1 = 2",
       "hello ",
       "hello world",
       "An incredible day",

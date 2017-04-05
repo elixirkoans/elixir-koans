@@ -7,6 +7,10 @@ defmodule Strings do
     assert "hello" == ___
   end
 
+  koan "Values may be inserted into strings by interpolation" do
+    assert "1 + 1 = #{1 + 1}" == ___
+  end
+
   koan "They can be put together" do
     assert "hello world" == ___ <> "world"
   end
