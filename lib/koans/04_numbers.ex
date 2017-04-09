@@ -23,12 +23,6 @@ defmodule Numbers do
     assert number == ___
   end
 
-  koan "I think I need my number as a char" do
-    char_digit = Integer.to_char_list(7)
-
-    assert char_digit == ___
-  end
-
   koan "Actually I want my number as a string" do
     string_digit = Integer.to_string(1234)
 

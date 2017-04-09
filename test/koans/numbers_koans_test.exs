@@ -8,7 +8,6 @@ defmodule NumbersTests do
       true,
       [5, 8, 1, 2, 7],
       1234,
-      '7',
       "1234",
       42,
       " years",
