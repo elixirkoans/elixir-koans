@@ -7,7 +7,7 @@ defmodule Streams do
     assert Stream.map([1, 2, 3], &(&1 + 1)).__struct__ == ___
   end
 
-  koan "You have to ask it explicitly to do the operation" do
+  koan "Streams are executed by terminal operations" do
     updated_list =
       [1, 2, 3]
       |> Stream.map(&(&1 + 1))
