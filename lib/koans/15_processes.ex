@@ -157,7 +157,7 @@ defmodule Processes do
     assert_receive {:EXIT, _pid, ___}
   end
 
-  koan "If you monitor your children, you'll be automatically informed for their depature" do
+  koan "If you monitor your children, you'll be automatically informed of their departure" do
     spawn_monitor(fn -> Process.exit(self(), :normal) end)
 
     assert_receive {:DOWN, _ref, :process, _pid, ___}
