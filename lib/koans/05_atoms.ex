@@ -14,4 +14,9 @@ defmodule Atoms do
     assert :true == ___
     assert :false == ___
   end
+
+  koan "Like booleans, the nil value is also an atom" do
+    assert is_atom(nil) == ___
+    assert :nil == ___
+  end
 end
