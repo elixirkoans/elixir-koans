@@ -1,6 +1,5 @@
 defmodule Options do
   @defaults %{
-    clear_screen: true,
     initial_koan: Equalities,
   }
 
@@ -8,16 +7,8 @@ defmodule Options do
     Agent.start_link(fn -> parse(args) end, name: __MODULE__)
   end
 
-  def clear_screen? do
-    Agent.get(__MODULE__, fn(options) ->
-      Map.fetch!(options, :clear_screen)
-    end)
-  end
-
   def initial_koan() do
-    Agent.get(__MODULE__, fn(options) ->
-      Map.fetch!(options, :initial_koan)
-    end)
+    Agent.get(__MODULE__, &Map.fetch!(&1, :initial_koan))
   end
 
   defp parse(args) do
@@ -27,6 +18,5 @@ defmodule Options do
   end
 
   def parse_argument("--koan="<>module), do: %{ initial_koan: String.to_atom("Elixir."<> module)}
-  def parse_argument("--no-clear-screen"), do: %{ clear_screen: false}
   def parse_argument(_), do: %{}
 end

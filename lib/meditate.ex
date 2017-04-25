@@ -12,6 +12,11 @@ defmodule Mix.Tasks.Meditate do
 
     Options.start(args)
 
+    {parsed, _, _} = OptionParser.parse(args)
+    if Keyword.has_key?(parsed, :no_clear_screen) do
+      Display.disable_clear()
+    end
+
     Options.initial_koan
     |> ok?
     |> Runner.modules_to_run
