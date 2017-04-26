@@ -48,5 +48,4 @@ defmodule Runner do
     :failed
   end
   defp display(_), do: :passed
-
 end
