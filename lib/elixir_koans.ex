@@ -6,7 +6,8 @@ defmodule ElixirKoans do
     import Supervisor.Spec
 
     children = [
-      worker(Display, [])
+      worker(Display, []),
+      worker(Tracker, [])
     ]
 
     opts = [strategy: :one_for_one, name: ElixirKoans.Supervisor]

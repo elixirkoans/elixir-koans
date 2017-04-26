@@ -17,11 +17,13 @@ defmodule Mix.Tasks.Meditate do
       Display.disable_clear()
     end
 
-    Options.initial_koan
+    modules = Options.initial_koan
     |> ok?
     |> Runner.modules_to_run
-    |> Tracker.start
-    |> Runner.run
+
+    Tracker.set_total(modules)
+
+    Runner.run(modules)
 
     if Tracker.complete? do
       Display.congratulate
