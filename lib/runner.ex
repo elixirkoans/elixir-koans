@@ -25,7 +25,6 @@ defmodule Runner do
     String.to_integer(number)
   end
 
-  def modules_to_run, do: Options.initial_koan |> modules_to_run
   def modules_to_run(start_module), do: Enum.drop_while(modules(), &(&1 != start_module))
 
   def start_link do

@@ -1,6 +1,5 @@
 defmodule ElixirKoans do
   use Application
-  alias Options
 
   def start(_type, _args) do
     import Supervisor.Spec
