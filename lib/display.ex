@@ -16,34 +16,6 @@ defmodule Display do
     {:noreply, %{state | clear_screen: false}}
   end
 
-  def handle_cast({:invalid, koan, modules}, state) do
-    Notifications.invalid_koan(koan, modules)
-    |> IO.puts
-
-    {:noreply, state}
-  end
-
-  def handle_cast({:show_failure, failure, module, name}, state) do
-    format(failure, module, name)
-    |> IO.puts
-
-    {:noreply, state}
-  end
-
-  def handle_cast({:show_compile_error, error}, state) do
-    Failure.show_compile_error(error)
-    |> IO.puts
-
-    {:noreply, state}
-  end
-
-  def handle_cast(:congratulate, state) do
-    Notifications.congratulate
-    |> IO.puts
-
-    {:noreply, state}
-  end
-
   def handle_cast(:clear_screen, state = %{clear_screen: true}) do
     IO.puts(ANSI.clear)
     IO.puts(ANSI.home)
@@ -55,19 +27,23 @@ defmodule Display do
   end
 
   def invalid_koan(koan, modules) do
-    GenServer.cast(__MODULE__, {:invalid, koan, modules})
+    Notifications.invalid_koan(koan, modules)
+    |> IO.puts
   end
 
   def show_failure(failure, module, name) do
-    GenServer.cast(__MODULE__, {:show_failure, failure, module, name})
+    format(failure, module, name)
+    |> IO.puts
   end
 
   def show_compile_error(error) do
-    GenServer.cast(__MODULE__, {:show_compile_error, error})
+    Failure.show_compile_error(error)
+    |> IO.puts
   end
 
   def congratulate do
-    GenServer.cast(__MODULE__, :congratulate)
+    Notifications.congratulate
+    |> IO.puts
   end
 
   def clear_screen do

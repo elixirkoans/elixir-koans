@@ -1,4 +1,5 @@
 defmodule Runner do
+  use GenServer
 
   def koan?(koan) do
     Keyword.has_key?(koan.__info__(:exports), :all_koans)
@@ -27,14 +28,38 @@ defmodule Runner do
   def modules_to_run, do: Options.initial_koan |> modules_to_run
   def modules_to_run(start_module), do: Enum.drop_while(modules(), &(&1 != start_module))
 
-  def run(modules) do
-    Display.clear_screen()
-
-    modules
-    |> Enum.take_while( &(run_module(&1) == :passed))
+  def start_link do
+    GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
-  def run_module(module) do
+  def handle_cast({:run, modules}, _) do
+    flush()
+    send(self(), :run_modules)
+    {:noreply, modules}
+  end
+
+  def handle_info(:run_modules, []) do
+    {:noreply, []}
+  end
+
+  def handle_info(:run_modules, [module | rest]) do
+    Display.clear_screen()
+
+    case run_module(module) do
+      :passed ->
+        send(self(), :run_modules)
+        {:noreply, rest}
+
+      _ ->
+        {:noreply, []}
+    end
+  end
+
+  def run(modules) do
+    GenServer.cast(__MODULE__, {:run, modules})
+  end
+
+  defp run_module(module) do
     module
     |> Execute.run_module(&track/3)
     |> display
@@ -48,4 +73,12 @@ defmodule Runner do
     :failed
   end
   defp display(_), do: :passed
+
+  defp flush do
+    receive do
+      _ -> flush()
+    after
+      0 -> :ok
+    end
+  end
 end

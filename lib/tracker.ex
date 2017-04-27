@@ -1,10 +1,17 @@
 defmodule Tracker do
   alias __MODULE__
 
-  defstruct total: 0, koans: MapSet.new(), visited_modules: MapSet.new()
+  defstruct total: 0,
+    koans: MapSet.new(),
+    visited_modules: MapSet.new(),
+    on_complete: :noop
 
   def start_link do
     Agent.start_link(fn -> %Tracker{} end, name: __MODULE__)
+  end
+
+  def notify_on_complete(pid) do
+    Agent.update(__MODULE__, fn state -> %{state | on_complete: pid} end)
   end
 
   def set_total(modules) do
@@ -17,6 +24,19 @@ defmodule Tracker do
 
   def completed(module, koan) do
     Agent.update(__MODULE__, &mark_koan_completed(&1, module, koan))
+    if complete?() do
+      Agent.cast(__MODULE__, fn state ->
+        send(state.on_complete, {self(), :complete})
+        state
+      end)
+    end
+  end
+
+  def wait_until_complete() do
+    pid = Process.whereis(Tracker)
+    receive do
+      {^pid, :complete} -> :ok
+    end
   end
 
   defp mark_koan_completed(state, module, koan) do
