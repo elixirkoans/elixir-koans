@@ -15,7 +15,7 @@ defmodule Strings do
     assert "hello world" == ___ <> "world"
   end
 
-  koan "Or pulled apart when needed" do
+  koan "Or pulled apart into a list when needed" do
     assert ["hello", "world"] == String.split(___, " ")
   end
 
