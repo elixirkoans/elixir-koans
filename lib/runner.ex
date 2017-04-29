@@ -2,7 +2,6 @@ defmodule Runner do
   @modules [
     Equalities,
     Strings,
-    Sigils,
     Numbers,
     Atoms,
     Tuples,
@@ -11,6 +10,7 @@ defmodule Runner do
     Maps,
     MapSets,
     Structs,
+    Sigils,
     PatternMatching,
     Functions,
     Enums,
