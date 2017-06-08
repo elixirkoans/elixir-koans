@@ -3,12 +3,12 @@ defmodule Display.ProgressBar do
   @progress_bar_length 30
 
   def progress_bar(%{current: current, total: total}) do
-    arrow = caluculate_progress(current, total) |> build_arrow
+    arrow = calculate_progress(current, total) |> build_arrow
 
     "|" <> String.ljust(arrow, @progress_bar_length) <> "| #{current} of #{total}"
   end
 
-  defp caluculate_progress(current, total) do
+  defp calculate_progress(current, total) do
     round( (current/total) * @progress_bar_length)
   end
 
