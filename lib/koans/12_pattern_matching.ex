@@ -45,6 +45,12 @@ defmodule PatternMatching do
     end
   end
 
+  koan "So does the keyword lists" do
+    kw_list = [type: "car", year: 2016, make: "Honda"]
+    [_type | [_year | [tuple]]] = kw_list
+    assert tuple == {___, ___}
+  end
+
   koan "The pattern can make assertions about what it expects" do
     assert match?([1, _second, _third], ___)
   end

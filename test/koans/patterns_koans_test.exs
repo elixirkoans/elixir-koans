@@ -11,6 +11,7 @@ defmodule PatternsTests do
       "eggs, milk",
       "Honda",
       MatchError,
+      {:multiple, [:make, "Honda"]},
       [1,2,3],
       {:multiple, ["Meow", "Woof", "Eh?"]},
       {:multiple, ["Mickey", "Donald", "I need a name!"]},
