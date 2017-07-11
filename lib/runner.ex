@@ -1,32 +1,31 @@
 defmodule Runner do
-  @modules [
-    Equalities,
-    Strings,
-    Numbers,
-    Atoms,
-    Tuples,
-    Lists,
-    KeywordLists,
-    Maps,
-    MapSets,
-    Structs,
-    Sigils,
-    PatternMatching,
-    Functions,
-    Enums,
-    Processes,
-    Tasks,
-    Agents,
-    GenServers,
-    Protocols,
-  ]
 
-  def koan?(koan), do: Enum.member?(@modules, koan)
+  def koan?(koan) do
+    Keyword.has_key?(koan.__info__(:exports), :all_koans)
+  end
 
-  def modules, do: @modules
+  def modules do
+    {:ok, modules} = :application.get_key(:elixir_koans, :modules)
+
+    modules
+    |> Stream.map(&(&1.module_info |> get_in([:compile, :source])))
+    |> Stream.map(&to_string/1)  # Paths are charlists
+    |> Stream.zip(modules)
+    |> Stream.filter(fn {_path, mod} -> koan?(mod) end)
+    |> Stream.map(fn {path, mod} -> {path_to_number(path), mod} end)
+    |> Enum.sort_by(fn {number, _mod} -> number end)
+    |> Enum.map(fn {_number, mod} -> mod end)
+  end
+
+  @koan_path_pattern ~r/lib\/koans\/(\d+)_\w+.ex$/
+
+  def path_to_number(path) do
+    [_path, number] = Regex.run(@koan_path_pattern, path)
+    String.to_integer(number)
+  end
 
   def modules_to_run, do: Options.initial_koan |> modules_to_run
-  def modules_to_run(start_module), do: Enum.drop_while(@modules, &(&1 != start_module))
+  def modules_to_run(start_module), do: Enum.drop_while(modules(), &(&1 != start_module))
 
   def run(modules) do
     Display.clear_screen()
