@@ -6,9 +6,9 @@ defmodule GenServersTests do
     answers = [
       true,
       "Hey Arnold!",
-      1234,
+      "3kr3t!",
       {:multiple, ["Tribe Bicycle Co.", "CRMO Series"]},
-      ["this", "is", "sparta"],
+      {:multiple, [["this", "is", "sparta"], 369, :hello_world]},
       "Hello",
       {:error, "Incorrect password!"},
       "Congrats! Your process was successfully named.",

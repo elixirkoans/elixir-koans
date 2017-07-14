@@ -6,12 +6,10 @@ defmodule GenServers do
   defmodule BicycleLock do
     use GenServer
 
-    @init_password 1234
-
     #####
     # External API
 
-    def start_link(init_password \\ @init_password) do
+    def start_server(init_password) do
       # The __MODULE__ macro returns the current module name as an atom
       GenServer.start_link(__MODULE__, init_password, name: __MODULE__)
     end
@@ -20,8 +18,8 @@ defmodule GenServers do
       GenServer.call(__MODULE__, {:unlock, password})
     end
 
-    def password_reset(old_password, new_password) do
-      GenServer.cast(__MODULE__, {:reset, old_password, new_password})
+    def change_password(old_password, new_password) do
+      GenServer.cast(__MODULE__, {:change_password, old_password, new_password})
     end
 
     def owner_info do
@@ -30,10 +28,6 @@ defmodule GenServers do
 
     ####
     # GenServer implementation
-
-    def init(args) do
-     {:ok, args && args || @init_password} 
-    end
     
     def handle_call(:get_password, _from, current_password) do
      {:reply, current_password, current_password} 
@@ -52,7 +46,7 @@ defmodule GenServers do
     end
 
     def handle_call(:get_multi, _from, current_state) do
-      {:reply, {:ok, ["this", "is", "sparta"]}, current_state}
+      {:reply, {:ok, ["this", "is", "sparta"], 369, :hello_world}, current_state}
     end
 
     def handle_call(:name_check, _from, current_state) do
@@ -68,7 +62,7 @@ defmodule GenServers do
       end
     end
     
-    def handle_cast({:reset, old_password, new_password}, current_password) do
+    def handle_cast({:change_password, old_password, new_password}, current_password) do
       case old_password do
         old_password when old_password == current_password ->
           {:noreply, new_password}
@@ -89,7 +83,7 @@ defmodule GenServers do
   end
 
   koan "The handle_call callback is synchronous so it will block until a reply is received" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, nil)
+    {:ok, pid} = GenServer.start_link(BicycleLock, "3kr3t!")
     assert GenServer.call(pid, :get_password) == ___
   end
 
@@ -99,40 +93,42 @@ defmodule GenServers do
     assert GenServer.call(pid, :get_bike_name) == ___
   end
 
-  koan "A handler can return multiple values" do
+  koan "A handler can return multiple values and of different types" do
     {:ok, pid} = GenServer.start_link(BicycleLock, nil)
-    {:ok, multi_values} = GenServer.call(pid, :get_multi)
-    assert multi_values == ___
+    {:ok, string_list, num, atom} = GenServer.call(pid, :get_multi)
+    assert string_list == ___
+    assert num == ___
+    assert atom == ___
   end
 
   koan "The handle_cast callback handles asynchronous messages" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, nil)
-    GenServer.cast(pid, {:reset, 1234, "Hello"})
+    {:ok, pid} = GenServer.start_link(BicycleLock, "3kr3t!")
+    GenServer.cast(pid, {:change_password, "3kr3t!", "Hello"})
     assert GenServer.call(pid, :get_password) == ___
   end
 
   koan "Handlers can also return error responses" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, nil)
+    {:ok, pid} = GenServer.start_link(BicycleLock, "3kr3t!")
     assert GenServer.call(pid, {:unlock, 2017}) == ___
   end
 
   koan "Referencing processes by their PID gets old pretty quickly, so let's name them" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, nil, name: :bike_lock)
+    {:ok, _} = GenServer.start_link(BicycleLock, nil, name: :bike_lock)
     assert GenServer.call(:bike_lock, :name_check) == ___
   end
 
   koan "Our server works but it's pretty ugly to use; so lets use a cleaner interface" do
-    BicycleLock.start_link
-    assert BicycleLock.unlock(1234) == ___
+    BicycleLock.start_server("EL!73")
+    assert BicycleLock.unlock("EL!73") == ___
   end
 
   koan "Let's use the remaining functions in the external API" do
-    BicycleLock.start_link(31337)
-    {_, response} = BicycleLock.unlock(31337)
+    BicycleLock.start_server("EL!73")
+    {_, response} = BicycleLock.unlock("EL!73")
     assert response == ___
 
-    BicycleLock.password_reset(31337, "Elixir")
-    {_, response} = BicycleLock.unlock(31337)
+    BicycleLock.change_password("EL!73", "Elixir")
+    {_, response} = BicycleLock.unlock("EL!73")
     assert response == ___
 
     {_, response} = BicycleLock.owner_info 
