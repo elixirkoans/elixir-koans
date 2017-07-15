@@ -18,12 +18,28 @@ defmodule GenServers do
       GenServer.call(__MODULE__, {:unlock, password})
     end
 
-    def change_password(old_password, new_password) do
-      GenServer.cast(__MODULE__, {:change_password, old_password, new_password})
-    end
-
     def owner_name do
       GenServer.call(__MODULE__, :get_owner_name)
+    end
+
+    def manufacturer do
+      GenServer.call(__MODULE__, :get_manufacturer)
+    end
+
+    def laptop_type do
+      GenServer.call(__MODULE__, :get_type)
+    end
+
+    def retrieve_password do
+      GenServer.call(__MODULE__, :get_password)
+    end
+
+    def laptop_specs do
+      GenServer.call(__MODULE__, :get_specs)
+    end
+
+    def change_password(old_password, new_password) do
+      GenServer.cast(__MODULE__, {:change_password, old_password, new_password})
     end
 
     ####
