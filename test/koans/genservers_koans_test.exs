@@ -7,13 +7,13 @@ defmodule GenServersTests do
       true,
       "3kr3t!",
       "3kr3t!",
-      {:multiple, ["Tribe Bicycle Co.", "CRMO Series"]},
-      {:multiple, [["this", "is", "sparta"], 369, :hello_world]},
+      {:multiple, ["Apple Inc.", "MacBook Pro"]},
+      {:multiple, [["2.9 GHz Intel Core i5"], 8192, :intel_iris_graphics]},
       "Hello",
       {:error, "Incorrect password!"},
       "Congrats! Your process was successfully named.",
-      {:ok, "Bicycle unlocked!"},
-      {:multiple, ["Bicycle unlocked!", "Incorrect password!", "Argh...Jack Sparrow's password is: Elixir"]},
+      {:ok, "Laptop unlocked!"},
+      {:multiple, ["Laptop unlocked!", "Incorrect password!", "Jack Sparrow"]},
     ]
 
     test_all(GenServers, answers)

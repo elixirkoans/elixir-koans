@@ -3,7 +3,7 @@ defmodule GenServers do
 
   @intro "GenServers"
 
-  defmodule BicycleLock do
+  defmodule Laptop do
     use GenServer
 
     #####
@@ -22,8 +22,8 @@ defmodule GenServers do
       GenServer.cast(__MODULE__, {:change_password, old_password, new_password})
     end
 
-    def owner_info do
-      GenServer.call(__MODULE__, :get_owner_info)
+    def owner_name do
+      GenServer.call(__MODULE__, :get_owner_name)
     end
 
     ####
@@ -33,20 +33,20 @@ defmodule GenServers do
      {:reply, current_password, current_password} 
     end
 
-    def handle_call(:get_bike_brand, _from, current_state) do
-      {:reply, "Tribe Bicycle Co.", current_state}
+    def handle_call(:get_manufacturer, _from, current_state) do
+      {:reply, "Apple Inc.", current_state}
     end
 
-    def handle_call(:get_bike_name, _from, current_state) do
-      {:reply, "CRMO Series", current_state}
+    def handle_call(:get_type, _from, current_state) do
+      {:reply, "MacBook Pro", current_state}
     end
 
-    def handle_call(:get_owner_info, _from, current_state) do
-      {:reply, {:ok, "Argh...Jack Sparrow's password is: #{current_state}"}, current_state}
+    def handle_call(:get_owner_name, _from, current_state) do
+      {:reply, {:ok, "Jack Sparrow"}, current_state}
     end
 
-    def handle_call(:get_multi, _from, current_state) do
-      {:reply, {:ok, ["this", "is", "sparta"], 369, :hello_world}, current_state}
+    def handle_call(:get_specs, _from, current_state) do
+      {:reply, {:ok, ["2.9 GHz Intel Core i5"], 8192, :intel_iris_graphics}, current_state}
     end
 
     def handle_call(:name_check, _from, current_state) do
@@ -56,7 +56,7 @@ defmodule GenServers do
     def handle_call({:unlock, password}, _from, current_password) do
       case password do
         password when password === current_password ->
-          {:reply, {:ok, "Bicycle unlocked!"}, current_password}
+          {:reply, {:ok, "Laptop unlocked!"}, current_password}
         _ -> 
           {:reply, {:error, "Incorrect password!"}, current_password}
       end
@@ -73,65 +73,65 @@ defmodule GenServers do
   end
 
   koan "Servers that are created and initialized successfully returns a tuple that holds the PID of the server" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, nil)
+    {:ok, pid} = GenServer.start_link(Laptop, "3kr3t!")
     assert is_pid(pid) == ___
   end
 
   koan "When starting a GenServer you can set it's initial state" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, "3kr3t!")
+    {:ok, pid} = GenServer.start_link(Laptop, "3kr3t!")
     assert GenServer.call(pid, :get_password) == ___
   end
 
   koan "The handle_call callback is synchronous so it will block until a reply is received" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, "3kr3t!")
+    {:ok, pid} = GenServer.start_link(Laptop, "3kr3t!")
     assert GenServer.call(pid, :get_password) == ___
   end
 
   koan "A server can support multiple actions by implementing multiple handle_call functions" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, nil)
-    assert GenServer.call(pid, :get_bike_brand) == ___
-    assert GenServer.call(pid, :get_bike_name) == ___
+    {:ok, pid} = GenServer.start_link(Laptop, "3kr3t!")
+    assert GenServer.call(pid, :get_manufacturer) == ___
+    assert GenServer.call(pid, :get_type) == ___
   end
 
   koan "A handler can return multiple values and of different types" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, nil)
-    {:ok, string_list, num, atom} = GenServer.call(pid, :get_multi)
-    assert string_list == ___
-    assert num == ___
-    assert atom == ___
+    {:ok, pid} = GenServer.start_link(Laptop, "3kr3t!")
+    {:ok, processor, memory, graphics} = GenServer.call(pid, :get_specs)
+    assert processor == ___
+    assert memory == ___
+    assert graphics == ___
   end
 
   koan "The handle_cast callback handles asynchronous messages" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, "3kr3t!")
+    {:ok, pid} = GenServer.start_link(Laptop, "3kr3t!")
     GenServer.cast(pid, {:change_password, "3kr3t!", "Hello"})
     assert GenServer.call(pid, :get_password) == ___
   end
 
   koan "Handlers can also return error responses" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, "3kr3t!")
+    {:ok, pid} = GenServer.start_link(Laptop, "3kr3t!")
     assert GenServer.call(pid, {:unlock, 2017}) == ___
   end
 
   koan "Referencing processes by their PID gets old pretty quickly, so let's name them" do
-    {:ok, _} = GenServer.start_link(BicycleLock, nil, name: :bike_lock)
-    assert GenServer.call(:bike_lock, :name_check) == ___
+    {:ok, _} = GenServer.start_link(Laptop, "3kr3t!", name: :macbook)
+    assert GenServer.call(:macbook, :name_check) == ___
   end
 
   koan "Our server works but it's pretty ugly to use; so lets use a cleaner interface" do
-    BicycleLock.start_link("EL!73")
-    assert BicycleLock.unlock("EL!73") == ___
+    Laptop.start_link("EL!73")
+    assert Laptop.unlock("EL!73") == ___
   end
 
   koan "Let's use the remaining functions in the external API" do
-    BicycleLock.start_link("EL!73")
-    {_, response} = BicycleLock.unlock("EL!73")
+    Laptop.start_link("EL!73")
+    {_, response} = Laptop.unlock("EL!73")
     assert response == ___
 
-    BicycleLock.change_password("EL!73", "Elixir")
-    {_, response} = BicycleLock.unlock("EL!73")
+    Laptop.change_password("EL!73", "Elixir")
+    {_, response} = Laptop.unlock("EL!73")
     assert response == ___
 
-    {_, response} = BicycleLock.owner_info 
+    {_, response} = Laptop.owner_name 
     assert response == ___
   end
 end
