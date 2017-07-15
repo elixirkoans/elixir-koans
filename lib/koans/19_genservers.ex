@@ -9,7 +9,7 @@ defmodule GenServers do
     #####
     # External API
 
-    def start_server(init_password) do
+    def start_link(init_password) do
       # The __MODULE__ macro returns the current module name as an atom
       GenServer.start_link(__MODULE__, init_password, name: __MODULE__)
     end
@@ -78,7 +78,7 @@ defmodule GenServers do
   end
 
   koan "When starting a GenServer you can set it's initial state" do
-    {:ok, pid} = GenServer.start_link(BicycleLock, "Hey Arnold!")
+    {:ok, pid} = GenServer.start_link(BicycleLock, "3kr3t!")
     assert GenServer.call(pid, :get_password) == ___
   end
 
@@ -118,12 +118,12 @@ defmodule GenServers do
   end
 
   koan "Our server works but it's pretty ugly to use; so lets use a cleaner interface" do
-    BicycleLock.start_server("EL!73")
+    BicycleLock.start_link("EL!73")
     assert BicycleLock.unlock("EL!73") == ___
   end
 
   koan "Let's use the remaining functions in the external API" do
-    BicycleLock.start_server("EL!73")
+    BicycleLock.start_link("EL!73")
     {_, response} = BicycleLock.unlock("EL!73")
     assert response == ___
 

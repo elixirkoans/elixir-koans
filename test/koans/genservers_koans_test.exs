@@ -5,7 +5,7 @@ defmodule GenServersTests do
   test "GenServers" do
     answers = [
       true,
-      "Hey Arnold!",
+      "3kr3t!",
       "3kr3t!",
       {:multiple, ["Tribe Bicycle Co.", "CRMO Series"]},
       {:multiple, [["this", "is", "sparta"], 369, :hello_world]},
