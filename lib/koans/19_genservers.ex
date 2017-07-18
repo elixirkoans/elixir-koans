@@ -119,13 +119,13 @@ defmodule GenServers do
 
   koan "The handle_cast callback handles asynchronous messages" do
     {:ok, pid} = GenServer.start_link(Laptop, "3kr3t!")
-    GenServer.cast(pid, {:change_password, "3kr3t!", "Hello"})
+    GenServer.cast(pid, {:change_password, "3kr3t!", "73x7!n9"})
     assert GenServer.call(pid, :get_password) == ___
   end
 
   koan "Handlers can also return error responses" do
     {:ok, pid} = GenServer.start_link(Laptop, "3kr3t!")
-    assert GenServer.call(pid, {:unlock, 2017}) == ___
+    assert GenServer.call(pid, {:unlock, "81u3pr!n7"}) == ___
   end
 
   koan "Referencing processes by their PID gets old pretty quickly, so let's name them" do
