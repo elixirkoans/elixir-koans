@@ -17,6 +17,7 @@ defmodule Runner do
     Processes,
     Tasks,
     Agents,
+    GenServers,
     Protocols,
   ]
 
