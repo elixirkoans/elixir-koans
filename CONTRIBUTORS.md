@@ -8,6 +8,7 @@
 *  kamidev
 *  Mahmut Surekci
 *  Makis Otman
+*  Nathan Walker
 *  Rabea Gleissner
 *  Ria Cataquian
 *  Simone D'Amico
