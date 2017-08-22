@@ -1,14 +1,13 @@
 defmodule Watcher do
   use ExFSWatch, dirs: ["lib/koans"]
 
+  def start_link do
+    start()
+  end
+
   def callback(file, events)  do
     if Enum.member?(events, :modified) do
       file |> normalize |> reload
-
-      if Tracker.complete? do
-        Display.congratulate
-        exit(:normal)
-      end
     end
   end
 

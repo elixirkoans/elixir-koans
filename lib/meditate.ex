@@ -1,30 +1,37 @@
 defmodule Mix.Tasks.Meditate do
   use Mix.Task
-  alias Options
 
   @shortdoc "Start the koans"
 
   def run(args) do
     Application.ensure_all_started(:elixir_koans)
     Code.compiler_options(ignore_module_conflict: true)
-    {:ok, watcher} = Watcher.start
-    Process.monitor(watcher)
 
-    Options.start(args)
+    {parsed, _, _} = OptionParser.parse(args)
 
-    Options.initial_koan
+    modules = parsed
+    |> initial_module
     |> ok?
     |> Runner.modules_to_run
-    |> Tracker.start
-    |> Runner.run
 
-    if Tracker.complete? do
-      Display.congratulate
-      exit(:normal)
-    end
+    Tracker.set_total(modules)
+    Tracker.notify_on_complete(self())
 
-    receive do
-      {:DOWN, _references, :process, ^watcher, _reason} -> nil
+    set_clear_screen(parsed)
+    Runner.run(modules)
+
+    Tracker.wait_until_complete()
+    Display.congratulate()
+  end
+
+  defp initial_module(parsed) do
+    name = Keyword.get(parsed, :koan, "Equalities")
+    String.to_atom("Elixir."<> name)
+  end
+
+  defp set_clear_screen(parsed) do
+    if Keyword.has_key?(parsed, :no_clear_screen) do
+      Display.disable_clear()
     end
   end
 

@@ -10,7 +10,8 @@ defmodule Koans.Mixfile do
   end
 
   def application do
-    [applications: [:exfswatch, :logger]]
+    [mod: {ElixirKoans, []},
+     applications: [:exfswatch, :logger]]
   end
 
   defp deps do
