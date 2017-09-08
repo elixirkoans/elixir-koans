@@ -53,7 +53,6 @@ defmodule Maps do
   end
 
   koan "You can also select sub-maps out of a larger map" do
-    initial = %{first_name: "Jon", last_name: "Snow", age: 15}
-    assert Map.take(initial, [:first_name, :last_name]) == ___
+    assert Map.take(@person, [:first_name, :last_name]) == ___
   end
 end
