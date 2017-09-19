@@ -87,7 +87,7 @@ defmodule Processes do
   end
 
   koan "Use tail recursion to receive multiple messages" do
-    pid = spawn_link(&yelling_echo_loop/0)
+    pid = spawn(&yelling_echo_loop/0)
 
     send pid, {self(), "o"}
     assert_receive ___
