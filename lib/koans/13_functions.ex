@@ -92,7 +92,7 @@ defmodule Functions do
   koan "The result of a function can be piped into another function as its first argument" do
     result = "full-name"
             |> String.split("-")
-            |> Enum.map(&(String.capitalize(&1)))
+            |> Enum.map(&String.capitalize/1)
             |> Enum.join(" ")
 
     assert result == ___
