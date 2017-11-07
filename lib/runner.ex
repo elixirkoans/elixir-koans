@@ -2,7 +2,7 @@ defmodule Runner do
   use GenServer
 
   def koan?(koan) do
-    Keyword.has_key?(koan.__info__(:exports), :all_koans)
+    Keyword.has_key?(koan.__info__(:functions), :all_koans)
   end
 
   def modules do
