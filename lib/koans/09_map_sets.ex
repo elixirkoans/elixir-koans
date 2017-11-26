@@ -37,7 +37,7 @@ defmodule MapSets do
     assert MapSet.member?(@set, 3) == ___
   end
 
-  koan "I am merely another collection but, you can perform some operations on me" do
+  koan "I am merely another collection, but you can perform some operations on me" do
     new_set = MapSet.new(@set, fn x -> 3 * x end)
 
     assert MapSet.member?(new_set, 15) == ___
