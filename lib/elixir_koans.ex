@@ -8,7 +8,7 @@ defmodule ElixirKoans do
       worker(Display, []),
       worker(Tracker, []),
       worker(Runner, []),
-      worker(Watcher, [[]])
+      worker(Watcher, [])
     ]
 
     opts = [strategy: :one_for_one, name: ElixirKoans.Supervisor]

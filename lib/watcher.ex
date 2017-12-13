@@ -1,12 +1,12 @@
 defmodule Watcher do
   use GenServer
 
-  def start_link(args) do
-    GenServer.start_link(__MODULE__, args)
+  def start_link() do
+    GenServer.start_link(__MODULE__, [dirs: ["lib/koans"]])
   end
 
   def init(args) do
-    {:ok, watcher_pid} = FileSystem.start_link(dirs: ["lib/koans"])
+    {:ok, watcher_pid} = FileSystem.start_link(args)
     FileSystem.subscribe(watcher_pid)
     {:ok, %{watcher_pid: watcher_pid}}
   end
