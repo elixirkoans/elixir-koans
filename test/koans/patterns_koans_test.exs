@@ -17,6 +17,7 @@ defmodule PatternsTests do
       {:multiple, ["Mickey", "Donald", "I need a name!"]},
       "dog",
       "Max",
+      {:multiple, [true, false]},
       "Max",
       1,
       2,

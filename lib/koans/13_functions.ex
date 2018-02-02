@@ -97,4 +97,17 @@ defmodule Functions do
 
     assert result == ___
   end
+
+  koan "Conveniently keyword lists can be used for function options" do
+    transform = fn str, opts ->
+      if opts[:upcase] do
+        String.upcase(str)
+      else
+        str
+      end
+    end
+
+    assert transform.("good", upcase: true) == ___
+    assert transform.("good", upcase: false) == ___
+  end
 end

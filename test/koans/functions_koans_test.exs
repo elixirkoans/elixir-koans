@@ -18,6 +18,7 @@ defmodule FunctionsTests do
       100,
       1000,
       "Full Name",
+      {:multiple, ["GOOD", "good"]},
     ]
 
     test_all(Functions, answers)
