@@ -28,22 +28,14 @@ defmodule Structs do
     assert older.age == ___
   end
 
-  defmodule Plane do
-    defstruct passengers: 0, maker: :boeing
-  end
-
-  def plane?(%Plane{}), do: true
-  def plane?(_), do: false
-
-  koan "Or onto the type of the struct itself" do
-    assert plane?(%Plane{passengers: 417, maker: :boeing}) == ___
-    assert plane?(%Person{}) == ___
-  end
-
   koan "Struct can be treated like maps" do
     silvia = %Person{age: 22, name: "Silvia"}
 
     assert Map.fetch(silvia, :age) == ___
+  end
+
+  defmodule Plane do
+    defstruct passengers: 0, maker: :boeing
   end
 
   defmodule Airline do

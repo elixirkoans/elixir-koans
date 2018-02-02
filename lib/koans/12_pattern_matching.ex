@@ -101,6 +101,18 @@ defmodule PatternMatching do
     assert name == ___
   end
 
+  defmodule Plane do
+    defstruct passengers: 0, maker: :boeing
+  end
+
+  def plane?(%Plane{}), do: true
+  def plane?(_), do: false
+
+  koan "...or onto the type of the struct itself" do
+    assert plane?(%Plane{passengers: 417, maker: :boeing}) == ___
+    assert plane?(%Animal{}) == ___
+  end
+
   koan "Structs will even match with a regular map" do
     %{name: name} = %Animal{kind: "dog", name: "Max"}
     assert name == ___
