@@ -5,13 +5,13 @@ defmodule MapSetsTest do
   test "MapSets" do
     answers = [
       1,
+      5,
       3,
       {:multiple, [false, true]},
       true,
       {:multiple, [true, false]},
       true,
       false,
-      5,
       false,
       true,
       7,

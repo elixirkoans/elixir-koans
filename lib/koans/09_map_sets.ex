@@ -9,6 +9,10 @@ defmodule MapSets do
     assert Enum.fetch(@set, 0) == {:ok, ___}
   end
 
+  koan "How large is my map set?" do
+    assert MapSet.size(@set) == ___
+  end
+
   koan "However, I do not allow duplication" do
     new_set = MapSet.new([1, 1, 2, 3, 3, 3])
 
@@ -54,10 +58,6 @@ defmodule MapSets do
     modified_set = MapSet.delete(@set, 1)
 
     assert MapSet.member?(modified_set, 1) == ___
-  end
-
-  koan "How large is my map set?" do
-    assert MapSet.size(@set) == ___
   end
 
   koan "Are these maps twins?" do
