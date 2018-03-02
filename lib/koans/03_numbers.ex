@@ -20,6 +20,10 @@ defmodule Numbers do
     assert div(5, 2) == ___
   end
 
+  koan "What remains or: The Case of the Missing Modulo Operator (%)" do
+    assert rem(5, 2) == ___
+  end
+
   koan "Other math operators may produce this" do
     assert 2 * 2 === ___
   end

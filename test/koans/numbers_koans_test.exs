@@ -8,6 +8,7 @@ defmodule NumbersTests do
       false,
       1.0,
       2,
+      1,
       4,
       4.0,
       false,
