@@ -4,6 +4,38 @@ defmodule Numbers do
 
   @intro "Why is the number six so scared? Because seven eight nine!\nWe should get to know numbers a bit more!"
 
+  koan "Is an integer equal to its float equivalent?" do
+    assert 1 == 1.0 == ___
+  end
+
+  koan "Is an integer threequal to its float equivalent?" do
+    assert 1 === 1.0 == ___
+  end
+
+  koan "Revisit divison with threequal" do
+    assert 2 / 2 === ___
+  end
+
+  koan "Another way to divide" do
+    assert div(5, 2) == ___
+  end
+
+  koan "Other math operators may produce this" do
+    assert 2 * 2 === ___
+  end
+
+  koan "Or other math operators may produce this" do
+    assert 2 * 2.0 === ___
+  end
+
+  koan "Two ways to round, are they exactly the same?" do
+    assert Float.round(1.2) === round(1.2) == ___
+  end
+
+  koan "Release the decimals into the void" do
+    assert trunc(5.6) === ___
+  end
+
   koan "Are you odd?" do
     assert Integer.is_odd(3) == ___
   end

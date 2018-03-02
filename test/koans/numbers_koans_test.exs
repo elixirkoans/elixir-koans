@@ -5,6 +5,14 @@ defmodule NumbersTests do
   test "Numbers" do
     answers = [
       true,
+      false,
+      1.0,
+      2,
+      4,
+      4.0,
+      false,
+      5,
+      true,
       true,
       [5, 8, 1, 2, 7],
       1234,
