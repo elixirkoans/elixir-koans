@@ -56,10 +56,6 @@ defmodule MapSets do
     assert MapSet.member?(modified_set, 1) == ___
   end
 
-  koan "How large is my map set?" do
-    assert MapSet.size(@set) == ___
-  end
-
   koan "Are these maps twins?" do
     new_set = MapSet.new([1, 2, 3])
 

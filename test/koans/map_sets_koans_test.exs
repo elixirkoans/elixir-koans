@@ -11,7 +11,6 @@ defmodule MapSetsTest do
       {:multiple, [true, false]},
       true,
       false,
-      5,
       false,
       true,
       7,
