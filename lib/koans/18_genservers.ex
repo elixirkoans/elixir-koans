@@ -44,9 +44,9 @@ defmodule GenServers do
 
     ####
     # GenServer implementation
-    
+
     def handle_call(:get_password, _from, current_password) do
-     {:reply, current_password, current_password} 
+     {:reply, current_password, current_password}
     end
 
     def handle_call(:get_manufacturer, _from, current_state) do
@@ -68,22 +68,22 @@ defmodule GenServers do
     def handle_call(:name_check, _from, current_state) do
       {:reply, "Congrats! Your process was successfully named.", current_state}
     end
-    
+
     def handle_call({:unlock, password}, _from, current_password) do
       case password do
         password when password === current_password ->
           {:reply, {:ok, "Laptop unlocked!"}, current_password}
-        _ -> 
+        _ ->
           {:reply, {:error, "Incorrect password!"}, current_password}
       end
     end
-    
+
     def handle_cast({:change_password, old_password, new_password}, current_password) do
       case old_password do
         old_password when old_password == current_password ->
           {:noreply, new_password}
         _ ->
-          {:noreply, current_password} 
+          {:noreply, current_password}
       end
     end
   end
@@ -147,7 +147,7 @@ defmodule GenServers do
     {_, response} = Laptop.unlock("EL!73")
     assert response == ___
 
-    {_, response} = Laptop.owner_name 
+    {_, response} = Laptop.owner_name
     assert response == ___
   end
 end
