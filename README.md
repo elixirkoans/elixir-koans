@@ -40,7 +40,7 @@ $ mix meditate --no-clear-screen
 
 If you want to jump to a specific lesson, run it with `--koan=<koan name>`
 ```sh
-$ mix meditate --koan=PatternMatching 
+$ mix meditate --koan=PatternMatching
 ```
 
 Any typos on the koan name will show the complete list of koans, where you can pick any.

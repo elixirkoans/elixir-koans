@@ -36,4 +36,3 @@ defmodule Sigils do
     assert ~W(Hello #{1+1}) == ___
   end
 end
-
