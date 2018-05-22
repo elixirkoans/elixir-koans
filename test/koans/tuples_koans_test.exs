@@ -11,7 +11,7 @@ defmodule TupleTests do
       {:a, :new_thing, "hi"},
       {"Huey", "Dewey", "Louie"},
       {:this, :is, :awesome},
-      [:this, :can, :be, :a, :list],
+      [:this, :can, :be, :a, :list]
     ]
 
     test_all(Tuples, answers)

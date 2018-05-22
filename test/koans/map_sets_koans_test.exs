@@ -14,7 +14,7 @@ defmodule MapSetsTest do
       false,
       true,
       7,
-      [1, 2, 3, 4, 5],
+      [1, 2, 3, 4, 5]
     ]
 
     test_all(MapSets, answers)

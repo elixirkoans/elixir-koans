@@ -18,39 +18,39 @@ defmodule FailureTests do
     error = error(%ExUnit.AssertionError{expr: quote(do: :lol == :wat), left: :lol, right: :wat})
 
     assert Failure.format_failure(error) == """
-                                            Assertion failed in some_file.ex:42
-                                            :lol == :wat
+           Assertion failed in some_file.ex:42
+           :lol == :wat
 
-                                            left:  :lol
-                                            right: :wat
-                                            """
+           left:  :lol
+           right: :wat
+           """
   end
 
   test "match failure" do
-    error = error(%ExUnit.AssertionError{expr: quote(do: match?(:lol,:wat)), right: :wat})
+    error = error(%ExUnit.AssertionError{expr: quote(do: match?(:lol, :wat)), right: :wat})
 
     assert Failure.format_failure(error) == """
-                                            Assertion failed in some_file.ex:42
-                                            match?(:lol, :wat)
+           Assertion failed in some_file.ex:42
+           match?(:lol, :wat)
 
-                                            value does not match: :wat
-                                            """
+           value does not match: :wat
+           """
   end
 
   test "only offending lines are displayed for errors" do
-    [koan] = SingleArity.all_koans
-    error  = apply(SingleArity, koan, []) |> error()
+    [koan] = SingleArity.all_koans()
+    error = apply(SingleArity, koan, []) |> error()
 
     assert Failure.format_failure(error) == """
-    Assertion failed in some_file.ex:42\nmatch?(:foo, ___)
-    """
+           Assertion failed in some_file.ex:42\nmatch?(:foo, ___)
+           """
   end
 
   defp error(error) do
     %{
       error: error,
       file: "some_file.ex",
-      line:  42
+      line: 42
     }
   end
 end

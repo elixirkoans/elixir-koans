@@ -12,6 +12,7 @@ defmodule Functions do
   end
 
   def multiply(a, b), do: a * b
+
   koan "Single line functions are cool, but mind the comma and the colon!" do
     assert 6 == multiply(2, ___)
   end
@@ -41,8 +42,8 @@ defmodule Functions do
     assert sum_up(1) == ___
   end
 
-  def bigger(a,b) when a > b, do: "#{a} is bigger than #{b}"
-  def bigger(a,b) when a <= b, do: "#{a} is not bigger than #{b}"
+  def bigger(a, b) when a > b, do: "#{a} is bigger than #{b}"
+  def bigger(a, b) when a <= b, do: "#{a} is not bigger than #{b}"
 
   koan "Intricate guards are possible, but be mindful of the reader" do
     assert bigger(10, 5) == ___
@@ -58,13 +59,13 @@ defmodule Functions do
   end
 
   koan "Little anonymous functions are common, and called with a dot" do
-    multiply = fn (a,b) -> a * b end
-    assert multiply.(2,3) == ___
+    multiply = fn a, b -> a * b end
+    assert multiply.(2, 3) == ___
   end
 
   koan "You can even go shorter, by using capture syntax `&()` and positional arguments" do
     multiply = &(&1 * &2)
-    assert multiply.(2,3) == ___
+    assert multiply.(2, 3) == ___
   end
 
   koan "Prefix a string with & to build a simple anonymous greet function" do
@@ -77,7 +78,7 @@ defmodule Functions do
     assert three_times.("foo") == ___
   end
 
-  def times_five_and_then(number, fun), do: fun.(number*5)
+  def times_five_and_then(number, fun), do: fun.(number * 5)
   def square(number), do: number * number
 
   koan "You can pass functions around as arguments. Place an '&' before the name and state the arity" do
@@ -90,10 +91,11 @@ defmodule Functions do
   end
 
   koan "The result of a function can be piped into another function as its first argument" do
-    result = "full-name"
-            |> String.split("-")
-            |> Enum.map(&String.capitalize/1)
-            |> Enum.join(" ")
+    result =
+      "full-name"
+      |> String.split("-")
+      |> Enum.map(&String.capitalize/1)
+      |> Enum.join(" ")
 
     assert result == ___
   end

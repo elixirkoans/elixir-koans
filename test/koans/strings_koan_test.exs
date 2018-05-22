@@ -13,7 +13,7 @@ defmodule StringTests do
       "banana",
       "banana",
       "StringStringString",
-      "LISTEN",
+      "LISTEN"
     ]
 
     test_all(Strings, answers)

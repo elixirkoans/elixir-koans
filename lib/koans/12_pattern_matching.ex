@@ -41,7 +41,7 @@ defmodule PatternMatching do
 
   koan "Lists must match exactly" do
     assert_raise ___, fn ->
-      [a, b] = [1,2,3]
+      [a, b] = [1, 2, 3]
     end
   end
 
@@ -71,9 +71,9 @@ defmodule PatternMatching do
 
   koan "And they will only run the code that matches the argument" do
     name = fn
-      ("duck")  -> "Donald"
-      ("mouse") -> "Mickey"
-      (_other)  -> "I need a name!"
+      "duck" -> "Donald"
+      "mouse" -> "Mickey"
+      _other -> "I need a name!"
     end
 
     assert name.("mouse") == ___
@@ -84,10 +84,11 @@ defmodule PatternMatching do
   koan "Errors are shaped differently than successful results" do
     dog = %{type: "dog"}
 
-    result = case Map.fetch(dog, :type) do
-      {:ok, value} -> value
-      :error -> "not present"
-    end
+    result =
+      case Map.fetch(dog, :type) do
+        {:ok, value} -> value
+        :error -> "not present"
+      end
 
     assert result == ___
   end
@@ -133,10 +134,11 @@ defmodule PatternMatching do
     pinned_variable = 1
 
     example = fn
-      (^pinned_variable) -> "The number One"
-      (2) -> "The number Two"
-      (number) -> "The number #{number}"
+      ^pinned_variable -> "The number One"
+      2 -> "The number Two"
+      number -> "The number #{number}"
     end
+
     assert example.(1) == ___
     assert example.(2) == ___
     assert example.(3) == ___
@@ -144,17 +146,20 @@ defmodule PatternMatching do
 
   koan "Pinning works anywhere one would match, including 'case'" do
     pinned_variable = 1
-    result = case 1 do
-               ^pinned_variable -> "same"
-               other -> "different #{other}"
-             end
+
+    result =
+      case 1 do
+        ^pinned_variable -> "same"
+        other -> "different #{other}"
+      end
 
     assert result == ___
   end
 
   koan "Trying to rebind a pinned variable will result in an error" do
     a = 1
-    assert_raise MatchError, fn() ->
+
+    assert_raise MatchError, fn ->
       ^a = ___
     end
   end

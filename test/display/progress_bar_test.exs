@@ -13,7 +13,6 @@ defmodule ProgressBarTest do
     assert bar == "|=======>                      | 3 of 12"
   end
 
-
   test "full bar" do
     bar = ProgressBar.progress_bar(%{total: 12, current: 12})
     assert bar == "|=============================>| 12 of 12"

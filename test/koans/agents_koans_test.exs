@@ -8,7 +8,7 @@ defmodule AgentTests do
       "Why hello",
       "HI THERE",
       {:multiple, [["Milk"], ["Bread", "Milk"]]},
-      false,
+      false
     ]
 
     test_all(Agents, answers)

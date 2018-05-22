@@ -1,6 +1,6 @@
 defmodule Execute do
-  def run_module(module, callback \\ fn(_result, _module, _koan) -> nil end) do
-    Enum.reduce_while(module.all_koans, :passed, fn(koan, _) ->
+  def run_module(module, callback \\ fn _result, _module, _koan -> nil end) do
+    Enum.reduce_while(module.all_koans, :passed, fn koan, _ ->
       module
       |> run_koan(koan)
       |> hook(module, koan, callback)
@@ -24,7 +24,7 @@ defmodule Execute do
 
   def listen_for_result(module, name) do
     receive do
-      :ok   -> :passed
+      :ok -> :passed
       %{error: _} = failure -> {:failed, failure, module, name}
       _ -> listen_for_result(module, name)
     end
@@ -32,23 +32,25 @@ defmodule Execute do
 
   defp exec(module, name, args, parent) do
     result = apply(module, name, args)
-    send parent, expand(result, module)
+    send(parent, expand(result, module))
     Process.exit(self(), :kill)
   end
 
   defp expand(:ok, _), do: :ok
+
   defp expand(error, module) do
-    {file, line} = System.stacktrace
-      |> Enum.drop_while(&!in_koan?(&1, module))
-      |> List.first
+    {file, line} =
+      System.stacktrace()
+      |> Enum.drop_while(&(!in_koan?(&1, module)))
+      |> List.first()
       |> extract_file_and_line
 
-      %{error: error, file: file, line: line}
+    %{error: error, file: file, line: line}
   end
 
   defp in_koan?({module, _, _, _}, koan), do: module == koan
 
   defp extract_file_and_line({_, _, _, [file: file, line: line]}) do
-   {file, line}
+    {file, line}
   end
 end

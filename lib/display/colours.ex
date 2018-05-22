@@ -5,7 +5,7 @@ defmodule Display.Paint do
   def yellow(str), do: painter().yellow(str)
 
   defp painter do
-    case Mix.env do
+    case Mix.env() do
       :test -> Display.Uncoloured
       _ -> Display.Colours
     end
@@ -15,13 +15,13 @@ end
 defmodule Display.Colours do
   alias IO.ANSI
 
-  def red(str), do: colourize(ANSI.red, str)
-  def cyan(str), do: colourize(ANSI.cyan, str)
-  def green(str), do: colourize(ANSI.green, str)
-  def yellow(str), do: colourize(ANSI.yellow, str)
+  def red(str), do: colourize(ANSI.red(), str)
+  def cyan(str), do: colourize(ANSI.cyan(), str)
+  def green(str), do: colourize(ANSI.green(), str)
+  def yellow(str), do: colourize(ANSI.yellow(), str)
 
   defp colourize(color, message) do
-    Enum.join([color, message, ANSI.reset], "")
+    Enum.join([color, message, ANSI.reset()], "")
   end
 end
 

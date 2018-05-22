@@ -13,7 +13,7 @@ defmodule MapsTests do
       false,
       %{:first_name => "Jon", :last_name => "Snow"},
       {:ok, "Baratheon"},
-      %{:first_name => "Jon", :last_name => "Snow"},
+      %{:first_name => "Jon", :last_name => "Snow"}
     ]
 
     test_all(Maps, answers)
