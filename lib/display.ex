@@ -17,33 +17,34 @@ defmodule Display do
   end
 
   def handle_cast(:clear_screen, state = %{clear_screen: true}) do
-    IO.puts(ANSI.clear)
-    IO.puts(ANSI.home)
+    IO.puts(ANSI.clear())
+    IO.puts(ANSI.home())
 
     {:noreply, state}
   end
+
   def handle_cast(:clear_screen, state) do
     {:noreply, state}
   end
 
   def invalid_koan(koan, modules) do
     Notifications.invalid_koan(koan, modules)
-    |> IO.puts
+    |> IO.puts()
   end
 
   def show_failure(failure, module, name) do
     format(failure, module, name)
-    |> IO.puts
+    |> IO.puts()
   end
 
   def show_compile_error(error) do
     Failure.show_compile_error(error)
-    |> IO.puts
+    |> IO.puts()
   end
 
   def congratulate do
-    Notifications.congratulate
-    |> IO.puts
+    Notifications.congratulate()
+    |> IO.puts()
   end
 
   def clear_screen do
@@ -52,9 +53,9 @@ defmodule Display do
 
   defp format(failure, module, name) do
     """
-    #{Intro.intro(module, Tracker.visited)}
+    #{Intro.intro(module, Tracker.visited())}
     Now meditate upon #{format_module(module)}
-    #{ProgressBar.progress_bar(Tracker.summarize)}
+    #{ProgressBar.progress_bar(Tracker.summarize())}
     ----------------------------------------
     #{name}
     #{Failure.format_failure(failure)}
@@ -62,6 +63,6 @@ defmodule Display do
   end
 
   defp format_module(module) do
-    Module.split(module) |> List.last
+    Module.split(module) |> List.last()
   end
 end

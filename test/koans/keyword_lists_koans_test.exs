@@ -8,7 +8,7 @@ defmodule KeywordListsTests do
       "bar",
       "baz",
       {:multiple, [:foo, "bar"]},
-      "foo",
+      "foo"
     ]
 
     test_all(KeywordLists, answers)

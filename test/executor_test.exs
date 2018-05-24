@@ -12,6 +12,6 @@ defmodule ExecuteTest do
   end
 
   test "can access intro" do
-    assert SampleKoan.intro == "There is something\n"
+    assert SampleKoan.intro() == "There is something\n"
   end
 end

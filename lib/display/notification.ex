@@ -15,7 +15,7 @@ defmodule Display.Notifications do
     |> Enum.map(&Atom.to_string/1)
     |> Enum.map(&name/1)
     |> Enum.join(", ")
-    |> Paint.red
+    |> Paint.red()
   end
 
   defp name("Elixir." <> module), do: module

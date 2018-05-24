@@ -18,7 +18,7 @@ defmodule ProcessesTests do
       {:waited_too_long, "I am impatient"},
       {:exited, :random_reason},
       :normal,
-      :normal,
+      :normal
     ]
 
     test_all(Processes, answers)

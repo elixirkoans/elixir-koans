@@ -30,7 +30,7 @@ defmodule NumbersTests do
       {:multiple, [6.0, 5.0, 8.9, -5.567]},
       {:multiple, [1, 10]},
       {:multiple, [true, true, false]},
-      {:multiple, [true, false]},
+      {:multiple, [true, false]}
     ]
 
     test_all(Numbers, answers)

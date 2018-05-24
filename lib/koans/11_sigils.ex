@@ -17,7 +17,7 @@ defmodule Sigils do
   end
 
   koan "The lowercase ~s sigil supports string interpolation" do
-    assert ~s[1 + 1 = #{1+1}] == ___
+    assert ~s[1 + 1 = #{1 + 1}] == ___
   end
 
   koan "The ~S sigil is similar to ~s but doesn't do interpolation" do
@@ -29,7 +29,7 @@ defmodule Sigils do
   end
 
   koan "The ~w sigil also allows interpolation" do
-    assert ~w(Hello 1#{1+1}3) == ___
+    assert ~w(Hello 1#{1 + 1}3) == ___
   end
 
   koan "The ~W sigil behaves to ~w as ~S behaves to ~s" do

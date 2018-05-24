@@ -29,8 +29,10 @@ defmodule Koans do
   end
 
   defmacro generate_test_method(_name, 0, _body), do: false
+
   defmacro generate_test_method(name, 1, body) do
     single_var = Blanks.replace(body, Macro.var(:answer, __MODULE__))
+
     quote do
       def unquote(name)(answer) do
         try do
@@ -42,8 +44,11 @@ defmodule Koans do
       end
     end
   end
+
   defmacro generate_test_method(name, number_of_args, body) do
-    answer_vars = for id <- 1..number_of_args, do: Macro.var(String.to_atom("answer#{id}"), __MODULE__)
+    answer_vars =
+      for id <- 1..number_of_args, do: Macro.var(String.to_atom("answer#{id}"), __MODULE__)
+
     multi_var = Blanks.replace(body, answer_vars)
 
     quote do
@@ -60,12 +65,12 @@ defmodule Koans do
 
   defp blank_line_replacement({:assert, _meta, [expr]}) do
     code = Macro.escape(expr)
-    quote do: raise ExUnit.AssertionError, expr: unquote(code)
+    quote do: raise(ExUnit.AssertionError, expr: unquote(code))
   end
 
   defp blank_line_replacement(line) do
     code = Macro.escape(line)
-    quote do: raise ExUnit.AssertionError, expr: unquote(code)
+    quote do: raise(ExUnit.AssertionError, expr: unquote(code))
   end
 
   defmacro __using__(_opts) do
@@ -83,6 +88,7 @@ defmodule Koans do
 
   defmacro __before_compile__(env) do
     koans = koans(env)
+
     quote do
       def all_koans do
         unquote(koans)
@@ -95,6 +101,6 @@ defmodule Koans do
   defp koans(env) do
     env.module
     |> Module.get_attribute(:koans)
-    |> Enum.reverse
+    |> Enum.reverse()
   end
 end

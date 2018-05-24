@@ -9,10 +9,11 @@ defmodule Mix.Tasks.Meditate do
 
     {parsed, _, _} = OptionParser.parse(args)
 
-    modules = parsed
-    |> initial_module
-    |> ok?
-    |> Runner.modules_to_run
+    modules =
+      parsed
+      |> initial_module
+      |> ok?
+      |> Runner.modules_to_run()
 
     Tracker.set_total(modules)
     Tracker.notify_on_complete(self())
@@ -26,7 +27,7 @@ defmodule Mix.Tasks.Meditate do
 
   defp initial_module(parsed) do
     name = Keyword.get(parsed, :koan, "Equalities")
-    String.to_atom("Elixir."<> name)
+    String.to_atom("Elixir." <> name)
   end
 
   defp set_clear_screen(parsed) do
@@ -39,7 +40,7 @@ defmodule Mix.Tasks.Meditate do
     if Runner.koan?(koan) do
       koan
     else
-      Display.invalid_koan(koan, Runner.modules)
+      Display.invalid_koan(koan, Runner.modules())
       exit(:normal)
     end
   end

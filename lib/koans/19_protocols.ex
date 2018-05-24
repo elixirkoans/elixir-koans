@@ -3,7 +3,7 @@ defmodule Protocols do
 
   @intro "Want to follow the rules? Adhere to the protocol!"
 
-  defprotocol School, do: def enroll(person)
+  defprotocol(School, do: def(enroll(person)))
 
   defimpl School, for: Any do
     def enroll(_) do
@@ -16,9 +16,9 @@ defmodule Protocols do
     defstruct name: ""
   end
 
-  defmodule Musician, do: defstruct name: "", instrument: ""
-  defmodule Dancer,  do: defstruct name: "", dance_style: ""
-  defmodule Baker, do: defstruct name: ""
+  defmodule(Musician, do: defstruct(name: "", instrument: ""))
+  defmodule(Dancer, do: defstruct(name: "", dance_style: ""))
+  defmodule(Baker, do: defstruct(name: ""))
 
   defimpl School, for: Musician do
     def enroll(musician) do

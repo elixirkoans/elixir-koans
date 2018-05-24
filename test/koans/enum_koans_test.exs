@@ -9,17 +9,17 @@ defmodule EnumTests do
       {:multiple, [true, false]},
       {:multiple, [true, false]},
       {:multiple, [true, false]},
-      [10,20,30],
-      [1,3],
+      [10, 20, 30],
+      [1, 3],
       [2],
-      [1,2,3],
-      [1,2,3,4,5],
-      [1,2,3],
+      [1, 2, 3],
+      [1, 2, 3, 4, 5],
+      [1, 2, 3],
       [a: 1, b: 2, c: 3],
       2,
       nil,
       :no_such_element,
-      6,
+      6
     ]
 
     test_all(Enums, answers)

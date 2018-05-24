@@ -6,13 +6,11 @@ defmodule Maps do
   @person %{
     first_name: "Jon",
     last_name: "Snow",
-    age: 27,
+    age: 27
   }
 
   koan "Maps represent structured data, like a person" do
-    assert @person == %{first_name: ___,
-                        last_name: "Snow",
-                        age: 27 }
+    assert @person == %{first_name: ___, last_name: "Snow", age: 27}
   end
 
   koan "Fetching a value returns a tuple with ok when it exists" do
