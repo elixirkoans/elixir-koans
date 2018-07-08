@@ -79,13 +79,13 @@ defmodule Functions do
   end
 
   koan "You can use pattern matching to define multiple cases for anonymous functions" do
-    format_result = fn
+    inspirational_quote = fn
       {:ok, result} -> "Success is #{result}"
       {:error, reason} -> "You just lost #{reason}"
     end
 
-    assert format_result.({:ok, "no accident"}) == ___
-    assert format_result.({:error, "the game"}) == ___
+    assert inspirational_quote.({:ok, "no accident"}) == ___
+    assert inspirational_quote.({:error, "the game"}) == ___
   end
 
   def times_five_and_then(number, fun), do: fun.(number * 5)
