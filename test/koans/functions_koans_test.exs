@@ -15,6 +15,7 @@ defmodule FunctionsTests do
       6,
       "Hi, Foo!",
       ["foo", "foo", "foo"],
+      {:multiple, ["Success is no accident", "You just lost the game"]},
       100,
       1000,
       "Full Name",
