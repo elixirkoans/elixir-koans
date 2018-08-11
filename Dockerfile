@@ -1,14 +1,14 @@
 FROM elixir:latest
-MAINTAINER Michael Clifford <cliffom@gmail.com>
+MAINTAINER krlsdu <krlsdu@gmail.com>
 
 RUN apt-get update
 RUN apt-get install -y tmux git inotify-tools vim
-RUN git clone https://github.com/krlsdu/elixir-koans.git /app
-RUN cd /app && \
+COPY . elixir-koans 
+RUN cd elixir-koans && \
   mix local.hex --force && \
   mix deps.get
-COPY entrypoint.sh /root/entrypoint.sh
-RUN chmod +x /root/entrypoint.sh
+COPY elixir-koans.sh /bin/elixir-koans.sh
+RUN chmod +x /bin/elixir-koans.sh
 
-WORKDIR /app
-CMD /root/entrypoint.sh
+WORKDIR elixir-koans
+CMD [ "elixir-koans.sh" ]
