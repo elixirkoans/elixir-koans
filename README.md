@@ -5,6 +5,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/krlsdu/elixir-koans.svg)](https://hub.docker.com/r/krlsdu/elixir-koans/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/krlsdu/elixir-koans.svg)](https://hub.docker.com/r/krlsdu/elixir-koans/)
 [![Docker Automated build](https://img.shields.io/docker/automated/krlsdu/elixir-koans.svg)](https://hub.docker.com/r/krlsdu/elixir-koans/)
+
 Elixir koans is a fun way to get started with the elixir programming language. It is a tour
 of the most important features and idiomatic usage of the language.
 
