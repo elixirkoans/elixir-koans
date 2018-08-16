@@ -1,8 +1,7 @@
-FROM elixir:latest
+FROM elixir:alpine
 MAINTAINER krlsdu <krlsdu@gmail.com>
 
-RUN apt-get update
-RUN apt-get install -y tmux git inotify-tools vim
+RUN apk add --no-cache tmux git inotify-tools vim
 COPY . elixir-koans 
 RUN cd elixir-koans && \
   mix local.hex --force && \
