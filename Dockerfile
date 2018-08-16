@@ -1,7 +1,7 @@
 FROM elixir:alpine
 MAINTAINER krlsdu <krlsdu@gmail.com>
 
-RUN apk add --no-cache tmux git inotify-tools vim
+RUN apk add --no-cache tmux inotify-tools vim
 COPY . elixir-koans 
 RUN cd elixir-koans && \
   mix local.hex --force && \
