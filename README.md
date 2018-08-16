@@ -1,7 +1,7 @@
 # Elixir Koans
 
 [![Build Status](https://travis-ci.org/elixirkoans/elixir-koans.svg?branch=master)](https://travis-ci.org/elixirkoans/elixir-koans)
-[![Docker Build](https://img.shields.io/badge/dynamic/json.svg?label=docker%20build%20&url=https%3A%2F%2Fhub.docker.com%2Fv2%2Frepositories%2Fkrlsdu%2Felixir-koans%2F&query=%24.is_automated&colorB=blue&prefix=automated%20)]()
+[![Docker Automated build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/krlsdu/elixir-koans/)
 
 Elixir koans is a fun way to get started with the elixir programming language. It is a tour
 of the most important features and idiomatic usage of the language.
