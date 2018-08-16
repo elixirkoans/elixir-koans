@@ -1,13 +1,19 @@
-FROM elixir:alpine
+FROM alpine
 MAINTAINER krlsdu <krlsdu@gmail.com>
 
-RUN apk add --no-cache tmux inotify-tools vim
+RUN apk add --no-cache \
+elixir \
+inotify-tools \
+tmux \
+vim
+
 COPY . elixir-koans 
-RUN cd elixir-koans && \
-  mix local.hex --force && \
-  mix deps.get
-COPY elixir-koans.sh /bin/elixir-koans.sh
-RUN chmod +x /bin/elixir-koans.sh
 
 WORKDIR elixir-koans
-CMD [ "elixir-koans.sh" ]
+
+RUN mix local.hex --force && \
+mix deps.get
+
+RUN chmod +x elixir-koans.sh
+
+CMD [ "./elixir-koans.sh" ]

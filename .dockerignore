@@ -5,3 +5,5 @@ temp?
 *.md
 !README.md
 *.yml
+_build
+mix.lock
