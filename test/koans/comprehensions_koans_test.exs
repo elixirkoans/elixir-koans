@@ -7,7 +7,7 @@ defmodule ComprehensionsTests do
       [1, 4, 9, 16],
       [1, 4, 9, 16],
       ["Hello World", "Apple Pie"],
-      ["2 dogs", "2 cats", "4 dogs", "4 cats"],
+      ["little dogs", "little cats", "big dogs", "big cats"],
       [4, 5, 6],
       ["Apple Pie", "Pecan Pie", "Pumpkin Pie"],
     ]

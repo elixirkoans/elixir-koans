@@ -1,12 +1,9 @@
 defmodule Comprehensions do
   use Koans
 
-  @intro "Comprehensions"
+  @intro "A comprehension is made of three parts: generators, filters, and collectibles. We will look at how these interact with eachother"
 
-  # A comprehension is made of three parts: generators, filters and collectables.
-
-  koan "Generators provide the values to be used in a comprehension" do
-    # In the expression below, `n <- [1, 2, 3, 4]` is the generator.
+  koan "The generator, `n <- [1, 2, 3, 4]`, is providing the values for our comprehension" do
     assert (for n <- [1, 2, 3, 4], do: n * n) == ___
   end
 
@@ -20,7 +17,7 @@ defmodule Comprehensions do
   end
 
   koan "You can use multiple generators at once" do
-    assert (for x <- [2, 4], y <- ["dogs", "cats"], do: "#{x} #{y}") == ___
+    assert (for x <- ["little", "big"], y <- ["dogs", "cats"], do: "#{x} #{y}") == ___
   end
 
   koan "Use a filter to reduce your work" do
@@ -28,9 +25,9 @@ defmodule Comprehensions do
   end
 
   koan "Add the result of a comprehension to an existing collection" do
-    pies = ["Apple Pie"]
-    pies = for x <- ["Pecan", "Pumpkin"], into: pies, do: "#{x} Pie"
-    assert pies == ___
+    collection = ["Apple Pie"]
+    collection = for x <- ["Pecan", "Pumpkin"], into: collection, do: "#{x} Pie"
+    assert collection == ___
   end
 
 end
