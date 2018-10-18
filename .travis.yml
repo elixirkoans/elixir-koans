@@ -12,4 +12,4 @@ matrix:
     - elixir: 1.5.1
       otp_release: 20.0
 after_success: 
-  - "curl -H \"Content-Type: application/json\" --data '{\"docker_tag\": \"master\"}' -X POST https://registry.hub.docker.com/u/krlsdu/elixir-koans/trigger/${TOKEN_DOCKER_BUILD}/"
+  - "curl -H \"Content-Type: application/json\" --data '{\"build\": true}' -X POST https://registry.hub.docker.com/u/krlsdu/elixir-koans/trigger/${TOKEN_DOCKER_BUILD}/"
