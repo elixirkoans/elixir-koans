@@ -1,6 +1,6 @@
 # Elixir Koans
 
-[![Build Status](https://travis-ci.org/elixirkoans/elixir-koans.svg?branch=master)](https://travis-ci.org/elixirkoans/elixir-koans)
+[![Build Status](https://travis-ci.org/krlsdu/elixir-koans.svg?branch=master)](https://travis-ci.org/krlsdu/elixir-koans)
 [![Docker Build Status](https://img.shields.io/docker/build/krlsdu/elixir-koans.svg)](https://hub.docker.com/r/krlsdu/elixir-koans/)
 [![Docker Stars](https://img.shields.io/docker/stars/krlsdu/elixir-koans.svg)](https://hub.docker.com/r/krlsdu/elixir-koans/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/krlsdu/elixir-koans.svg)](https://hub.docker.com/r/krlsdu/elixir-koans/)
