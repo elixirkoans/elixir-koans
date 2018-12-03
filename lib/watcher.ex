@@ -12,7 +12,8 @@ defmodule Watcher do
   end
 
   def handle_info({:file_event, watcher_pid, {path, events}}, %{watcher_pid: watcher_pid} = state) do
-    if Enum.member?(events, :modified) do
+    # respond to renamed as well due to that some editors use temporary files for atomic writes (ex: TextMate)
+    if Enum.member?(events, :modified) || Enum.member?(events, :renamed) do
       path |> normalize |> reload
     end
 
