@@ -24,7 +24,7 @@ defmodule Watcher do
     if Path.extname(file) == ".ex" do
       try do
         file
-        |> Code.load_file()
+        |> Code.compile_file()
         |> Enum.map(&elem(&1, 0))
         |> Enum.find(&Runner.koan?/1)
         |> Runner.modules_to_run()
