@@ -1,2 +1,3 @@
 #!/bin/sh
-docker build -t elixir-koans . && docker run --rm -v `pwd`:/elixir-koans -ti elixir-koans
+VERSION=1.7
+docker build --build-arg VERSION=${VERSION} -t elixir-koans . && docker run --rm -v `pwd`:/elixir-koans -ti elixir-koans
