@@ -12,7 +12,8 @@ defmodule Watcher do
   end
 
   def handle_info({:file_event, watcher_pid, {path, events}}, %{watcher_pid: watcher_pid} = state) do
-    if Enum.member?(events, :modified) do
+    # respond to renamed as well due to that some editors use temporary files for atomic writes (ex: TextMate)
+    if Enum.member?(events, :modified) || Enum.member?(events, :renamed) do
       path |> normalize |> reload
     end
 
@@ -23,7 +24,7 @@ defmodule Watcher do
     if Path.extname(file) == ".ex" do
       try do
         file
-        |> Code.load_file()
+        |> portable_load_file
         |> Enum.map(&elem(&1, 0))
         |> Enum.find(&Runner.koan?/1)
         |> Runner.modules_to_run()
@@ -31,6 +32,17 @@ defmodule Watcher do
       rescue
         e -> Display.show_compile_error(e)
       end
+    end
+  end
+
+  # Elixir 1.7 deprecates Code.load_file in favor of Code.compile_file. In
+  # order to avoid the depecation warnings while maintaining backwards
+  # compatibility, we check the sytem version and execute conditionally.
+  defp portable_load_file(file) do
+    if Version.match?(System.version(), "~> 1.7") do
+      Code.compile_file(file)
+    else
+      Code.load_file(file)
     end
   end
 

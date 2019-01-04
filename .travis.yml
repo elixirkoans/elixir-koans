@@ -11,5 +11,7 @@ matrix:
       otp_release: 19.1
     - elixir: 1.5.1
       otp_release: 20.0
-after_success: 
-  - "curl -H \"Content-Type: application/json\" --data '{\"build\": true}' -X POST https://registry.hub.docker.com/u/krlsdu/elixir-koans/trigger/${TOKEN_DOCKER_BUILD}/"
+    - elixir: 1.6.5
+      otp_release: 20.0
+    - elixir: 1.7.3
+      otp_release: 21.0

@@ -1,9 +1,2 @@
-# comment
-*/temp*
-*/*/temp*
-temp?
-*.md
-!README.md
-*.yml
+lib/koans
 _build
-mix.lock
