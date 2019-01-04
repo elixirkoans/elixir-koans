@@ -24,7 +24,7 @@ defmodule Watcher do
     if Path.extname(file) == ".ex" do
       try do
         file
-        |> Code.compile_file()
+        |> portable_load_file
         |> Enum.map(&elem(&1, 0))
         |> Enum.find(&Runner.koan?/1)
         |> Runner.modules_to_run()
@@ -32,6 +32,17 @@ defmodule Watcher do
       rescue
         e -> Display.show_compile_error(e)
       end
+    end
+  end
+
+  # Elixir 1.7 deprecates Code.load_file in favor of Code.compile_file. In
+  # order to avoid the depecation warnings while maintaining backwards
+  # compatibility, we check the sytem version and execute conditionally.
+  defp portable_load_file(file) do
+    if Version.match?(System.version(), "~> 1.7") do
+      Code.compile_file(file)
+    else
+      Code.load_file(file)
     end
   end
 
