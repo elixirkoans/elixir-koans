@@ -8,6 +8,10 @@ defmodule Display do
     GenServer.start_link(__MODULE__, %{clear_screen: true}, name: __MODULE__)
   end
 
+  def init(args) do
+    {:ok, args}
+  end
+
   def disable_clear do
     GenServer.cast(__MODULE__, :disable_clear)
   end
