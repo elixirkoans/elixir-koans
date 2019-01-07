@@ -8,6 +8,9 @@ defmodule GenServers do
 
     #####
     # External API
+    def init(args) do
+      {:ok, args}
+    end
 
     def start_link(init_password) do
       # The __MODULE__ macro returns the current module name as an atom

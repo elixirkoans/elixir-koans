@@ -31,6 +31,10 @@ defmodule Runner do
 
   def modules_to_run(start_module), do: Enum.drop_while(modules(), &(&1 != start_module))
 
+  def init(args) do
+    {:ok, args}
+  end
+
   def start_link do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
