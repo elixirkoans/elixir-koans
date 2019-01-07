@@ -12,7 +12,7 @@ defmodule Numbers do
     assert 1 === 1.0 == ___
   end
 
-  koan "Revisit divison with threequal" do
+  koan "Revisit division with threequal" do
     assert 2 / 2 === ___
   end
 
