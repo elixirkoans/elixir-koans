@@ -6,7 +6,6 @@ defmodule GenServersTests do
     answers = [
       true,
       "3kr3t!",
-      "3kr3t!",
       {:multiple, ["Apple Inc.", "MacBook Pro"]},
       {:multiple, [["2.9 GHz Intel Core i5"], 8192, :intel_iris_graphics]},
       "73x7!n9",
