@@ -98,11 +98,6 @@ defmodule GenServers do
     assert is_pid(pid) == ___
   end
 
-  koan "When starting a GenServer you can set it's initial state" do
-    {:ok, pid} = GenServer.start_link(Laptop, "3kr3t!")
-    assert GenServer.call(pid, :get_password) == ___
-  end
-
   koan "The handle_call callback is synchronous so it will block until a reply is received" do
     {:ok, pid} = GenServer.start_link(Laptop, "3kr3t!")
     assert GenServer.call(pid, :get_password) == ___
