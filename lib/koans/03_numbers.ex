@@ -65,7 +65,7 @@ defmodule Numbers do
     assert string_digit == ___
   end
 
-  koan "The meaning of life in hexidecimal is 2A!" do
+  koan "The meaning of life in hexadecimal is 2A!" do
     assert Integer.parse("2A", 16) == {___, ""}
   end
 
