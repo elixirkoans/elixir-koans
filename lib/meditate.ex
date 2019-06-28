@@ -7,7 +7,7 @@ defmodule Mix.Tasks.Meditate do
     Application.ensure_all_started(:elixir_koans)
     Code.compiler_options(ignore_module_conflict: true)
 
-    {parsed, _, _} = OptionParser.parse(args)
+    {parsed, _, _} = OptionParser.parse(args, strict: [clear_screen: :boolean])
 
     modules =
       parsed
@@ -31,7 +31,7 @@ defmodule Mix.Tasks.Meditate do
   end
 
   defp set_clear_screen(parsed) do
-    if Keyword.has_key?(parsed, :no_clear_screen) do
+    unless Keyword.get(parsed, :clear_screen, true) do
       Display.disable_clear()
     end
   end
