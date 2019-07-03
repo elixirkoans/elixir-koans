@@ -9,6 +9,13 @@ of the most important features and idiomatic usage of the language.
 
 You need to have Elixir installed. Please refer to the [official guide](http://elixir-lang.org/install.html) for instructions.
 
+First, clone the repo from GitHub:
+
+```sh
+$ git clone https://github.com/elixirkoans/elixir-koans.git
+$ cd elixir-koans/
+```
+
 Next, fetch mix dependencies by running:
 
 ```sh
