@@ -49,7 +49,7 @@ defmodule Display.Failure do
   end
 
   defp format_error(error) do
-    trace = System.stacktrace() |> Enum.take(2)
+    trace = :erlang.get_stacktrace() |> Enum.take(2)
     Paint.red(Exception.format(:error, error, trace))
   end
 
