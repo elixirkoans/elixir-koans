@@ -15,8 +15,8 @@ defmodule TestHarness do
     koans_count = length(koans)
     answer_count = length(answers)
 
-    if length(koans) > length(answers) do
-      raise "Answer missing for #{module}. #{koans_count} koans, but only #{answer_count} answers."
+    if length(koans) != length(answers) do
+      raise "Mismatched number of answers for module #{module}. #{koans_count} koans, but #{answer_count} answers."
     else
       koans
     end
