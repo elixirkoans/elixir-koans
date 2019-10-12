@@ -1,2 +1,4 @@
-#!/bin/sh
-docker build -t elixir-koans . && docker run --rm -v `pwd`:/elixir-koans -ti elixir-koans
+#!/bin/sh -e
+
+docker build -t elixir-koans .
+docker run --rm -v `pwd`/lib/koans:/elixir-koans/lib/koans -ti elixir-koans
