@@ -23,11 +23,4 @@ defmodule Comprehensions do
   koan "Use a filter to reduce your work" do
     assert (for n <- [1, 2, 3, 4, 5, 6], n > 3, do: n) == ___
   end
-
-  koan "Add the result of a comprehension to an existing collection" do
-    collection = ["Apple Pie"]
-    collection = for x <- ["Pecan", "Pumpkin"], into: collection, do: "#{x} Pie"
-    assert collection == ___
-  end
-
 end
