@@ -25,8 +25,7 @@ defmodule Comprehensions do
   end
 
   koan "Add the result of a comprehension to an existing collection" do
-    collection = ["Apple Pie"]
-    collection = for x <- ["Pecan", "Pumpkin"], into: collection, do: "#{x} Pie"
+    collection = for x <- ["Pecan", "Pumpkin"], into: %{}, do: {x, "#{x} Pie"}
     assert collection == ___
   end
 
