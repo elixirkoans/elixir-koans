@@ -22,7 +22,7 @@ defmodule Koans do
           unquote(compiled_body)
           :ok
         rescue
-          e -> e
+          e -> {:error, __STACKTRACE__, e}
         end
       end
     end
@@ -39,7 +39,7 @@ defmodule Koans do
           unquote(single_var)
           :ok
         rescue
-          e -> e
+          e -> {:error, __STACKTRACE__, e}
         end
       end
     end
@@ -57,7 +57,7 @@ defmodule Koans do
           unquote(multi_var)
           :ok
         rescue
-          e -> e
+          e -> {:error, __STACKTRACE__, e}
         end
       end
     end

@@ -38,14 +38,14 @@ defmodule Execute do
 
   defp expand(:ok, _), do: :ok
 
-  defp expand(error, module) do
+  defp expand({:error, stacktrace, exception}, module) do
     {file, line} =
-      System.stacktrace()
+      stacktrace
       |> Enum.drop_while(&(!in_koan?(&1, module)))
       |> List.first()
       |> extract_file_and_line
 
-    %{error: error, file: file, line: line}
+    %{error: exception, file: file, line: line}
   end
 
   defp in_koan?({module, _, _, _}, koan), do: module == koan
