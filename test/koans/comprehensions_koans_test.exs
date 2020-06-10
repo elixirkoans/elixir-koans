@@ -9,7 +9,7 @@ defmodule ComprehensionsTests do
       ["Hello World", "Apple Pie"],
       ["little dogs", "little cats", "big dogs", "big cats"],
       [4, 5, 6],
-      ["Apple Pie", "Pecan Pie", "Pumpkin Pie"],
+      %{"Pecan" => "Pecan Pie", "Pumpkin" => "Pumpkin Pie"}
     ]
 
     test_all(Comprehensions, answers)
