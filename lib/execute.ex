@@ -31,26 +31,20 @@ defmodule Execute do
   end
 
   defp exec(module, name, args, parent) do
-    result = apply(module, name, args)
-    send(parent, expand(result, module))
+    case apply(module, name, args) do
+      :ok  -> send(parent, :ok)
+      err -> send(parent, expand(err))
+    end
     Process.exit(self(), :kill)
   end
 
-  defp expand(:ok, _), do: :ok
-
-  defp expand({:error, stacktrace, exception}, module) do
-    {file, line} =
-      :erlang.get_stacktrace()
-      |> Enum.drop_while(&(!in_koan?(&1, module)))
-      |> List.first()
-      |> extract_file_and_line
-
-    %{error: exception, file: file, line: line}
+  defp expand({:error, error, {:location, file_path, line}}) do
+   %{error: error, file: make_relative(file_path), line: line}
   end
 
-  defp in_koan?({module, _, _, _}, koan), do: module == koan
-
-  defp extract_file_and_line({_, _, _, [file: file, line: line]}) do
-    {file, line}
+  defp make_relative(path) do
+    path
+    |> Path.relative_to_cwd()
+    |> to_string()
   end
 end

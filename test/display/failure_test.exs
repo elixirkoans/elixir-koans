@@ -39,11 +39,29 @@ defmodule FailureTests do
 
   test "only offending lines are displayed for errors" do
     [koan] = SingleArity.all_koans()
-    error = apply(SingleArity, koan, []) |> Tuple.to_list |> List.last |> error
+    error = apply(SingleArity, koan, []) |> error()
 
     assert Failure.format_failure(error) == """
-           Assertion failed in some_file.ex:42\nmatch?(:foo, ___)
+           Assertion failed in some_file.ex:42
+           match?(:foo, ___)
            """
+  end
+
+  test "formats errors such as arity mismatches as such" do
+    e = error({:error, %FunctionClauseError{args: nil, arity: 1, clauses: nil, function: :chardata_to_string, kind: nil, module: IO}, nil})
+
+    assert Failure.format_failure(e) == """
+           Error in some_file.ex:42
+           ** (FunctionClauseError) no function clause matching in IO.chardata_to_string/1
+           """
+  end
+
+  defp error({:error, error, _}) do
+    %{
+      error: error,
+      file: "some_file.ex",
+      line: 42
+    }
   end
 
   defp error(error) do

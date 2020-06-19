@@ -22,7 +22,7 @@ defmodule Koans do
           unquote(compiled_body)
           :ok
         rescue
-          e -> {:error, __STACKTRACE__, e}
+          e -> {:error, e, {:location, __ENV__.file, __ENV__.line}}
         end
       end
     end
@@ -39,7 +39,7 @@ defmodule Koans do
           unquote(single_var)
           :ok
         rescue
-          e -> {:error, __STACKTRACE__, e}
+          e -> {:error, e, {:location, __ENV__.file, __ENV__.line}}
         end
       end
     end
@@ -57,7 +57,7 @@ defmodule Koans do
           unquote(multi_var)
           :ok
         rescue
-          e -> {:error, __STACKTRACE__, e}
+          e -> {:error, e, {:location, __ENV__.file, __ENV__.line}}
         end
       end
     end
@@ -98,8 +98,8 @@ defmodule Koans do
     end
   end
 
-  defp koans(env) do
-    env.module
+  defp koans(%{module: module}) do
+    module
     |> Module.get_attribute(:koans)
     |> Enum.reverse()
   end
