@@ -17,9 +17,8 @@ defmodule KeywordLists do
 
   koan "You could access the values of repeating key" do
     kw_list = [foo: "bar", foo1: "bar1", foo: "baz"]
-    values = Keyword.get_values(kw_list, :foo)
 
-    assert List.last(values) == ___
+    assert Keyword.get_values(kw_list, :foo) == [___, ___]
   end
 
   koan "Keyword lists are just special syntax for lists of two-element tuples" do

@@ -6,7 +6,7 @@ defmodule KeywordListsTests do
     answers = [
       "bar",
       "bar",
-      "baz",
+      {:multiple, ["bar", "baz"]},
       {:multiple, [:foo, "bar"]},
       "foo"
     ]
