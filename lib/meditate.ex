@@ -7,7 +7,7 @@ defmodule Mix.Tasks.Meditate do
     Application.ensure_all_started(:elixir_koans)
     Code.compiler_options(ignore_module_conflict: true)
 
-    {parsed, _, _} = OptionParser.parse(args)
+    {parsed, _, _} = OptionParser.parse(args, switches: [])
 
     modules =
       parsed
