@@ -3,49 +3,49 @@ defmodule Protocols do
 
   @intro "Want to follow the rules? Adhere to the protocol!"
 
-  defprotocol(School, do: def(enroll(person)))
+  defprotocol(Artist, do: def(perform(artist)))
 
-  defimpl School, for: Any do
-    def enroll(_) do
-      "Pupil enrolled at school"
+  defimpl Artist, for: Any do
+    def perform(_) do
+      "Artist showed performance"
     end
   end
 
-  defmodule Student do
-    @derive School
+  defmodule Painter do
+    @derive Artist
     defstruct name: ""
   end
 
   defmodule(Musician, do: defstruct(name: "", instrument: ""))
   defmodule(Dancer, do: defstruct(name: "", dance_style: ""))
-  defmodule(Baker, do: defstruct(name: ""))
+  defmodule(Physicist, do: defstruct(name: ""))
 
-  defimpl School, for: Musician do
-    def enroll(musician) do
-      "#{musician.name} signed up for #{musician.instrument}"
+  defimpl Artist, for: Musician do
+    def perform(musician) do
+      "#{musician.name} played #{musician.instrument}"
     end
   end
 
-  defimpl School, for: Dancer do
-    def enroll(dancer), do: "#{dancer.name} enrolled for #{dancer.dance_style}"
+  defimpl Artist, for: Dancer do
+    def perform(dancer), do: "#{dancer.name} performed #{dancer.dance_style}"
   end
 
   koan "Sharing an interface is the secret at school" do
     musician = %Musician{name: "Andre", instrument: "violin"}
     dancer = %Dancer{name: "Darcy", dance_style: "ballet"}
 
-    assert School.enroll(musician) == ___
-    assert School.enroll(dancer) == ___
+    assert Artist.perform(musician) == ___
+    assert Artist.perform(dancer) == ___
   end
 
   koan "Sometimes we all use the same" do
-    student = %Student{name: "Emily"}
-    assert School.enroll(student) == ___
+    painter = %Painter{name: "Emily"}
+    assert Artist.perform(painter) == ___
   end
 
-  koan "If you don't comply you can't get in" do
+  koan "If you are not an artist, you can't show performance" do
     assert_raise ___, fn ->
-      School.enroll(%Baker{name: "Delia"})
+      Artist.perform(%Physicist{name: "Delia"})
     end
   end
 end
