@@ -1,6 +1,6 @@
-image: elixir
+image: elixir:alpine
 
 tasks:
-  - init: 'mix deps.get'
+  - init: 'apk add inotify-tools && mix local.hex --force deps.get'
     command: 'mix meditate
 '
