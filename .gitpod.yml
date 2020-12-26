@@ -1,0 +1,6 @@
+image: elixir
+
+tasks:
+  - init: 'mix deps.get'
+    command: 'mix meditate
+'
