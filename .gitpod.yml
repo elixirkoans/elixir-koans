@@ -1,6 +1,7 @@
-image: elixir:alpine
+image:
+  file: .gitpod.Dockerfile
 
 tasks:
-  - init: 'apk add inotify-tools && mix local.hex --force deps.get'
+  - init: 'mix local.hex --force deps.get'
     command: 'mix meditate
 '
