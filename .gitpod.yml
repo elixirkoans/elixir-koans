@@ -1,0 +1,6 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: 'mix local.hex --force && mix deps.get'
+    command: 'mix local.hex --force && mix meditate'
