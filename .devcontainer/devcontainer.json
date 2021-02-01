@@ -24,7 +24,8 @@
 		"dbaeumer.vscode-eslint",
 		"mtxr.sqltools",
 		"mtxr.sqltools-driver-pg",
-		"jakebecker.elixir-ls"
+		"jakebecker.elixir-ls",
+		"mjmcloug.vscode-elixir"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
