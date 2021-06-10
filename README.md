@@ -12,7 +12,7 @@ You need to have Elixir installed. Please refer to the [official guide](http://e
 First, clone the repo from GitHub:
 
 ```sh
-$ git clone https://github.com/elixirkoans/elixir-koans.git
+$ git clone https://github.com/Centro-de-Datos-UBA/elixir-koans.git
 $ cd elixir-koans/
 ```
 
