@@ -23,6 +23,7 @@ defmodule Runner do
   end
 
   @koan_path_pattern ~r/lib\/koans\/(\d+)_\w+.ex$/
+  def koan_path_pattern, do: @koan_path_pattern
 
   def path_to_number(path) do
     [_path, number] = Regex.run(@koan_path_pattern, path)

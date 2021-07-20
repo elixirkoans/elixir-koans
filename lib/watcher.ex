@@ -21,7 +21,7 @@ defmodule Watcher do
   end
 
   defp reload(file) do
-    if Path.extname(file) == ".ex" do
+    if String.match?(file, Runner.koan_path_pattern()) do
       try do
         file
         |> portable_load_file
