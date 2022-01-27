@@ -4,8 +4,8 @@ defmodule ProtocolsTests do
 
   test "Protocols" do
     answers = [
-      {:multiple, ["Andre signed up for violin", "Darcy enrolled for ballet"]},
-      "Pupil enrolled at school",
+      {:multiple, ["Andre played violin", "Darcy performed ballet"]},
+      "Artist showed performance",
       Protocol.UndefinedError
     ]
 
