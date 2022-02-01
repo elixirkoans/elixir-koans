@@ -135,15 +135,11 @@ defmodule GenServers do
 
   koan "Our server works but it's pretty ugly to use; so lets use a cleaner interface" do
     Laptop.start_link("EL!73")
-    assert Laptop.unlock("EL!73") == ___
-  end
 
-  koan "Let's use the remaining functions in the external API" do
-    Laptop.start_link("EL!73")
-    {_, response} = Laptop.unlock("EL!73")
-    assert response == ___
+    assert Laptop.unlock("EL!73") == ___
 
     Laptop.change_password("EL!73", "Elixir")
+
     {_, response} = Laptop.unlock("EL!73")
     assert response == ___
 
