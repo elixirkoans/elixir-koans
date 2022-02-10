@@ -12,9 +12,13 @@ defmodule GenServers do
       {:ok, args}
     end
 
-    def start_link(init_password) do
+    def start(init_password) do
       # The __MODULE__ macro returns the current module name as an atom
-      GenServer.start_link(__MODULE__, init_password, name: __MODULE__)
+      GenServer.start(__MODULE__, init_password, name: __MODULE__)
+    end
+
+    def stop do
+      GenServer.stop(__MODULE__)
     end
 
     def unlock(password) do
@@ -151,5 +155,7 @@ defmodule GenServers do
 
     {_, response} = Laptop.owner_name()
     assert response == ___
+
+    :ok = Laptop.stop()
   end
 end
