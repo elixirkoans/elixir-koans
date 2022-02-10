@@ -11,7 +11,8 @@ defmodule GenServersTests do
       "73x7!n9",
       {:error, "Incorrect password!"},
       "Congrats! Your process was successfully named.",
-      {:multiple, [{:ok, "Laptop unlocked!"}, "Incorrect password!", "Jack Sparrow"]}
+      {:ok, "Laptop unlocked!"},
+      {:multiple, ["Laptop unlocked!", "Incorrect password!", "Jack Sparrow"]}
     ]
 
     test_all(GenServers, answers)
