@@ -1,4 +1,5 @@
-ExUnit.start()
+timeout = 1000 # ms
+ExUnit.start(timeout: timeout)
 
 defmodule TestHarness do
   import ExUnit.Assertions

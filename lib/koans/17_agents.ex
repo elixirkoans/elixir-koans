@@ -14,31 +14,31 @@ defmodule Agents do
   end
 
   koan "Update to update the state" do
-    Agent.start_link(fn -> "Hi there" end, name: __MODULE__)
+    Agent.start_link(fn -> "Hi there" end, name: :greeter)
 
-    Agent.update(__MODULE__, fn old ->
+    Agent.update(:greeter, fn old ->
       String.upcase(old)
     end)
 
-    assert Agent.get(__MODULE__, & &1) == ___
+    assert Agent.get(:greeter, & &1) == ___
   end
 
   koan "Use get_and_update when you need to read and change a value in one go" do
-    Agent.start_link(fn -> ["Milk"] end, name: __MODULE__)
+    Agent.start_link(fn -> ["Milk"] end, name: :groceries)
 
     old_list =
-      Agent.get_and_update(__MODULE__, fn old ->
+      Agent.get_and_update(:groceries, fn old ->
         {old, ["Bread" | old]}
       end)
 
     assert old_list == ___
-    assert Agent.get(__MODULE__, & &1) == ___
+    assert Agent.get(:groceries, & &1) == ___
   end
 
   koan "Somebody has to switch off the light at the end of the day" do
-    {:ok, pid} = Agent.start_link(fn -> ["Milk"] end, name: __MODULE__)
+    {:ok, pid} = Agent.start_link(fn -> "Fin." end, name: :stoppable)
 
-    Agent.stop(__MODULE__)
+    Agent.stop(:stoppable)
 
     assert Process.alive?(pid) == ___
   end
