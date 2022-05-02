@@ -77,7 +77,10 @@ defmodule Processes do
     pid = spawn(greeter)
 
     send(pid, {:hello, self()})
-    assert_receive ___
+
+    timeout = 100 # ms
+    failure_message = "Sorry, I didn't get the right message. Look at the message that is sent back very closely, and try again"
+    assert_receive ___, timeout, failure_message
   end
 
   def yelling_echo_loop do
