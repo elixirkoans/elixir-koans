@@ -63,8 +63,18 @@ defmodule Processes do
     send(self(), "hola!")
     send(self(), "como se llama?")
 
-    assert_receive ___
-    assert_receive ___
+    first_message =
+      receive do
+        message -> message
+      end
+
+    second_message =
+      receive do
+        message -> message
+      end
+
+    assert first_message == ___
+    assert second_message == ___
   end
 
   koan "A common pattern is to include the sender in the message, so that it can reply" do
