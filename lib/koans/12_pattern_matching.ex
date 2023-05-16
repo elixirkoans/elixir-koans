@@ -45,7 +45,7 @@ defmodule PatternMatching do
     end
   end
 
-  koan "So does the keyword lists" do
+  koan "So must keyword lists" do
     kw_list = [type: "car", year: 2016, make: "Honda"]
     [_type | [_year | [tuple]]] = kw_list
     assert tuple == {___, ___}
