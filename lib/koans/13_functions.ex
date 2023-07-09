@@ -25,7 +25,7 @@ defmodule Functions do
     assert first("One") == ___
   end
 
-  def repeat_again(message, times \\ 5) do
+  def repeat_again(message, times \\ 3) do
     String.duplicate(message, times)
   end
 
