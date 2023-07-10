@@ -86,26 +86,26 @@ defmodule Numbers do
   end
 
   koan "I don't want this decimal point, let's round up" do
-    assert Float.ceil(34.25) == ___
+    assert Float.ceil(34.25) === ___
   end
 
   koan "OK, I only want it to 1 decimal place" do
-    assert Float.ceil(34.25, 1) == ___
+    assert Float.ceil(34.25, 1) === ___
   end
 
   koan "Rounding down is what I need" do
-    assert Float.floor(99.99) == ___
+    assert Float.floor(99.99) === ___
   end
 
   koan "Rounding down to 2 decimal places" do
-    assert Float.floor(12.345, 2) == ___
+    assert Float.floor(12.345, 2) === ___
   end
 
   koan "Round the number up or down for me" do
-    assert Float.round(5.5) == ___
-    assert Float.round(5.4) == ___
-    assert Float.round(8.94, 1) == ___
-    assert Float.round(-5.5674, 3) == ___
+    assert Float.round(5.5) === ___
+    assert Float.round(5.4) === ___
+    assert Float.round(8.94, 1) === ___
+    assert Float.round(-5.5674, 3) === ___
   end
 
   koan "I want the first and last in the range" do
