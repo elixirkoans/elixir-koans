@@ -1,7 +1,7 @@
 defmodule Comprehensions do
   use Koans
 
-  @intro "A comprehension is made of three parts: generators, filters, and collectibles. We will look at how these interact with eachother"
+  @intro "A comprehension is made of three parts: generators, filters, and collectibles. We will look at how these interact with each other"
 
   koan "The generator, `n <- [1, 2, 3, 4]`, is providing the values for our comprehension" do
     assert (for n <- [1, 2, 3, 4], do: n * n) == ___
