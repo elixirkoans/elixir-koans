@@ -1,4 +1,5 @@
 defmodule Display.Failure do
+  @moduledoc false
   alias Display.Paint
 
   @no_value :ex_unit_no_meaningful_value

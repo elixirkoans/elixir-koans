@@ -1,4 +1,5 @@
 defmodule Koans do
+  @moduledoc false
   defp valid_name(name) do
     Regex.match?(~r/([A-Z]|\.\.\.).+/, name)
   end

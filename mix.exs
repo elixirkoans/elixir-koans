@@ -15,7 +15,8 @@ defmodule Koans.Mixfile do
   end
 
   defp deps do
-    [{:file_system, "~> 0.2"}]
+    [{:file_system, "~> 0.2"},
+    {:credo, "~> 1.7", only: [:dev, :test], runtime: false}]
   end
 
   defp elixirc_path(:test), do: ["lib/", "test/support"]

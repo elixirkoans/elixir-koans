@@ -1,4 +1,5 @@
 defmodule Display do
+  @moduledoc false
   use GenServer
 
   alias IO.ANSI
@@ -20,7 +21,7 @@ defmodule Display do
     {:noreply, %{state | clear_screen: false}}
   end
 
-  def handle_cast(:clear_screen, state = %{clear_screen: true}) do
+  def handle_cast(:clear_screen, %{clear_screen: true} = state) do
     IO.puts(ANSI.clear())
     IO.puts(ANSI.home())
 

@@ -1,4 +1,5 @@
 defmodule MapSets do
+  @moduledoc false
   use Koans
 
   @intro "My name is Set, MapSet."

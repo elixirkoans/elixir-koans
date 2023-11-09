@@ -1,4 +1,5 @@
 defmodule Tasks do
+  @moduledoc false
   use Koans
 
   @intro "Tasks"

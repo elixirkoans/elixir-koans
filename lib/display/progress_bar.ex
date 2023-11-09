@@ -1,4 +1,5 @@
 defmodule Display.ProgressBar do
+  @moduledoc false
   @progress_bar_length 30
 
   def progress_bar(%{current: current, total: total}) do

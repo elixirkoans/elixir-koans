@@ -1,4 +1,5 @@
 defmodule Functions do
+  @moduledoc false
   use Koans
 
   @intro "Functions"
@@ -104,8 +105,7 @@ defmodule Functions do
     result =
       "full-name"
       |> String.split("-")
-      |> Enum.map(&String.capitalize/1)
-      |> Enum.join(" ")
+      |> Enum.map_join(" ", &String.capitalize/1)
 
     assert result == ___
   end

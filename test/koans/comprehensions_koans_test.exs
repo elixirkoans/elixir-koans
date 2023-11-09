@@ -14,5 +14,4 @@ defmodule ComprehensionsTests do
 
     test_all(Comprehensions, answers)
   end
-
 end

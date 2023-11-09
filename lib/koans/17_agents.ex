@@ -1,4 +1,5 @@
 defmodule Agents do
+  @moduledoc false
   use Koans
 
   @intro "Agents"
