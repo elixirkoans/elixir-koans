@@ -19,7 +19,7 @@ defmodule BlanksTest do
   end
 
   test "multiple arguments" do
-    ast = quote do: assert true == false
+    ast = quote do: assert ___ == ___
 
     assert Blanks.replace(ast, [true, false]) == quote(do: assert(true == false))
   end
