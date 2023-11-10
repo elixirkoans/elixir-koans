@@ -3,7 +3,7 @@ defmodule Display do
   use GenServer
 
   alias IO.ANSI
-  alias Display.{ProgressBar, Intro, Failure, Notifications}
+  alias Display.{Failure, Intro, Notifications, ProgressBar}
 
   def start_link do
     GenServer.start_link(__MODULE__, %{clear_screen: true}, name: __MODULE__)

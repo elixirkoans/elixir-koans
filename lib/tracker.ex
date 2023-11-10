@@ -35,7 +35,7 @@ defmodule Tracker do
     end
   end
 
-  def wait_until_complete() do
+  def wait_until_complete do
     pid = Process.whereis(Tracker)
 
     receive do
