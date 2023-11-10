@@ -34,4 +34,4 @@ jobs:
     - name: Run tests
       run: mix test
     - name: Run static analytics
-      run: mix credo --all --strict
+      run: mix credo suggest --all --strict
