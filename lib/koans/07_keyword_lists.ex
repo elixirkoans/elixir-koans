@@ -1,4 +1,5 @@
 defmodule KeywordLists do
+  @moduledoc false
   use Koans
 
   @intro "KeywordLists"

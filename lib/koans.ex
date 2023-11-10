@@ -1,4 +1,5 @@
 defmodule Koans do
+  @moduledoc false
   defp valid_name(name) do
     Regex.match?(~r/([A-Z]|\.\.\.).+/, name)
   end
@@ -18,12 +19,10 @@ defmodule Koans do
       generate_test_method(unquote(compiled_name), unquote(number_of_args), unquote(body))
 
       def unquote(compiled_name)() do
-        try do
-          unquote(compiled_body)
-          :ok
-        rescue
-          e -> {:error, __STACKTRACE__, e}
-        end
+        unquote(compiled_body)
+        :ok
+      rescue
+        e -> {:error, __STACKTRACE__, e}
       end
     end
   end
@@ -35,12 +34,10 @@ defmodule Koans do
 
     quote do
       def unquote(name)(answer) do
-        try do
-          unquote(single_var)
-          :ok
-        rescue
-          e -> {:error, __STACKTRACE__, e}
-        end
+        unquote(single_var)
+        :ok
+      rescue
+        e -> {:error, __STACKTRACE__, e}
       end
     end
   end
@@ -53,12 +50,10 @@ defmodule Koans do
 
     quote do
       def unquote(name)({:multiple, unquote(answer_vars)}) do
-        try do
-          unquote(multi_var)
-          :ok
-        rescue
-          e -> {:error, __STACKTRACE__, e}
-        end
+        unquote(multi_var)
+        :ok
+      rescue
+        e -> {:error, __STACKTRACE__, e}
       end
     end
   end

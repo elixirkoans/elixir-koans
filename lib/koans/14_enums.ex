@@ -1,4 +1,5 @@
 defmodule Enums do
+  @moduledoc false
   use Koans
 
   @intro "Enums"

@@ -1,4 +1,5 @@
 defmodule Lists do
+  @moduledoc false
   use Koans
 
   @intro "Lists"

@@ -1,4 +1,5 @@
-timeout = 1000 # ms
+# ms
+timeout = 1000
 ExUnit.start(timeout: timeout)
 
 defmodule TestHarness do

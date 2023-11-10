@@ -1,4 +1,5 @@
 defmodule Sigils do
+  @moduledoc false
   use Koans
 
   @intro "Sigils"

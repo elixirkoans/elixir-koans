@@ -19,6 +19,7 @@ defmodule BlanksTest do
   end
 
   test "multiple arguments" do
+    # credo:disable-for-next-line Credo.Check.Warning.OperationOnSameValues
     ast = quote do: assert(___ == ___)
 
     assert Blanks.replace(ast, [true, false]) == quote(do: assert(true == false))
@@ -43,6 +44,7 @@ defmodule BlanksTest do
   end
 
   test "counts multiple blanks" do
+    # credo:disable-for-next-line Credo.Check.Warning.OperationOnSameValues
     ast = quote do: assert(___ == ___)
 
     assert Blanks.count(ast) == 2

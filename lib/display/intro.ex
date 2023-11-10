@@ -1,11 +1,12 @@
 defmodule Display.Intro do
+  @moduledoc false
   alias Display.Paint
 
   def intro(module, modules) do
-    if not (module in modules) do
-      show_intro(module.intro)
-    else
+    if module in modules do
       ""
+    else
+      show_intro(module.intro)
     end
   end
 

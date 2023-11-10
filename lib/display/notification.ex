@@ -1,4 +1,5 @@
 defmodule Display.Notifications do
+  @moduledoc false
   alias Display.Paint
 
   def congratulate do
@@ -13,8 +14,7 @@ defmodule Display.Notifications do
   defp module_names(modules) do
     modules
     |> Enum.map(&Atom.to_string/1)
-    |> Enum.map(&name/1)
-    |> Enum.join(", ")
+    |> Enum.map_join(", ", &name/1)
     |> Paint.red()
   end
 

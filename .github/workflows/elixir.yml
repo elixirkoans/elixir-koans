@@ -33,3 +33,5 @@ jobs:
       run: mix deps.get
     - name: Run tests
       run: mix test
+    - name: Run static analytics
+      run: mix credo suggest --all --strict

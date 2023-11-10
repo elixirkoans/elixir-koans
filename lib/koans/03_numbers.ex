@@ -1,4 +1,5 @@
 defmodule Numbers do
+  @moduledoc false
   require Integer
   use Koans
 
@@ -49,7 +50,7 @@ defmodule Numbers do
   end
 
   koan "Let's grab the individual digits in a list" do
-    individual_digits = Integer.digits(58127)
+    individual_digits = Integer.digits(58_127)
     assert individual_digits == ___
   end
 

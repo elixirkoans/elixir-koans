@@ -1,8 +1,9 @@
 defmodule Display do
+  @moduledoc false
   use GenServer
 
   alias IO.ANSI
-  alias Display.{ProgressBar, Intro, Failure, Notifications}
+  alias Display.{Failure, Intro, Notifications, ProgressBar}
 
   def start_link do
     GenServer.start_link(__MODULE__, %{clear_screen: true}, name: __MODULE__)
@@ -20,7 +21,7 @@ defmodule Display do
     {:noreply, %{state | clear_screen: false}}
   end
 
-  def handle_cast(:clear_screen, state = %{clear_screen: true}) do
+  def handle_cast(:clear_screen, %{clear_screen: true} = state) do
     IO.puts(ANSI.clear())
     IO.puts(ANSI.home())
 

@@ -1,4 +1,5 @@
 defmodule SampleKoan do
+  @moduledoc false
   use Koans
 
   @intro """

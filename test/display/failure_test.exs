@@ -39,7 +39,7 @@ defmodule FailureTests do
 
   test "only offending lines are displayed for errors" do
     [koan] = SingleArity.all_koans()
-    error = apply(SingleArity, koan, []) |> Tuple.to_list |> List.last |> error
+    error = apply(SingleArity, koan, []) |> Tuple.to_list() |> List.last() |> error
 
     assert Failure.format_failure(error) == """
            Assertion failed in some_file.ex:42\nmatch?(:foo, ___)
