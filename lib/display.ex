@@ -56,11 +56,13 @@ defmodule Display do
   end
 
   defp format(failure, module, name) do
+    progress_bar = ProgressBar.progress_bar(Tracker.summarize())
+    progress_bar_underline = String.duplicate("-", String.length(progress_bar))
     """
     #{Intro.intro(module, Tracker.visited())}
     Now meditate upon #{format_module(module)}
-    #{ProgressBar.progress_bar(Tracker.summarize())}
-    ----------------------------------------
+    #{progress_bar}
+    #{progress_bar_underline}
     #{name}
     #{Failure.format_failure(failure)}
     """
