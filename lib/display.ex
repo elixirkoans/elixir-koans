@@ -21,15 +21,14 @@ defmodule Display do
     {:noreply, %{state | clear_screen: false}}
   end
 
-  def handle_cast(:clear_screen, %{clear_screen: true} = state) do
-    IO.puts(ANSI.clear())
-    IO.puts(ANSI.home())
+  def handle_call(:clear_screen, _from, %{clear_screen: true} = state) do
+    ANSI.clear <> ANSI.home |> IO.puts()
 
-    {:noreply, state}
+    {:reply, :ok, state}
   end
 
-  def handle_cast(:clear_screen, state) do
-    {:noreply, state}
+  def handle_call(:clear_screen, _from, state) do
+    {:reply, :ok, state}
   end
 
   def invalid_koan(koan, modules) do
@@ -53,7 +52,7 @@ defmodule Display do
   end
 
   def clear_screen do
-    GenServer.cast(__MODULE__, :clear_screen)
+    GenServer.call(__MODULE__, :clear_screen)
   end
 
   defp format(failure, module, name) do
