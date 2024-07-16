@@ -109,6 +109,10 @@ defmodule Numbers do
     assert Float.round(-5.5674, 3) === ___
   end
 
+  koan "But beware of floating dragons" do
+    assert Float.round(2.675, 2) == ___
+  end
+
   koan "I want the first and last in the range" do
     first..last = Range.new(1, 10)
 
