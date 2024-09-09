@@ -7,25 +7,28 @@ on:
   pull_request:
     branches: [ master ]
 
+permissions:
+  contents: read
+
 jobs:
   build:
 
     name: Build and test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
 
     steps:
-    - uses: actions/checkout@v2
-    - name: System dependencies
+    - uses: actions/checkout@v4
+    - name: Install inotify-tools
       run: |
-        sudo apt update
-        sudo apt install -y inotify-tools
+        sudo apt-get update
+        sudo apt-get install inotify-tools
     - name: Set up Elixir
-      uses: erlef/setup-beam@988e02bfe678367a02564f65ca2e37726dc0268f
+      uses: erlef/setup-beam@v1.18
       with:
-        elixir-version: '1.12.3' # Define the elixir version [required]
-        otp-version: '24.1' # Define the OTP version [required]
+        elixir-version: '1.17' # [Required] Define the Elixir version
+        otp-version: '27.0'    # [Required] Define the Erlang/OTP version
     - name: Restore dependencies cache
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: deps
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
@@ -34,5 +37,5 @@ jobs:
       run: mix deps.get
     - name: Run tests
       run: mix test
-    - name: Run static analytics
+    - name: Run static analysis
       run: mix credo suggest --all --strict
