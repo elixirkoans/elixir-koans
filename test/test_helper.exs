@@ -6,7 +6,7 @@ defmodule TestHarness do
   import ExUnit.Assertions
 
   def test_all(module, answers) do
-    module.all_koans
+    module.all_koans()
     |> check_answer_count(answers, module)
     |> Enum.zip(answers)
     |> run_all(module)

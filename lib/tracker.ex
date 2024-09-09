@@ -18,7 +18,7 @@ defmodule Tracker do
   def set_total(modules) do
     total =
       modules
-      |> Enum.flat_map(& &1.all_koans)
+      |> Enum.flat_map(& &1.all_koans())
       |> Enum.count()
 
     Agent.update(__MODULE__, fn _ -> %Tracker{total: total} end)
