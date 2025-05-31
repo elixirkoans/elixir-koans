@@ -1,11 +1,9 @@
 defmodule GenServers do
-  @moduledoc false
   use Koans
 
   @intro "GenServers"
 
   defmodule Laptop do
-    @moduledoc false
     use GenServer
 
     #####

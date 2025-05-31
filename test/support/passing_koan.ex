@@ -1,5 +1,4 @@
 defmodule PassingKoan do
-  @moduledoc false
   use Koans
 
   @intro "something"

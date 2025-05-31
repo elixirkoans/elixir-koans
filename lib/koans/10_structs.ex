@@ -1,11 +1,9 @@
 defmodule Structs do
-  @moduledoc false
   use Koans
 
   @intro "Structs"
 
   defmodule Person do
-    @moduledoc false
     defstruct [:name, :age]
   end
 
@@ -37,12 +35,10 @@ defmodule Structs do
   end
 
   defmodule Plane do
-    @moduledoc false
     defstruct passengers: 0, maker: :boeing
   end
 
   defmodule Airline do
-    @moduledoc false
     defstruct plane: %Plane{}, name: "Southwest"
   end
 

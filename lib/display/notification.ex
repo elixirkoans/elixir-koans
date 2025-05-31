@@ -1,5 +1,4 @@
 defmodule Display.Notifications do
-  @moduledoc false
   alias Display.Paint
 
   def congratulate do

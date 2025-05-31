@@ -1,5 +1,4 @@
 defmodule Processes do
-  @moduledoc false
   use Koans
 
   @intro "Processes"

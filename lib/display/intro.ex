@@ -1,5 +1,4 @@
 defmodule Display.Intro do
-  @moduledoc false
   alias Display.Paint
 
   def intro(module, modules) do

@@ -1,5 +1,4 @@
 defmodule Display.Paint do
-  @moduledoc false
   def red(str), do: painter().red(str)
   def cyan(str), do: painter().cyan(str)
   def green(str), do: painter().green(str)
@@ -14,7 +13,6 @@ defmodule Display.Paint do
 end
 
 defmodule Display.Colours do
-  @moduledoc false
   alias IO.ANSI
 
   def red(str), do: colourize(ANSI.red(), str)
@@ -28,7 +26,6 @@ defmodule Display.Colours do
 end
 
 defmodule Display.Uncoloured do
-  @moduledoc false
   def red(str), do: str
   def cyan(str), do: str
   def green(str), do: str

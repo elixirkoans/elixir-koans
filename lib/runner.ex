@@ -1,5 +1,4 @@
 defmodule Runner do
-  @moduledoc false
   use GenServer
 
   def koan?(koan) do

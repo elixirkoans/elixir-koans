@@ -1,5 +1,4 @@
 defmodule Equalities do
-  @moduledoc false
   use Koans
 
   @intro """

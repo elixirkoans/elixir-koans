@@ -1,5 +1,4 @@
 defmodule Blanks do
-  @moduledoc false
   def replace(ast, replacements) do
     replacements = List.wrap(replacements)
 

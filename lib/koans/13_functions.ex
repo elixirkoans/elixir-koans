@@ -1,5 +1,4 @@
 defmodule Functions do
-  @moduledoc false
   use Koans
 
   @intro "Functions"

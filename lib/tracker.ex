@@ -1,5 +1,4 @@
 defmodule Tracker do
-  @moduledoc false
   alias __MODULE__
 
   defstruct total: 0,

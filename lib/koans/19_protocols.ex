@@ -1,5 +1,4 @@
 defmodule Protocols do
-  @moduledoc false
   use Koans
 
   @intro "Want to follow the rules? Adhere to the protocol!"
@@ -13,23 +12,19 @@ defmodule Protocols do
   end
 
   defmodule Painter do
-    @moduledoc false
     @derive Artist
     defstruct name: ""
   end
 
   defmodule Musician do
-    @moduledoc false
     defstruct(name: "", instrument: "")
   end
 
   defmodule Dancer do
-    @moduledoc false
     defstruct(name: "", dance_style: "")
   end
 
   defmodule Physicist do
-    @moduledoc false
     defstruct(name: "")
   end
 

@@ -1,5 +1,4 @@
 defmodule Strings do
-  @moduledoc false
   use Koans
 
   @intro "Strings"

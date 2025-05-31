@@ -1,5 +1,4 @@
 defmodule Mix.Tasks.Meditate do
-  @moduledoc false
   use Mix.Task
 
   @shortdoc "Start the koans"

@@ -1,5 +1,4 @@
 defmodule Tuples do
-  @moduledoc false
   use Koans
 
   @intro "Tuples"

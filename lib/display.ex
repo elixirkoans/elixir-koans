@@ -1,5 +1,4 @@
 defmodule Display do
-  @moduledoc false
   use GenServer
 
   alias IO.ANSI

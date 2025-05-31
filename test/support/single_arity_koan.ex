@@ -1,5 +1,4 @@
 defmodule SingleArity do
-  @moduledoc false
   use Koans
 
   @intro """

@@ -1,5 +1,4 @@
 defmodule Maps do
-  @moduledoc false
   use Koans
 
   @intro "Maps"

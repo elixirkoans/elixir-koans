@@ -1,5 +1,4 @@
 defmodule Atoms do
-  @moduledoc false
   use Koans
 
   @intro "Atoms"

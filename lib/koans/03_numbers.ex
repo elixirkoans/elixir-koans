@@ -1,5 +1,4 @@
 defmodule Numbers do
-  @moduledoc false
   require Integer
   use Koans
 

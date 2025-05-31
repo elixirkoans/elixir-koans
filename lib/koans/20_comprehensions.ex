@@ -1,5 +1,4 @@
 defmodule Comprehensions do
-  @moduledoc false
   use Koans
 
   @intro "A comprehension is made of three parts: generators, filters, and collectibles. We will look at how these interact with each other"

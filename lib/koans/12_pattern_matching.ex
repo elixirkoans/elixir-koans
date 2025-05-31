@@ -1,5 +1,4 @@
 defmodule PatternMatching do
-  @moduledoc false
   use Koans
 
   @intro "PatternMatching"
@@ -95,7 +94,6 @@ defmodule PatternMatching do
   end
 
   defmodule Animal do
-    @moduledoc false
     defstruct [:kind, :name]
   end
 
@@ -105,7 +103,6 @@ defmodule PatternMatching do
   end
 
   defmodule Plane do
-    @moduledoc false
     defstruct passengers: 0, maker: :boeing
   end
 
