@@ -6,7 +6,7 @@ defmodule Display.Intro do
     if module in modules do
       ""
     else
-      show_intro(module.intro)
+      module.intro() |> show_intro()
     end
   end
 

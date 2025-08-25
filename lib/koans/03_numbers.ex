@@ -110,7 +110,7 @@ defmodule Numbers do
   end
 
   koan "I want the first and last in the range" do
-    first..last = Range.new(1, 10)
+    first..last//_step = Range.new(1, 10)
 
     assert first == ___
     assert last == ___
