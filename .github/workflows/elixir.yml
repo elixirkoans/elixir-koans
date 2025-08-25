@@ -35,8 +35,8 @@ jobs:
             mix-${{ runner.os }}-${{matrix.elixir}}-${{matrix.otp}}-
 
       - run: mix deps.get
+      - run: mix compile --force --warnings-as-errors
       - run: mix format --check-formatted
       - run: mix credo --strict
-      - run: mix compile --force --warnings-as-errors
       - run: mix deps.unlock --check-unused
       - run: mix test
