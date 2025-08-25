@@ -8,7 +8,7 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     env:
@@ -21,14 +21,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: |
+      - name: System Dependencies
+        run: |
           sudo apt update
           sudo apt install -y inotify-tools
-      - uses: erlef/setup-beam@v1
+      - name: Setup Elixir
+        uses: erlef/setup-beam@v1
         with:
           otp-version: ${{ matrix.otp }}
           elixir-version: ${{ matrix.elixir }}
-      - uses: actions/cache@v4
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
         with:
           path: |
             deps
@@ -37,8 +40,13 @@ jobs:
           restore-keys: |
             mix-${{ runner.os }}-${{matrix.elixir}}-${{matrix.otp}}-
 
-      - run: mix deps.get
-      - run: mix format --check-formatted
-      - run: mix credo --strict
-      - run: mix deps.unlock --check-unused
-      - run: mix test
+      - name: Install dependencies
+        run: mix deps.get
+      - name: Check code format
+        run: mix format --check-formatted
+      - name: Run static analysis
+        run: mix credo --strict
+      - name: Check for unneeded dependencies
+        run: mix deps.unlock --check-unused
+      - name: Run tests
+        run: mix test
