@@ -21,6 +21,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - run: |
+          sudo apt update
+          sudo apt install -y inotify-tools
       - uses: erlef/setup-beam@v1
         with:
           otp-version: ${{ matrix.otp }}
