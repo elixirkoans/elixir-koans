@@ -36,15 +36,8 @@ defmodule Watcher do
     end
   end
 
-  # Elixir 1.7 deprecates Code.load_file in favor of Code.compile_file. In
-  # order to avoid the depecation warnings while maintaining backwards
-  # compatibility, we check the sytem version and execute conditionally.
   defp portable_load_file(file) do
-    if Version.match?(System.version(), "~> 1.7") do
-      Code.compile_file(file)
-    else
-      Code.load_file(file)
-    end
+    Code.compile_file(file)
   end
 
   defp normalize(file) do
