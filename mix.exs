@@ -17,7 +17,7 @@ defmodule Koans.Mixfile do
 
   defp deps do
     [
-      {:file_system, "~> 0.2"},
+      {:file_system, "~> 1.1"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
