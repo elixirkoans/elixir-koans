@@ -22,7 +22,7 @@ defmodule Display do
   end
 
   def handle_call(:clear_screen, _from, %{clear_screen: true} = state) do
-    ANSI.clear <> ANSI.home |> IO.puts()
+    (ANSI.clear() <> ANSI.home()) |> IO.puts()
 
     {:reply, :ok, state}
   end
@@ -58,6 +58,7 @@ defmodule Display do
   defp format(failure, module, name) do
     progress_bar = ProgressBar.progress_bar(Tracker.summarize())
     progress_bar_underline = String.duplicate("-", String.length(progress_bar))
+
     """
     #{Intro.intro(module, Tracker.visited())}
     Now meditate upon #{format_module(module)}
