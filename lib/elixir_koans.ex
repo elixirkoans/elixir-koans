@@ -3,13 +3,11 @@ defmodule ElixirKoans do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec
-
     children = [
-      worker(Display, []),
-      worker(Tracker, []),
-      worker(Runner, []),
-      worker(Watcher, [])
+      %{id: Display, start: {Display, :start_link, []}},
+      %{id: Tracker, start: {Tracker, :start_link, []}},
+      %{id: Runner, start: {Runner, :start_link, []}},
+      %{id: Watcher, start: {Watcher, :start_link, []}}
     ]
 
     opts = [strategy: :one_for_one, name: ElixirKoans.Supervisor]

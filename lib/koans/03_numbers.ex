@@ -110,7 +110,7 @@ defmodule Numbers do
   end
 
   koan "I want the first and last in the range" do
-    first..last = Range.new(1, 10)
+    first..last//_step = Range.new(1, 10)
 
     assert first == ___
     assert last == ___
@@ -124,11 +124,11 @@ defmodule Numbers do
     assert 0 in range == ___
   end
 
-  def is_range?(%Range{}), do: true
-  def is_range?(_), do: false
+  def range?(%Range{}), do: true
+  def range?(_), do: false
 
   koan "Is this a range?" do
-    assert is_range?(1..10) == ___
-    assert is_range?(0) == ___
+    assert range?(1..10) == ___
+    assert range?(0) == ___
   end
 end

@@ -6,7 +6,9 @@ defmodule Display.ProgressBar do
     arrow = calculate_progress(current, total) |> build_arrow
     progress_percentage = calculate_percentage(current, total)
 
-    "|" <> String.pad_trailing(arrow, @progress_bar_length) <> "| #{current} of #{total} -> #{progress_percentage}% complete"
+    "|" <>
+      String.pad_trailing(arrow, @progress_bar_length) <>
+      "| #{current} of #{total} -> #{progress_percentage}% complete"
   end
 
   defp calculate_progress(current, total) do

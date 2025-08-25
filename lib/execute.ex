@@ -1,7 +1,8 @@
 defmodule Execute do
   @moduledoc false
   def run_module(module, callback \\ fn _result, _module, _koan -> nil end) do
-    Enum.reduce_while(module.all_koans, :passed, fn koan, _ ->
+    module.all_koans()
+    |> Enum.reduce_while(:passed, fn koan, _ ->
       module
       |> run_koan(koan)
       |> hook(module, koan, callback)

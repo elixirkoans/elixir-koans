@@ -50,7 +50,7 @@ defmodule Display.Failure do
   end
 
   defp format_error(error) do
-    trace = System.stacktrace() |> Enum.take(2)
+    trace = Process.info(self(), :current_stacktrace) |> Enum.take(2)
     Paint.red(Exception.format(:error, error, trace))
   end
 
