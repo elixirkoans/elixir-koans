@@ -124,11 +124,11 @@ defmodule Numbers do
     assert 0 in range == ___
   end
 
-  def is_range?(%Range{}), do: true
-  def is_range?(_), do: false
+  def range?(%Range{}), do: true
+  def range?(_), do: false
 
   koan "Is this a range?" do
-    assert is_range?(1..10) == ___
-    assert is_range?(0) == ___
+    assert range?(1..10) == ___
+    assert range?(0) == ___
   end
 end
