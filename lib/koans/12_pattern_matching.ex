@@ -83,15 +83,15 @@ defmodule PatternMatching do
   end
 
   koan "Errors are shaped differently than successful results" do
-    dog = %{type: "dog"}
+    dog = %{type: "barking"}
 
-    result =
+    type =
       case Map.fetch(dog, :type) do
         {:ok, value} -> value
         :error -> "not present"
       end
 
-    assert result == ___
+    assert type == ___
   end
 
   defmodule Animal do
@@ -165,5 +165,43 @@ defmodule PatternMatching do
     assert_raise MatchError, fn ->
       ^a = ___
     end
+  end
+
+  koan "Pattern matching works with nested data structures" do
+    user = %{
+      profile: %{
+        personal: %{name: "Alice", age: 30},
+        settings: %{theme: "dark", notifications: true}
+      }
+    }
+
+    %{profile: %{personal: %{age: age}, settings: %{theme: theme}}} = user
+    assert age == ___
+    assert theme == ___
+  end
+
+  koan "Lists can be pattern matched with head and tail" do
+    numbers = [1, 2, 3, 4, 5]
+
+    [first, second | rest] = numbers
+    assert first == ___
+    assert second == ___
+    assert rest == ___
+
+    [head | _tail] = numbers
+    assert head == ___
+  end
+
+  koan "Pattern matching can extract values from function return tuples" do
+    divide = fn
+      _, 0 -> {:error, :division_by_zero}
+      x, y -> {:ok, x / y}
+    end
+
+    {:ok, result} = divide.(10, 2)
+    assert result == ___
+
+    {:error, reason} = divide.(10, 0)
+    assert reason == ___
   end
 end

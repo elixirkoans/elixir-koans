@@ -8,8 +8,18 @@ defmodule Enums do
     assert Enum.count([1, 2, 3]) == ___
   end
 
-  koan "Depending on the type, it counts pairs" do
-    assert Enum.count(%{a: :foo, b: :bar}) == ___
+  koan "Counting is similar to length" do
+    assert length([1, 2, 3]) == ___
+  end
+
+  koan "But it allows you to count certain elements" do
+    assert Enum.count([1, 2, 3], &(&1 == 2)) == ___
+  end
+
+  koan "Depending on the type, it counts pairs while length does not" do
+    map = %{a: :foo, b: :bar}
+    assert Enum.count(map) == ___
+    assert_raise ___, fn -> length(map) end
   end
 
   def less_than_five?(n), do: n < 5
@@ -34,7 +44,7 @@ defmodule Enums do
 
   def multiply_by_ten(n), do: 10 * n
 
-  koan "Map converts each element of a list by running some function with it" do
+  koan "Mapping converts each element of a list by running some function with it" do
     assert Enum.map([1, 2, 3], &multiply_by_ten/1) == ___
   end
 
@@ -66,7 +76,7 @@ defmodule Enums do
     assert Enum.zip(letters, numbers) == ___
   end
 
-  koan "When you want to find that one pesky element" do
+  koan "When you want to find that one pesky element, it returns the first" do
     assert Enum.find([1, 2, 3, 4], &even?/1) == ___
   end
 
@@ -82,5 +92,39 @@ defmodule Enums do
 
   koan "Collapse an entire list of elements down to a single one by repeating a function." do
     assert Enum.reduce([1, 2, 3], 0, fn element, accumulator -> element + accumulator end) == ___
+  end
+
+  koan "Enum.chunk_every splits lists into smaller lists of fixed size" do
+    assert Enum.chunk_every([1, 2, 3, 4, 5, 6], 2) == ___
+    assert Enum.chunk_every([1, 2, 3, 4, 5], 3) == ___
+  end
+
+  koan "Enum.flat_map transforms and flattens in one step" do
+    result =
+      [1, 2, 3]
+      |> Enum.flat_map(&[&1, &1 * 10])
+
+    assert result == ___
+  end
+
+  koan "Enum.group_by organizes elements by a grouping function" do
+    words = ["apple", "banana", "cherry", "apricot", "blueberry"]
+    grouped = Enum.group_by(words, &String.first/1)
+
+    assert grouped["a"] == ___
+    assert grouped["b"] == ___
+  end
+
+  koan "Stream provides lazy enumeration for large datasets" do
+    # Streams are lazy - they don't execute until you call Enum on them
+    stream =
+      1..1_000_000
+      |> Stream.filter(&even?/1)
+      |> Stream.map(&(&1 * 2))
+      |> Stream.take(3)
+
+    # Nothing has been computed yet!
+    result = Enum.to_list(stream)
+    assert result == ___
   end
 end

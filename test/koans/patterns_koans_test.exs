@@ -15,7 +15,7 @@ defmodule PatternsTests do
       [1, 2, 3],
       {:multiple, ["Meow", "Woof", "Eh?"]},
       {:multiple, ["Mickey", "Donald", "I need a name!"]},
-      "dog",
+      "barking",
       "Max",
       {:multiple, [true, false]},
       "Max",
@@ -23,7 +23,10 @@ defmodule PatternsTests do
       2,
       {:multiple, ["The number One", "The number Two", "The number 3"]},
       "same",
-      2
+      2,
+      {:multiple, [30, "dark"]},
+      {:multiple, [1, 2, [3, 4, 5], 1]},
+      {:multiple, [5, :division_by_zero]}
     ]
 
     test_all(PatternMatching, answers)
