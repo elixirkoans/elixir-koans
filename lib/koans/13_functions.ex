@@ -110,6 +110,28 @@ defmodule Functions do
     assert result == ___
   end
 
+  koan "Pipes make data transformation pipelines readable" do
+    numbers = [1, 2, 3, 4, 5]
+
+    result =
+      numbers
+      |> Enum.filter(&(&1 > 2))
+      |> Enum.map(&(&1 * 2))
+      |> Enum.sum()
+
+    assert result == ___
+
+    user_input = "  Hello World  "
+
+    cleaned =
+      user_input
+      |> String.trim()
+      |> String.downcase()
+      |> String.replace(" ", "_")
+
+    assert cleaned == ___
+  end
+
   koan "Conveniently keyword lists can be used for function options" do
     transform = fn str, opts ->
       if opts[:upcase] do
@@ -121,5 +143,17 @@ defmodule Functions do
 
     assert transform.("good", upcase: true) == ___
     assert transform.("good", upcase: false) == ___
+  end
+
+  koan "Anonymous functions can use the & capture syntax for very concise definitions" do
+    add_one = &(&1 + 1)
+    multiply_by_two = &(&1 * 2)
+
+    result = 5 |> add_one.() |> multiply_by_two.()
+    assert result == ___
+
+    # You can also capture existing functions
+    string_length = &String.length/1
+    assert string_length.("hello") == ___
   end
 end
