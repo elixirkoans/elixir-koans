@@ -160,4 +160,86 @@ defmodule GenServers do
 
     :ok = Laptop.stop()
   end
+
+  defmodule TimeoutServer do
+    use GenServer
+
+    def start_link(timeout) do
+      GenServer.start_link(__MODULE__, timeout, name: __MODULE__)
+    end
+
+    def init(timeout) do
+      {:ok, %{count: 0}, timeout}
+    end
+
+    def get_count do
+      GenServer.call(__MODULE__, :get_count)
+    end
+
+    def handle_call(:get_count, _from, state) do
+      {:reply, state.count, state}
+    end
+
+    def handle_info(:timeout, state) do
+      new_state = %{state | count: state.count + 1}
+      {:noreply, new_state}
+    end
+  end
+
+  koan "GenServers can handle info messages and timeouts" do
+    {:ok, _pid} = TimeoutServer.start_link(100)
+    # Wait for timeout to occur
+    :timer.sleep(101)
+    count = TimeoutServer.get_count()
+    assert count == ___
+
+    GenServer.stop(TimeoutServer)
+  end
+
+  defmodule CrashableServer do
+    use GenServer
+
+    def start_link(initial) do
+      GenServer.start_link(__MODULE__, initial, name: __MODULE__)
+    end
+
+    def init(initial) do
+      {:ok, initial}
+    end
+
+    def crash do
+      GenServer.cast(__MODULE__, :crash)
+    end
+
+    def get_state do
+      GenServer.call(__MODULE__, :get_state)
+    end
+
+    def handle_call(:get_state, _from, state) do
+      {:reply, state, state}
+    end
+
+    def handle_cast(:crash, _state) do
+      raise "Intentional crash for testing"
+    end
+  end
+
+  koan "GenServers can be supervised and restarted" do
+    # Start under a supervisor
+    children = [{CrashableServer, "the state"}]
+    {:ok, supervisor} = Supervisor.start_link(children, strategy: :one_for_one)
+
+    # Server should be running
+    initial_state = CrashableServer.get_state()
+    assert initial_state == ___
+
+    :ok = CrashableServer.crash()
+    # Wait for recovery
+    :timer.sleep(100)
+
+    state_after_crash_recovery = CrashableServer.get_state()
+    assert state_after_crash_recovery == ___
+
+    Supervisor.stop(supervisor)
+  end
 end
