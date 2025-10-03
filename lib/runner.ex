@@ -13,7 +13,7 @@ defmodule Runner do
     {:ok, modules} = :application.get_key(:elixir_koans, :modules)
 
     modules
-    |> Stream.map(&(&1.module_info |> get_in([:compile, :source])))
+    |> Stream.map(&(&1.module_info() |> get_in([:compile, :source])))
     # Paths are charlists
     |> Stream.map(&to_string/1)
     |> Stream.zip(modules)
