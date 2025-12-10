@@ -28,6 +28,7 @@ defmodule NumbersTests do
       99.0,
       12.34,
       {:multiple, [6.0, 5.0, 8.9, -5.567]},
+      2.67,
       {:multiple, [1, 10]},
       {:multiple, [true, true, false]},
       {:multiple, [true, false]}
